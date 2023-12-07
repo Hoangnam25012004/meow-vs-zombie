@@ -1,4 +1,4 @@
-package org.example.game;
+package org.game;
 
 public class Setting {
 }
