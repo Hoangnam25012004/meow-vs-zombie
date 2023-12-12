@@ -3,16 +3,15 @@ package org.game;
 public class Bullet {
     private int x, y;
     private int Dame;
-    private int ID;
-
-    public int getID() { return ID; }
+ 
+ 
     public int getDame() { return Dame; }
-    public Bullet(int x, int y, int ATK, int ID){
+    public Bullet(int x, int y, int Dame){
         this.x = x;
         this.y = y;
         this.Dame = Dame;
-        this.ID = ID;
-        }
+
+    }
         
     public int getX() {
         return x;
