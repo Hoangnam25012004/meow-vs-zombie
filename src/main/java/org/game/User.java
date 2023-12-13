@@ -6,18 +6,19 @@ import java.util.ArrayList;
 
     private String username;
     private int level;
-    private int coins;
-    private ArrayList<Meow> equippedMeow;
+    private int fish;
+    private ArrayList<Meow> unlockedMeow;
+    
 
     public User(String username) {
         this.username = username;
         this.level = 1;
-        this.coins = 100;
-        this.equippedMeow = new ArrayList<>();
+        this.fish = 100;
+        this.unlockedMeow = new ArrayList<>();
 
         // Initialize starting plant inventory
-        unlockedPlants.add(new Sunflower());
-        unlockedPlants.add(new Peashooter());
+        unlockedMeow.add(new FishBucket());
+        //unlockedMeow.add(new Meow());
     }
 
     // Getters and Setters
@@ -37,28 +38,16 @@ import java.util.ArrayList;
         this.level = level;
     }
 
-    public int getCoins() {
-        return coins;
+    public int getFish() {
+        return fish;
     }
 
-    public void setCoins(int coins) {
-        this.coins = coins;
+    public void setFish(int fish) {
+        this.fish = fish;
     }
 
-    public ArrayList<Meow> getEquippedMeow() {
-        return equippedMeow;
+    public ArrayList<Meow> unlockedMeow() {
+        return unlockedMeow;
     }
-
-    public void equipPlant(Plant plant) {
-        if (unlockedPlants.contains(plant) && !equippedPlants.contains(plant)) {
-            equippedPlants.add(plant);
-        }
-    }
-
-    public void unequipPlant(Plant plant) {
-        if (equippedPlants.contains(plant)) {
-            equippedPlants.remove(plant);
-        }
-    }
+    
 }
-

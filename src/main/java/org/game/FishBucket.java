@@ -8,6 +8,13 @@ public class FishBucket extends Meow{
         this.fishReleasedSpeed = fishReleasedSpeed;
     }
 
+
+
+    public FishBucket() {
+    }
+
+
+
     private void generateFish() {
 
     }
