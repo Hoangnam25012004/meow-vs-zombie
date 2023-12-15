@@ -1,5 +1,8 @@
 package org.game;
 
+import org.game.MeowPack.FishBucket;
+import org.game.MeowPack.Meow;
+
 import java.util.ArrayList;
 
  public class User {

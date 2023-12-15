@@ -1,4 +1,4 @@
-package org.game;
+package org.game.MeowPack;
 
 public class StinkyPate extends Meow {
 

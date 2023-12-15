@@ -1,4 +1,4 @@
-package org.game;
+package org.game.MeowPack;
 
 public class BombPate extends Meow {
     public BombPate(int meowId, String meowName, float x, float y, int width, int height, int healthPoint, int price) {

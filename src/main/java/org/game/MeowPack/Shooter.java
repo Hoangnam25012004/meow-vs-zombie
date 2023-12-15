@@ -1,4 +1,6 @@
-package org.game;
+package org.game.MeowPack;
+
+import org.game.bullet.Bullet;
 
 import java.awt.image.BufferedImage;
 

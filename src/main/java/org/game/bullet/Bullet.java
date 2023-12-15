@@ -1,4 +1,4 @@
-package org.game;
+package org.game.bullet;
 
 public class Bullet {
     private int x, y;
