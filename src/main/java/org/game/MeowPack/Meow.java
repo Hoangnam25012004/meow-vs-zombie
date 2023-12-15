@@ -18,6 +18,7 @@ public abstract class Meow
         this.price = price;
         alive = true;
     }
+    public Meow(){}
 
     public abstract void render();
 

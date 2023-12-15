@@ -10,7 +10,7 @@ public class FishBucket extends Meow{
 
 
 
-    public FishBucket() {
+    public FishBucket(){
     }
 
 
