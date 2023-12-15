@@ -1,9 +1,8 @@
-package org.game;
+package org.game.bullet;
 
 public class Bullet {
     private int x, y;
     private int Dame;
-
  
  
     public int getDame() { return Dame; }
@@ -12,11 +11,7 @@ public class Bullet {
         this.y = y;
         this.Dame = Dame;
     }
-    
-    public void frezze(){
-
-    }
-    
+        
     public int getX() {
         return x;
     }
