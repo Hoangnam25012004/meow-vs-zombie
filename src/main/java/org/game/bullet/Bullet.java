@@ -3,7 +3,7 @@ package org.game.bullet;
 public class Bullet {
     private int x, y;
     private int Dame;
- 
+    private boolean isFrozen = false;
  
     public int getDame() { return Dame; }
     public Bullet(int x, int y, int Dame){
@@ -11,7 +11,14 @@ public class Bullet {
         this.y = y;
         this.Dame = Dame;
     }
-        
+
+    public boolean getisFrozen() {
+        return isFrozen;
+    }
+    public void setisFrozen(boolean isFrozen) {
+        this.isFrozen = isFrozen;
+    }
+
     public int getX() {
         return x;
     }
