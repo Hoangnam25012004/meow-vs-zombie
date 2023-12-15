@@ -10,7 +10,6 @@ public class Bullet {
         this.x = x;
         this.y = y;
         this.Dame = Dame;
-
     }
         
     public int getX() {
@@ -23,10 +22,10 @@ public class Bullet {
     public int getY () {
         return y;
     }
-
     public void setY(int y) {
         this.y = y;
     }
+    
     public void move () {
         if (this.x<1024) { 
             this.x += 8;
