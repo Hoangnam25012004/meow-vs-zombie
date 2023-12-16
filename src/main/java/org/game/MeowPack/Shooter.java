@@ -40,9 +40,11 @@ public class Shooter extends Meow {
     public void render(Graphics2D g2) {
         BufferedImage image = meow_1;
         BufferedImage image2 = meow_1;
+        BufferedImage image3 = meow_1;
 
+        g2.drawImage(image,50,100,graphical.tileSize/2,graphical.tileSize/2,null);
         g2.drawImage(image,100,100,graphical.tileSize,graphical.tileSize,null);
-        g2.drawImage(image,150,100,graphical.tileSize,graphical.tileSize,null);
+        g2.drawImage(image,150,100,graphical.tileSize*2,graphical.tileSize*2,null);
 
 
 
