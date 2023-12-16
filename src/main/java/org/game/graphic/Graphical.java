@@ -32,9 +32,9 @@ public class Graphical extends JPanel implements Runnable{
     }
     @Override
     public void run() {
-        /*while (gameThread != null){
+        while (gameThread != null){
             System.out.println("THIS GAME IS WORKING");
-        }*/
+        }
 
     }
 }
