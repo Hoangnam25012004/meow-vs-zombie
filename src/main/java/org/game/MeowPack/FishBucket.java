@@ -1,5 +1,7 @@
 package org.game.MeowPack;
 
+import java.awt.*;
+
 public class FishBucket extends Meow{
     private int fishReleasedSpeed;
 
@@ -20,7 +22,7 @@ public class FishBucket extends Meow{
     }
 
     @Override
-    public void render() {
+    public void render(Graphics2D g2) {
 
     }
 

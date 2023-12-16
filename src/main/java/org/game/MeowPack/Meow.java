@@ -1,5 +1,8 @@
 package org.game.MeowPack;
 
+import java.awt.*;
+import java.awt.image.BufferedImage;
+
 public abstract class Meow
 {
     private int meowId;
@@ -9,6 +12,8 @@ public abstract class Meow
     private int healthPoint;
     private int price;
     private boolean alive;
+
+    public BufferedImage meow_1;
 
     public Meow (int meowId, String meowName, float x, float y, int width, int height, int healthPoint, int price) {
         this.meowId = meowId;
@@ -20,7 +25,7 @@ public abstract class Meow
     }
     public Meow(){}
 
-    public abstract void render();
+    public abstract void render(Graphics2D g2);
 
     public abstract void update();
 
