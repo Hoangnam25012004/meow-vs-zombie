@@ -1,5 +1,7 @@
 package org.game;
 
+import org.game.graphic.Graphical;
+
 import javax.swing.*;
 
 public class Main {
@@ -9,8 +11,14 @@ public class Main {
         window.setResizable(false);
         window.setTitle("Meow vs zombie");
 
+        Graphical graphical = new Graphical();
+        window.add(graphical);
+        window.pack();
+
         window.setLocationRelativeTo(null);
         window.setVisible(true);
+
+        graphical.startGameThread();
     }
 
 }
