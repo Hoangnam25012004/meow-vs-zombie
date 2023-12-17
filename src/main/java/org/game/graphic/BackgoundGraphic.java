@@ -4,13 +4,14 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
-public class Backgound {
+public class BackgoundGraphic {
 
     public BufferedImage backgroundImage;
     private Graphical graphical;
 
-    public Backgound(Graphical graphical){
+    public BackgoundGraphic(Graphical graphical){
         this.graphical=graphical;
         getBackgroundImage();
 
@@ -19,7 +20,7 @@ public class Backgound {
 
     public void getBackgroundImage() {
         try {
-            this.backgroundImage = ImageIO.read(getClass().getResourceAsStream("/background/background.png"));
+            this.backgroundImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Background/background.png")));
 
         } catch (IOException e){e.printStackTrace();}
     }

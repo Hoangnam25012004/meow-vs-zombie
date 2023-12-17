@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Shooter extends Meow {
 
@@ -27,7 +28,7 @@ public class Shooter extends Meow {
 
     public void getMeowShooterImage(){
         try {
-            meow_1 = ImageIO.read(this.getClass().getResourceAsStream("/meow/meow_shooter.png"));
+            meow_1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/meow_shooter.png")));
         } catch (IOException e){e.printStackTrace();}
     }
 

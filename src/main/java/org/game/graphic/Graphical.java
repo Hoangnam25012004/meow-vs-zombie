@@ -3,7 +3,6 @@ package org.game.graphic;
 import org.game.MeowPack.Shooter;
 import org.game.Zom.Zombie;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -24,7 +23,7 @@ public class Graphical extends JPanel implements Runnable{
     final int screenHeight = maxScreenrow * tileSize;// 576
 
     public BufferedImage backgroundImage;
-    Backgound bg = new Backgound(this);
+    BackgoundGraphic bg = new BackgoundGraphic(this);
 
     private int FPS = 60;
 
