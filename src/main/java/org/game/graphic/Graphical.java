@@ -13,7 +13,7 @@ public class Graphical extends JPanel implements Runnable{
 
     // screen setting
     final int originalTileSize = 16; //16x16 tile
-    final int scale = 4; // set scale all to 4
+    public final int scale = 4; // set scale all to 4
     public final int tileSize = originalTileSize*scale; // 48
 
     private final int maxScreencol = 14;
