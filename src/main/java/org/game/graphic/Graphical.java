@@ -1,6 +1,7 @@
 package org.game.graphic;
 
 import org.game.MeowPack.Shooter;
+import org.game.Zom.Zombie;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -30,6 +31,7 @@ public class Graphical extends JPanel implements Runnable{
 
     Thread gameThread;
     Shooter shooter = new Shooter(this);
+    Zombie zombie_1 = new Zombie(this);
 
 
     public Graphical(){
@@ -86,6 +88,7 @@ public class Graphical extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D)g;
         bg.render(g2);
         shooter.render(g2);
+        zombie_1.render(g2);
 
         g2.dispose();
     }

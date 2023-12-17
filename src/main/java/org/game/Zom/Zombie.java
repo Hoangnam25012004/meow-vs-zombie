@@ -1,5 +1,12 @@
 package org.game.Zom;
 
+import org.game.graphic.Graphical;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
 public class Zombie {
     
         private int HP;
@@ -7,12 +14,20 @@ public class Zombie {
         private int attackPower;
         private int x;
         private int y;
+        private BufferedImage image;
+        private Graphical graphical;
+
+        public BufferedImage zom_1;
 
         public Zombie(int HP, int speed, int attackPower) {
             this.HP = HP;
             this.speed = speed;
             this.attackPower = attackPower; 
         }
+
+        public Zombie(Graphical graphical){
+            this.graphical = graphical;
+            getZom1Image();}
         
         public int getX(){
             return x;
@@ -43,10 +58,23 @@ public class Zombie {
         private void setLocation(int i, int y2) {
         }
 
+        public void getZom1Image(){
+        try {
+            zom_1 = ImageIO.read(this.getClass().getResourceAsStream("/zombie/zom_1.png"));
+        } catch (IOException e){e.printStackTrace();}
+    }
+        public void render(Graphics2D g2) {
+            BufferedImage image = zom_1;
+            g2.drawImage(image,540,100,graphical.tileSize,graphical.tileSize,null);
+    }
+
+
         // private void checkHealth() {
         //     if (HP <= 0) {
         //         getWorld().removeObject(this);
         //     }
         // }
+
+
     
     }
