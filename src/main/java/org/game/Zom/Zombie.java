@@ -61,7 +61,7 @@ public class Zombie {
 
         public void getZom1Image(){
         try {
-            zom_1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombie/zom_1.png")));
+            zom_1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/zom_1.png")));
         } catch (IOException e){e.printStackTrace();}
     }
         public void render(Graphics2D g2) {
