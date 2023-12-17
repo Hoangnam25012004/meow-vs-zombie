@@ -1,13 +1,12 @@
 package org.game.MeowPack;
 
-import org.game.bullet.Bullet;
 import org.game.graphic.Graphical;
+import org.game.bullet.Bullet;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Objects;
 
 public class Shooter extends Meow {
 
@@ -28,7 +27,7 @@ public class Shooter extends Meow {
 
     public void getMeowShooterImage(){
         try {
-            meow_1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meow/meow_shooter_1.png")));
+            meow_1 = ImageIO.read(this.getClass().getResourceAsStream("/meow/meow_shooter.png"));
         } catch (IOException e){e.printStackTrace();}
     }
 
@@ -39,12 +38,10 @@ public class Shooter extends Meow {
     @Override
     public void render(Graphics2D g2) {
         BufferedImage image = meow_1;
-        BufferedImage image2 = meow_1;
-        BufferedImage image3 = meow_1;
 
-        g2.drawImage(image,50,100,graphical.tileSize/2,graphical.tileSize/2,null);
-        g2.drawImage(image,100,100,graphical.tileSize,graphical.tileSize,null);
-        g2.drawImage(image,150,100,graphical.tileSize*2,graphical.tileSize*2,null);
+
+        g2.drawImage(image,140,100,graphical.tileSize,graphical.tileSize,null);
+
 
 
 

@@ -15,11 +15,12 @@ public class Main {
         Graphical graphical = new Graphical();
         window.add(graphical);
         window.pack();
+        graphical.startGameThread();
 
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 
-        graphical.startGameThread();
+
     }
 
 }
