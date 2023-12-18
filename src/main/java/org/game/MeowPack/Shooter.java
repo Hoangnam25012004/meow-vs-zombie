@@ -41,7 +41,7 @@ public class Shooter extends Meow {
         BufferedImage image = meow_1;
 
 
-        g2.drawImage(image,140,110,13*graphical.scale,14*graphical.scale,null);
+        g2.drawImage(image,140,110,graphical.getmeowWidth(),graphical.getmeowHeight(),null);
 
 
 

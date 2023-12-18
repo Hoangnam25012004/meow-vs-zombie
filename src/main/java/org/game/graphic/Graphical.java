@@ -13,14 +13,19 @@ public class Graphical extends JPanel implements Runnable{
 
     // screen setting
     final int originalTileSize = 16; //16x16 tile
+    private final int meowWidth = 13;
+    private final int meowHeight = 14;
+
+    private final int zomWidth = 14;
+    private final int zomHeight = 22;
     public final int scale = 4; // set scale all to 4
-    public final int tileSize = originalTileSize*scale; // 48
+    public final int tileSize = originalTileSize*scale; // 64
 
     private final int maxScreencol = 14;
     private final int maxScreenrow = 10;
 
-    final int screenWidth = maxScreencol * tileSize; // the screen 16 times bigger the enity, 768
-    final int screenHeight = maxScreenrow * tileSize;// 576
+    final int screenWidth = maxScreencol * tileSize; // 896
+    final int screenHeight = maxScreenrow * tileSize;// 640
 
     public BufferedImage backgroundImage;
     BackgoundGraphic bg = new BackgoundGraphic(this);
@@ -46,10 +51,13 @@ public class Graphical extends JPanel implements Runnable{
     public int getScreenWidth() {
         return screenWidth;
     }
-
     public int getScreenHeight() {
         return screenHeight;
     }
+    public int getmeowHeight() {return meowHeight*scale;}
+    public int getmeowWidth() {return meowWidth*scale;}
+    public int getZomWidth() {return zomWidth*scale;}
+    public int getZomHeight() {return zomHeight*scale;}
 
     @Override
     public void run() {
@@ -77,10 +85,12 @@ public class Graphical extends JPanel implements Runnable{
                 drawCount=0;
                 timer=0;
             }
+
+
         }
     }
     public void update() {
-
+        zombie_1.zom_update();
     }
     public void paint(Graphics g){
         super.paint(g);

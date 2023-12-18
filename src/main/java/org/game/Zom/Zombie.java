@@ -11,9 +11,9 @@ import java.util.Objects;
 public class Zombie {
     
         private int HP;
-        private int speed;
+        private double speed;
         private int attackPower;
-        private int x;
+        private double x;
         private int y;
         private BufferedImage image;
         private Graphical graphical;
@@ -28,9 +28,11 @@ public class Zombie {
 
         public Zombie(Graphical graphical){
             this.graphical = graphical;
+            x=540;
+            y=90;
             getZom1Image();}
         
-        public int getX(){
+        public double getX(){
             return x;
         }
 
@@ -50,13 +52,27 @@ public class Zombie {
             //checkHealth();
         }
     
-        private void move(int speed) {
-            setLocation(getX() - speed, getY());
+        private void move(double speed) {
+
+            setLocation(this.x - speed, this.y);
         }
     
         
 
-        private void setLocation(int i, int y2) {
+        private void setLocation(double i, int y2) {
+            this.x = i;
+            this.y = y2;
+        }
+
+        public void zom_update(){
+            move(2);
+            if (this.x == 0){
+                this.x = 540;
+                this.y = 90;
+            }
+            if (this.x<= 192 & this.x >= 52){ this.x = 540;
+            this.y = 90;}
+
         }
 
         public void getZom1Image(){
@@ -66,7 +82,7 @@ public class Zombie {
     }
         public void render(Graphics2D g2) {
             BufferedImage image = zom_1;
-            g2.drawImage(image,540,90,15*graphical.scale,21*graphical.scale,null);
+            g2.drawImage(image, (int) this.x, this.y,graphical.getZomWidth(), graphical.getZomHeight(), null);
     }
 
 

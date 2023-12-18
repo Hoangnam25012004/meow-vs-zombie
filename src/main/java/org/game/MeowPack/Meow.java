@@ -25,6 +25,7 @@ public abstract class Meow
     }
     public Meow(){}
 
+
     public abstract void render(Graphics2D g2);
 
     public abstract void update();
