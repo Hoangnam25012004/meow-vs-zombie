@@ -66,7 +66,7 @@ public class Zombie {
     }
         public void render(Graphics2D g2) {
             BufferedImage image = zom_1;
-            g2.drawImage(image,540,100,15*graphical.scale,21*graphical.scale,null);
+            g2.drawImage(image,540,90,15*graphical.scale,21*graphical.scale,null);
     }
 
 
