@@ -28,8 +28,7 @@ public class Zombie {
 
         public Zombie(Graphical graphical){
             this.graphical = graphical;
-            x=540;
-            y=90;
+            setPosition(540,90);
             getZom1Image();}
         
         public double getX(){
