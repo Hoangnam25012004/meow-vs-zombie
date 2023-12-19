@@ -1,29 +1,29 @@
 package org.game.MeowPack;
 
 public class Rect {
-    private float x, y;
+    private double x, y;
     private int width, height;
 
-    public Rect(float x, float y, int width, int height) {
+    public Rect(double x, double y, int width, int height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
     }
 
-    public void setX(float x) {
+    public void setX(double x) {
         this.x = x;
     }
 
-    public float getX() {
+    public double getX() {
         return x;
     }
 
-    public float getY() {
+    public double getY() {
         return y;
     }
 
-    public void setY(float y) {
+    public void setY(double y) {
         this.y = y;
     }
 
