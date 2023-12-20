@@ -1,4 +1,4 @@
-package org.game.MeowPack;
+package org.game.Hitbox;
 
 public class Rect {
     private double x, y;

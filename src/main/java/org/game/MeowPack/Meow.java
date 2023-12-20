@@ -1,5 +1,7 @@
 package org.game.MeowPack;
 
+import org.game.Hitbox.Rect;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
@@ -15,7 +17,7 @@ public abstract class Meow
 
     public BufferedImage meow_1;
 
-    public Meow (int meowId, String meowName, float x, float y, int width, int height, int healthPoint, int price) {
+    public Meow (int meowId, String meowName, double x, double y, int width, int height, int healthPoint, int price) {
         this.meowId = meowId;
         this.meowName = meowName;
         rect = new Rect(x, y, width, height);

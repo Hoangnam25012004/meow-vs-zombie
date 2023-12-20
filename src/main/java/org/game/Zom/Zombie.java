@@ -15,7 +15,7 @@ public class Zombie {
         private int attackPower;
         private double x;
         private int y;
-        private BufferedImage image;
+        public boolean collide = false;
         private Graphical graphical;
 
         public BufferedImage zom_1;
@@ -25,7 +25,6 @@ public class Zombie {
             this.speed = speed;
             this.attackPower = attackPower; 
         }
-
         public Zombie(Graphical graphical){
             this.graphical = graphical;
             setPosition(540,90);
@@ -64,7 +63,7 @@ public class Zombie {
         }
 
         public void zom_update(){
-            move(2);
+            move(0.3);
             if (this.x == 0){
                 this.x = 540;
                 this.y = 90;
