@@ -1,5 +1,7 @@
 package org.game.Zom;
 
+import org.game.Collision.Collision;
+import org.game.MeowPack.Shooter;
 import org.game.graphic.Graphical;
 
 import javax.imageio.ImageIO;
@@ -17,20 +19,23 @@ public class Zombie {
         private int attackPower;
         private double x;
         private int y;
-        public boolean collide = false;
+        private int originalX;
+        private int originalY;
+    //    public boolean collide = false;
         private Graphical graphical;
-        private ArrayList<Zombie> zombieList = new ArrayList<>();
 
-        public BufferedImage zom_1;
+        public BufferedImage zom_1,zom_2,zom_3;
 
         public Zombie(int HP, int speed, int attackPower) {
             this.HP = HP;
             this.speed = speed;
             this.attackPower = attackPower; 
         }
-        public Zombie(Graphical graphical){
+        public Zombie(Graphical graphical,int x, int y){
             this.graphical = graphical;
-            setPosition(540,90);
+            this.originalX = x;
+            this.originalY = y;
+            setPosition(x,y);
             getZom1Image();}
         
         public double getX(){
@@ -63,26 +68,43 @@ public class Zombie {
             this.y = y2;
         }
 
-        public void zom_update(){
-            move(0.3);
+       /* public void setCollide(boolean c){
+            this.collide = c;
+        }*/
+
+        public void zom_update(Shooter shooter){
+            move(0.5);
             if (this.x == 0){
-                this.x = 540;
-                this.y = 90;
+                this.x = originalX;
+                this.y = originalY;
             }
-            if (this.x<= 192 & this.x >= 52){ this.x = 540;
-            this.y = 90;}
+
+           if (this.getX() < (shooter.getMeowX() + (graphical.getmeowWidth() / 2)) &
+                    this.getX() > (shooter.getMeowX() - (graphical.getmeowWidth() / 2))){
+                this.x = originalX;
+                this.y = originalY;
+           }
 
         }
 
         public void getZom1Image(){
         try {
             zom_1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/zom_1.png")));
+            zom_2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/zom_2.png")));
+            zom_3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/zom_3.png")));
         } catch (IOException e){e.printStackTrace();}
     }
-        public void render(Graphics2D g2) {
-            BufferedImage image = zom_1;
-            g2.drawImage(image, (int) this.x, this.y,graphical.getZomWidth(), graphical.getZomHeight(), null);
-    }
+        public void render1(Graphics2D g2) {
+            g2.drawImage(zom_1, (int) this.x, this.y,graphical.getZomWidth(), graphical.getZomHeight(), null);
+        }
+
+        public void render2(Graphics2D g2){
+            g2.drawImage(zom_2, (int) this.x, this.y,graphical.getZomWidth(), graphical.getZomHeight(), null);
+
+        }
+        public void render3(Graphics2D g2){
+            g2.drawImage(zom_3, (int) this.x, this.y,graphical.getZomWidth(), graphical.getZomHeight(), null);
+        }
 
 
         // private void checkHealth() {

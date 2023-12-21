@@ -16,18 +16,19 @@ public class Shooter extends Meow {
     private Bullet[] bullets;
     private boolean isAbleToFreeze;
     // true - SnowMeow, false - ShooterMeow
+  //  private boolean collide = false;
     private int meowX,meowY;
 
     public Shooter(int meowId, String meowName, double x, double y, int width, int height, int healthPoint, int price) {
         super(meowId, meowName, x, y, width, height, healthPoint, price);
     }
-    public Shooter(){
-        setInitial();
+    public Shooter(int x,int y){
+        setInitial(x,y);
     };
-    public Shooter(Graphical graphical) {
+    public Shooter(Graphical graphical,int x,int y) {
         this.graphical = graphical;
         getMeowShooterImage();
-        setInitial();
+        setInitial(x,y);
     }
 
     public void getMeowShooterImage(){
@@ -39,10 +40,19 @@ public class Shooter extends Meow {
     public void shoot() {
 
     }
-    private void setInitial(){
-        this.meowX = 140;
-        this.meowY = 110;
+    private void setInitial(int x, int y){
+        this.meowX = x;
+        this.meowY = y;
     }
+    public int getMeowX(){
+        return this.meowX;
+    }
+    public int getMeowY(){
+        return this.meowY;
+    }
+    /*public void setCollide(boolean c){
+        this.collide = c;
+    }*/
 
     @Override
     public void render(Graphics2D g2) {

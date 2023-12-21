@@ -1,7 +1,9 @@
 package org.game.graphic;
 
+import org.game.Collision.Collision;
 import org.game.MeowPack.Shooter;
 import org.game.Zom.Zombie;
+import org.game.bullet.Bullet;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,21 +23,36 @@ public class Graphical extends JPanel implements Runnable{
     public final int scale = 4; // set scale all to 4
     public final int tileSize = originalTileSize*scale; // 64
 
-    private final int maxScreencol = 14;
-    private final int maxScreenrow = 10;
+    private final int maxScreencol = 16;
+    private final int maxScreenrow = 9;
 
-    final int screenWidth = maxScreencol * tileSize; // 896
-    final int screenHeight = maxScreenrow * tileSize;// 640
+    private final int grassCol = 9;
+    private final int grassRow = 5;
+    final int grassTile = 86;
+
+
+    final int screenWidth = maxScreencol * tileSize; // 1024
+    final int screenHeight = maxScreenrow * tileSize;// 576
+
+    private final int grassWidth = grassCol*grassTile; //774
+    private final int grassHeight = grassRow*grassTile; //430
 
     public BufferedImage backgroundImage;
     BackgroundGraphic bg = new BackgroundGraphic(this);
+
 
     private int FPS = 60;
 
 
     Thread gameThread;
-    Shooter shooter = new Shooter(this);
-    Zombie zombie_1 = new Zombie(this);
+    Shooter shooter = new Shooter(this,140,110);
+    Zombie zombie_1 = new Zombie(this,700,90);
+    Zombie zombie_2 = new Zombie(this,700,300);
+    Zombie zombie_3 = new Zombie(this, 750,400);
+    Bullet bullet = new Bullet(0,0,0);
+
+    Collision collision;
+
 
 
     public Graphical(){
@@ -90,14 +107,20 @@ public class Graphical extends JPanel implements Runnable{
         }
     }
     public void update() {
-        zombie_1.zom_update();
+        zombie_1.zom_update(shooter);
+        zombie_2.zom_update(shooter);
+        zombie_3.zom_update(shooter);
+
+
     }
     public void paint(Graphics g){
         super.paint(g);
         Graphics2D g2 = (Graphics2D)g;
         bg.render(g2);
         shooter.render(g2);
-        zombie_1.render(g2);
+        zombie_1.render1(g2);
+        zombie_2.render2(g2);
+        zombie_3.render3(g2);
 
         g2.dispose();
     }

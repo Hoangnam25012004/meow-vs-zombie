@@ -26,6 +26,9 @@ public abstract class Meow
         alive = true;
     }
     public Meow(){}
+    public Meow(double x, double y, int width, int height){
+        rect = new Rect(x,y,width,height);
+    }
 
 
     public abstract void render(Graphics2D g2);
