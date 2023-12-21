@@ -21,11 +21,11 @@ public class Graphical extends JPanel implements Runnable{
     public final int scale = 4; // set scale all to 4
     public final int tileSize = originalTileSize*scale; // 64
 
-    private final int maxScreencol = 14;
-    private final int maxScreenrow = 10;
+    private final int maxScreencol = 31;
+    private final int maxScreenrow = 9;
 
-    final int screenWidth = maxScreencol * tileSize; // 896
-    final int screenHeight = maxScreenrow * tileSize;// 640
+    final int screenWidth = maxScreencol * tileSize; // 1996
+    final int screenHeight = maxScreenrow * tileSize;// 576
 
     public BufferedImage backgroundImage;
     BackgroundGraphic bg = new BackgroundGraphic(this);
