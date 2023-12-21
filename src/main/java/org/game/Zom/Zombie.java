@@ -21,7 +21,8 @@ public class Zombie {
         private int y;
         private int originalX;
         private int originalY;
-    //    public boolean collide = false;
+        private ArrayList<Zombie> zombieList = new ArrayList<>();
+    
         private Graphical graphical;
 
         public BufferedImage zom_1,zom_2,zom_3;
