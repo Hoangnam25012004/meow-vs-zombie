@@ -104,7 +104,7 @@ public class Zombie {
         }*/
 
     public void zom_update(Shooter shooter){
-            move(0.5);
+            move(4);
             if (this.x == 0){
                 this.x = originalX;
                 this.y = originalY;
