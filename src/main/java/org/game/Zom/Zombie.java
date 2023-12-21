@@ -84,7 +84,7 @@ public class Zombie {
             }
         }
 
-        public void spawnRandomZombiesIn4RandomRows(int totalRows) {
+        public void spawnRandomZombiesIn5RandomRows(int totalRows) {
             Random random = new Random();
             int[] randomRows = new int[5]; // Store 4 unique random row indices
         
