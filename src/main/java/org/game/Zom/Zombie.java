@@ -84,7 +84,40 @@ public class Zombie {
             }
         }
 
-        public void spawnZombie(){
+        public void spawnRandomZombiesIn5RandomRows(int totalRows) {
+            Random random = new Random();
+            int[] randomRows = new int[5]; // Store 4 unique random row indices
+        
+            // Select 5 unique random rows directly
+            for (int i = 0; i < 5; i++) {
+                int row;
+                do {
+                    row = random.nextInt(totalRows);
+                } while (contains(randomRows, row)); 
+                randomRows[i] = row;
+            }
+        
+            // Spawn zombies in the chosen rows
+            for (int row : randomRows) {
+                int numZombies = random.nextInt(2) + random.nextInt(2); // Randomly spawn 1-2 zombies
+                for (int i = 0; i < numZombies; i++) {
+                    Zombie zombie = createRandomZombie();
+                    // Add zombie to zombieList
+                }
+            }
+        }
+        
+        private boolean contains(int[] array, int value) {
+            for (int element : array) {
+                if (element == value) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        /*public void spawnZombies(){
              Random random = new Random();
             // clear the existing zombie list
             zombieList.clear();
@@ -97,6 +130,7 @@ public class Zombie {
                 }
             }
         }
+        */
 
 
        /* public void setCollide(boolean c){
