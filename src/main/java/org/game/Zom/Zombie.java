@@ -74,11 +74,13 @@ public class Zombie {
         int zombieType = random.nextInt(3);
             switch (zombieType) {
                 case 0:
-                    return new normalZombie();
-                    break;
-            
+                    return new normalZombie(100, 0.5, 3);
+                case 1: 
+                    return new helmetZombie(150, 0.5, 3);
+                case 2: 
+                    return new helmetZombie(200, 0.5, 3);
                 default:
-                    break;
+                    return null; // never happends
             }
         }
 
