@@ -20,7 +20,7 @@ public class BackgroundGraphic {
 
     public void getBackgroundImage() {
         try {
-            this.backgroundImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("Background/background.png")));
+            this.backgroundImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Background/background.png")));
 
         } catch (IOException e){e.printStackTrace();}
     }
