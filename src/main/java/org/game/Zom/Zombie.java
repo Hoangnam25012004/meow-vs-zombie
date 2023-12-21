@@ -69,6 +69,29 @@ public class Zombie {
             this.y = y2;
         }
 
+        public Zombie createRandomZombie(){
+        Random random = new Random();
+        int zombieType = random.nextInt(3);
+            switch (zombieType) {
+                case 0:
+                    return new normalZombie();
+                    break;
+            
+                default:
+                    break;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
        /* public void setCollide(boolean c){
             this.collide = c;
         }*/
