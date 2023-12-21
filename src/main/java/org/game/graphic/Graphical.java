@@ -49,6 +49,7 @@ public class Graphical extends JPanel implements Runnable{
     Shooter shooter = new Shooter(this,140,110);
     Zombie zombie_1 = new Zombie(this,700,90);
     Zombie zombie_2 = new Zombie(this,700,300);
+    Zombie zombie_3 = new Zombie(this, 750,400);
     Bullet bullet = new Bullet(0,0,0);
 
     Collision collision;
@@ -109,6 +110,7 @@ public class Graphical extends JPanel implements Runnable{
     public void update() {
         zombie_1.zom_update(shooter);
         zombie_2.zom_update(shooter);
+        zombie_3.zom_update(shooter);
 
 
     }
@@ -117,8 +119,9 @@ public class Graphical extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D)g;
         bg.render(g2);
         shooter.render(g2);
-        zombie_1.render(g2);
-        zombie_2.render(g2);
+        zombie_1.render1(g2);
+        zombie_2.render2(g2);
+        zombie_3.render3(g2);
 
         g2.dispose();
     }

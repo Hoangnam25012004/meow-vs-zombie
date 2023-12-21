@@ -24,7 +24,7 @@ public class Zombie {
         private Collision collision;
         private Shooter shooter;
 
-        public BufferedImage zom_1,zom_2;
+        public BufferedImage zom_1,zom_2,zom_3;
 
         public Zombie(int HP, int speed, int attackPower) {
             this.HP = HP;
@@ -75,7 +75,7 @@ public class Zombie {
         }*/
 
         public void zom_update(Shooter shooter){
-            move(/*0.3*/ 1);
+            move(0.5);
             if (this.x == 0){
                 this.x = originalX;
                 this.y = originalY;
@@ -92,15 +92,20 @@ public class Zombie {
         public void getZom1Image(){
         try {
             zom_1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/zom_1.png")));
-            zom_2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/zom_1.png")));
+            zom_2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/zom_2.png")));
+            zom_3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/zom_3.png")));
         } catch (IOException e){e.printStackTrace();}
     }
-        public void render(Graphics2D g2) {
-            BufferedImage image1 = zom_1;
-            BufferedImage image2 = zom_2;
-            g2.drawImage(image1, (int) this.x, this.y,graphical.getZomWidth(), graphical.getZomHeight(), null);
-            g2.drawImage(image2, (int) this.x, this.y,graphical.getZomWidth(), graphical.getZomHeight(), null);
+        public void render1(Graphics2D g2) {
+            g2.drawImage(zom_1, (int) this.x, this.y,graphical.getZomWidth(), graphical.getZomHeight(), null);
+        }
 
+        public void render2(Graphics2D g2){
+            g2.drawImage(zom_2, (int) this.x, this.y,graphical.getZomWidth(), graphical.getZomHeight(), null);
+
+        }
+        public void render3(Graphics2D g2){
+            g2.drawImage(zom_3, (int) this.x, this.y,graphical.getZomWidth(), graphical.getZomHeight(), null);
         }
 
 
