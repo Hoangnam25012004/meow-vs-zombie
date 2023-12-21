@@ -14,9 +14,9 @@ import java.util.Random;
 
 public class Zombie {
     
-        private int HP;
-        private double speed;
-        private int attackPower;
+        protected int HP;
+        protected double speed;
+        protected int attackPower;
         private double x;
         private int y;
         private int originalX;
@@ -27,9 +27,9 @@ public class Zombie {
 
         public BufferedImage zom_1,zom_2,zom_3;
 
-        public Zombie(int HP, int speed, int attackPower) {
+        public Zombie(int HP, double speed2, int attackPower) {
             this.HP = HP;
-            this.speed = speed;
+            this.speed = speed2;
             this.attackPower = attackPower; 
         }
         public Zombie(Graphical graphical,int x, int y){
