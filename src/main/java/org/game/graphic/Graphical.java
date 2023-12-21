@@ -116,7 +116,7 @@ public class Graphical extends JPanel implements Runnable{
         zombie_1.zom_update(shooter);
         zombie_2.zom_update(shooter);
         zombie_3.zom_update(shooter);
-        bullet.bullet_update();
+        bullet.bullet_update(zombie_1);
 
 
     }

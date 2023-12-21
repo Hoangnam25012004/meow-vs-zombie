@@ -1,6 +1,7 @@
 package org.game.bullet;
 
 import org.game.MeowPack.Shooter;
+import org.game.Zom.Zombie;
 import org.game.graphic.Graphical;
 
 import javax.imageio.ImageIO;
@@ -85,9 +86,13 @@ public class Bullet {
         setLocation(this.x + speed, this.y);
     }
 
-    public void bullet_update() {
-        move(0.5);
-        if (this.x == graphical.getScreenWidth()) {
+    public void bullet_update(Zombie zombie) {
+        move(5);
+        if (this.x >= graphical.getScreenWidth()) {
+            this.x = originalX;
+            this.y = originalY;
+        }
+        if (this.x < (zombie.getX()+graphical.getZomWidth()) & this.x > (zombie.getX() - graphical.getZomWidth())){
             this.x = originalX;
             this.y = originalY;
         }
