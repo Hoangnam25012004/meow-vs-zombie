@@ -37,7 +37,7 @@ public class Zombie {
             this.originalX = x;
             this.originalY = y;
             setPosition(x,y);
-            getZom1Image();}
+            getZomImage();}
         
         public double getX(){
             return x;
@@ -152,7 +152,7 @@ public class Zombie {
 
         }
 
-        public void getZom1Image(){
+        public void getZomImage(){
         try {
             zom_1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/zom_1.png")));
             zom_2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/zom_2.png")));
