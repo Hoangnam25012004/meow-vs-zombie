@@ -84,7 +84,7 @@ public class Zombie {
             }
         }
 
-        public void sprawnZombie(){
+        public void spawnZombie(){
              Random random = new Random();
             // clear the existing zombie list
             zombieList.clear();
