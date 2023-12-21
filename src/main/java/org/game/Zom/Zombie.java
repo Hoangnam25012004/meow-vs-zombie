@@ -8,27 +8,28 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 public class Zombie {
     
-        private int HP;
-        private double speed;
-        private int attackPower;
+        protected int HP;
+        protected double speed;
+        protected int attackPower;
         private double x;
         private int y;
         private int originalX;
         private int originalY;
-    //    public boolean collide = false;
+        private ArrayList<Zombie> zombieList = new ArrayList<>();
+    
         private Graphical graphical;
-        private Collision collision;
-        private Shooter shooter;
 
         public BufferedImage zom_1,zom_2,zom_3;
 
-        public Zombie(int HP, int speed, int attackPower) {
+        public Zombie(int HP, double speed2, int attackPower) {
             this.HP = HP;
-            this.speed = speed;
+            this.speed = speed2;
             this.attackPower = attackPower; 
         }
         public Zombie(Graphical graphical,int x, int y){
@@ -41,11 +42,9 @@ public class Zombie {
         public double getX(){
             return x;
         }
-
         public int getY(){
             return y;
         }
-
         public void setPosition(int x, int y){
             this.x = x;
             this.y = y;
@@ -61,14 +60,39 @@ public class Zombie {
         private void move(double speed) {
 
             setLocation(this.x - speed, this.y);
+
         }
-    
         
 
         private void setLocation(double i, int y2) {
             this.x = i;
             this.y = y2;
         }
+
+        public Zombie createRandomZombie(){
+        Random random = new Random();
+        int zombieType = random.nextInt(3);
+            switch (zombieType) {
+                case 0:
+                    return new normalZombie(100, 0.5, 3);
+                case 1: 
+                    return new helmetZombie(150, 0.5, 3);
+                case 2: 
+                    return new helmetZombie(200, 0.5, 3);
+                default:
+                    return null; // never happends
+            }
+        }
+
+
+
+
+
+
+
+
+
+
 
        /* public void setCollide(boolean c){
             this.collide = c;
