@@ -28,15 +28,14 @@ public class Graphical extends JPanel implements Runnable{
 
     private final int grassCol = 9;
     private final int grassRow = 5;
-
+    final int grassTile = 86;
 
 
     final int screenWidth = maxScreencol * tileSize; // 1024
     final int screenHeight = maxScreenrow * tileSize;// 576
 
-    private final int grassWidth = screenWidth / grassCol; //113.77778
-    private final int grassHeight = screenHeight / grassRow; //115.2
-    // grass wait for properties
+    private final int grassWidth = grassCol*grassTile; //774
+    private final int grassHeight = grassRow*grassTile; //430
 
     public BufferedImage backgroundImage;
     BackgroundGraphic bg = new BackgroundGraphic(this);
