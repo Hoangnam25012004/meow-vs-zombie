@@ -84,14 +84,19 @@ public class Zombie {
             }
         }
 
-
-
-
-
-
-
-
-
+        public void spawnZombie(){
+             Random random = new Random();
+            // clear the existing zombie list
+            zombieList.clear();
+            // create random number of zombie for every row
+            for (int row = 0; row < 5; row ++){
+                int zombieCount = random.nextInt(2) + random.nextInt(2);
+                for( int i = 0; i < zombieCount; i++){
+                    Zombie zombie = createRandomZombie();
+                    zombieList.add(zombie);
+                }
+            }
+        }
 
 
        /* public void setCollide(boolean c){
