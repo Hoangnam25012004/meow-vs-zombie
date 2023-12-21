@@ -86,7 +86,7 @@ public class Zombie {
 
         public void spawnRandomZombiesIn5RandomRows(int totalRows) {
             Random random = new Random();
-            int[] randomRows = new int[5]; // Store 4 unique random row indices
+            int[] randomRows = new int[5]; // Store 5 unique random row indices
         
             // Select 5 unique random rows directly
             for (int i = 0; i < 5; i++) {
@@ -103,6 +103,9 @@ public class Zombie {
                 for (int i = 0; i < numZombies; i++) {
                     Zombie zombie = createRandomZombie();
                     // Add zombie to zombieList
+                    if(zombie!=null){
+                        zombieList.add(zombie);
+                    }
                 }
             }
         }
