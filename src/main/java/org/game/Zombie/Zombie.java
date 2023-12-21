@@ -1,4 +1,4 @@
-package org.game.Zom;
+package org.game.Zombie;
 
 import org.game.graphic.Graphical;
 

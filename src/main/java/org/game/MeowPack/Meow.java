@@ -17,7 +17,7 @@ public abstract class Meow
 
     public BufferedImage meow_1;
 
-    public Meow (int meowId, String meowName, double x, double y, int width, int height, int healthPoint, int price) {
+    public Meow (int meowId, String meowName, int x, int y, int width, int height, int healthPoint, int price) {
         this.meowId = meowId;
         this.meowName = meowName;
         rect = new Rect(x, y, width, height);
@@ -65,5 +65,13 @@ public abstract class Meow
 
     public void setAlive(boolean alive) {
         this.alive = alive;
+    }
+
+    public int getX(){
+        return rect.getX();
+    }
+
+    public int getY(){
+        return rect.getY();
     }
 }

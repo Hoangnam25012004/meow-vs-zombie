@@ -3,7 +3,7 @@ package org.game.Collision;
 import org.game.MeowPack.Meow;
 import org.game.Hitbox.Rect;
 import org.game.MeowPack.Shooter;
-import org.game.Zom.Zombie;
+import org.game.Zombie.Zombie;
 import org.game.bullet.Bullet;
 import org.game.graphic.Graphical;
 

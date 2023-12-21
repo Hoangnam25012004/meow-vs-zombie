@@ -1,7 +1,7 @@
 package org.game.graphic;
 
 import org.game.MeowPack.Shooter;
-import org.game.Zom.Zombie;
+import org.game.Zombie.Zombie;
 
 import javax.swing.*;
 import java.awt.*;
