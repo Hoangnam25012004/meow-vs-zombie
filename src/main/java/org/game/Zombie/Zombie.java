@@ -23,9 +23,10 @@ public class Zombie {
         private int originalY;
         private ArrayList<Zombie> zombieList = new ArrayList<>();
     
-        private Graphical graphical;
+        public Graphical graphical;
 
         public BufferedImage zom_1,zom_2,zom_3;
+
 
         public Zombie(int HP, double speed2, int attackPower) {
             this.HP = HP;
@@ -76,7 +77,7 @@ public class Zombie {
                 case 0:
                     return new normalZombie(100, 0.5, 3);
                 case 1: 
-                    return new helmetZombie(150, 0.5, 3);
+                    return new catEarZombie(150, 0.5, 3);
                 case 2: 
                     return new helmetZombie(200, 0.5, 3);
                 default:
@@ -162,17 +163,9 @@ public class Zombie {
             zom_3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/zom_3.png")));
         } catch (IOException e){e.printStackTrace();}
     }
-        public void render1(Graphics2D g2) {
-            g2.drawImage(zom_1, (int) this.x, this.y,graphical.getZomWidth(), graphical.getZomHeight(), null);
+        public void render(Graphics2D g2) {
         }
 
-        public void render2(Graphics2D g2){
-            g2.drawImage(zom_2, (int) this.x, this.y,graphical.getZomWidth(), graphical.getZomHeight(), null);
-
-        }
-        public void render3(Graphics2D g2){
-            g2.drawImage(zom_3, (int) this.x, this.y,graphical.getZomWidth(), graphical.getZomHeight(), null);
-        }
 
 
         // private void checkHealth() {

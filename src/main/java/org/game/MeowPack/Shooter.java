@@ -19,7 +19,7 @@ public class Shooter extends Meow {
   //  private boolean collide = false;
     private int meowX,meowY;
 
-    public Shooter(int meowId, String meowName, double x, double y, int width, int height, int healthPoint, int price) {
+    public Shooter(int meowId, String meowName, int x, int y, int width, int height, int healthPoint, int price) {
         super(meowId, meowName, x, y, width, height, healthPoint, price);
     }
     public Shooter(int x,int y){

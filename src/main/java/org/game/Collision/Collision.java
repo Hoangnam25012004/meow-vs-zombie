@@ -19,7 +19,7 @@ public class Collision {
 
     Graphical graphical;
 
-    Rect rect_zombie = new Rect(zombie.getX(), zombie.getY(), graphical.getZomWidth(),graphical.getZomHeight() );
+  //  Rect rect_zombie = new Rect(zombie.getX(), zombie.getY(), graphical.getZomWidth(),graphical.getZomHeight() );
 
     public Collision(Shooter shooter, Zombie zombie,Bullet bullet){
         this.shooter = shooter;

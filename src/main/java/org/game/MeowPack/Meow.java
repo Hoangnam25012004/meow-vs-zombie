@@ -26,7 +26,7 @@ public abstract class Meow
         alive = true;
     }
     public Meow(){}
-    public Meow(double x, double y, int width, int height){
+    public Meow(int x, int y, int width, int height){
         rect = new Rect(x,y,width,height);
     }
 

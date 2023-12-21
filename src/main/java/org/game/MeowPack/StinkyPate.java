@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class StinkyPate extends Meow {
 
-    public StinkyPate(int meowId, String meowName, float x, float y, int width, int height, int healthPoint, int price) {
+    public StinkyPate(int meowId, String meowName, int x, int y, int width, int height, int healthPoint, int price) {
         super(meowId, meowName, x, y, width, height, healthPoint, price);
     }
 
