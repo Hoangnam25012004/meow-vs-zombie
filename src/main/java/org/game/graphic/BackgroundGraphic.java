@@ -6,12 +6,12 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class BackgoundGraphic {
+public class BackgroundGraphic {
 
     public BufferedImage backgroundImage;
     private Graphical graphical;
 
-    public BackgoundGraphic(Graphical graphical){
+    public BackgroundGraphic(Graphical graphical){
         this.graphical=graphical;
         getBackgroundImage();
 
@@ -20,7 +20,7 @@ public class BackgoundGraphic {
 
     public void getBackgroundImage() {
         try {
-            this.backgroundImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Background/background.png")));
+            this.backgroundImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/org/game/res/Background/background.png")));
 
         } catch (IOException e){e.printStackTrace();}
     }

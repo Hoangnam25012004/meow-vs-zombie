@@ -28,7 +28,7 @@ public class Graphical extends JPanel implements Runnable{
     final int screenHeight = maxScreenrow * tileSize;// 640
 
     public BufferedImage backgroundImage;
-    BackgoundGraphic bg = new BackgoundGraphic(this);
+    BackgroundGraphic bg = new BackgroundGraphic(this);
 
     private int FPS = 60;
 
