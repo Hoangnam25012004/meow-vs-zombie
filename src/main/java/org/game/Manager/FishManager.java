@@ -4,7 +4,6 @@ package org.game.Manager;
 //import Plant.Plant;
 import org.game.Fish.Fish;
 import org.game.MeowPack.FishBucket;
-import org.game.Scenes.Playing;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -16,26 +15,26 @@ public class FishManager {
     private Toolkit t = Toolkit.getDefaultToolkit();
     private Image fishImage = t.getImage(getClass().getResource("/Fish/fish.png"));;
     private List<Fish> listOfFish = new ArrayList<>();
-    private Playing playing;
+//    private Playing playing;
     private int realTimeCounter = 0;
     private int fishHold = 1500;
     private Random random = new Random();
     private int randomTimeFishDrop = 600;
     private int fakeSize = 6000;
     private static FishManager instance;
-    private FishManager(Playing playing){
-        this.playing = playing;
-        fishInit();
-    }
+//    private FishManager(Playing playing){
+//        this.playing = playing;
+//        fishInit();
+//    }
 
-    public static FishManager createFishManager(Playing playing) {
-        if(instance == null) {
-            instance = new FishManager(playing);
-        } else {
-            System.out.println("Cannot create another TileManager");
-        }
-        return instance;
-    }
+//    public static FishManager createFishManager(Playing playing) {
+//        if(instance == null) {
+//            instance = new FishManager(playing);
+//        } else {
+//            System.out.println("Cannot create another TileManager");
+//        }
+//        return instance;
+//    }
     private void fishInit(){
         for(int i = 0;i< 6000;i++){
             int randx = random.nextInt(300)+550;
@@ -158,26 +157,26 @@ public class FishManager {
         }
     }
 
-    public void update(Playing playing){
-        if(playing.isStartWaveForCD()){
-            frameCount();
-            if(realTimeCounter == randomTimeFishDrop){
-                fishCreation();
-                realTimeCounter = 0;
-                randomTimeFishDrop = random.nextInt(300)+900;
-            }
-//            fishCollectedByKeyBoard();
-            Iterator<Fish> iterator= listOfFish.iterator();
-            while (iterator.hasNext()){
-                Fish fish = iterator.next();
-                if(fish.isThere()){
-                    fish.move();
-                    fish.moveToStorage();
-                }
-            }
-        } else {
-            collectAllFish();
-        }
-        removeFish();
-    }
+//    public void update(Playing playing){
+//        if(playing.isStartWaveForCD()){
+//            frameCount();
+//            if(realTimeCounter == randomTimeFishDrop){
+//                fishCreation();
+//                realTimeCounter = 0;
+//                randomTimeFishDrop = random.nextInt(300)+900;
+//            }
+////            fishCollectedByKeyBoard();
+//            Iterator<Fish> iterator= listOfFish.iterator();
+//            while (iterator.hasNext()){
+//                Fish fish = iterator.next();
+//                if(fish.isThere()){
+//                    fish.move();
+//                    fish.moveToStorage();
+//                }
+//            }
+//        } else {
+//            collectAllFish();
+//        }
+//        removeFish();
+//    }
 }
