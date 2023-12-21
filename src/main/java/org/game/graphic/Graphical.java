@@ -18,6 +18,9 @@ public class Graphical extends JPanel implements Runnable{
     private final int meowWidth = 13;
     private final int meowHeight = 14;
 
+    private final int woolWidth = 5;
+    private final int woolHeight = 5;
+
     private final int zomWidth = 14;
     private final int zomHeight = 22;
     public final int scale = 4; // set scale all to 4
@@ -49,7 +52,7 @@ public class Graphical extends JPanel implements Runnable{
     Zombie zombie_1 = new Zombie(this,700,90);
     Zombie zombie_2 = new Zombie(this,700,300);
     Zombie zombie_3 = new Zombie(this, 750,400);
-    Bullet bullet = new Bullet(0,0,0);
+    Bullet bullet = new Bullet(this,140,110);
 
     Collision collision;
 
@@ -75,6 +78,9 @@ public class Graphical extends JPanel implements Runnable{
     public int getmeowWidth() {return meowWidth*scale;}
     public int getZomWidth() {return zomWidth*scale;}
     public int getZomHeight() {return zomHeight*scale;}
+
+    public int getwoolWidth(){return woolWidth*scale;}
+    public int getwoolHeight(){return woolHeight*scale;}
 
     @Override
     public void run() {
@@ -110,6 +116,7 @@ public class Graphical extends JPanel implements Runnable{
         zombie_1.zom_update(shooter);
         zombie_2.zom_update(shooter);
         zombie_3.zom_update(shooter);
+        bullet.bullet_update();
 
 
     }
@@ -121,6 +128,7 @@ public class Graphical extends JPanel implements Runnable{
         zombie_1.render1(g2);
         zombie_2.render2(g2);
         zombie_3.render3(g2);
+        bullet.render(g2);
 
         g2.dispose();
     }
