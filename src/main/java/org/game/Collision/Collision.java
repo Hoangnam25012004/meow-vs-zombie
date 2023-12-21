@@ -7,9 +7,11 @@ import org.game.Zom.Zombie;
 import org.game.bullet.Bullet;
 import org.game.graphic.Graphical;
 
+import java.io.IOException;
+
 public class Collision {
 
-    Meow shooter = new Shooter();
+    Shooter shooter = new Shooter(140,110);
 
     Zombie zombie;
 
@@ -19,13 +21,25 @@ public class Collision {
 
     Rect rect_zombie = new Rect(zombie.getX(), zombie.getY(), graphical.getZomWidth(),graphical.getZomHeight() );
 
-    public Collision(Meow meow, Zombie zombie,Bullet bullet){
-        this.shooter = meow;
+    public Collision(Shooter shooter, Zombie zombie,Bullet bullet){
+        this.shooter = shooter;
         this.zombie = zombie;
         this.bullet = bullet;
     }
 
-    public void checkCollideMeowZom(Meow meow, Zombie zombie){
+    public boolean checkCollideMeowZom(Shooter shooter, Zombie zombie) {
+        this.shooter = shooter;
+        this.zombie = zombie;
+
+
+        if (zombie.getX() < (this.shooter.getMeowX() + (graphical.getmeowWidth() / 2)) &
+                zombie.getX() > (this.shooter.getMeowX() - (graphical.getmeowWidth() / 2))) {
+                return true;
+
+        } else {
+                return false;
+            }
+
 
     }
 
