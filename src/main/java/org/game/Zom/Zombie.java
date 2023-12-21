@@ -6,7 +6,9 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Random;
 
 public class Zombie {
     
@@ -17,6 +19,7 @@ public class Zombie {
         private int y;
         public boolean collide = false;
         private Graphical graphical;
+        private ArrayList<Zombie> zombieList = new ArrayList<>();
 
         public BufferedImage zom_1;
 
@@ -33,11 +36,9 @@ public class Zombie {
         public double getX(){
             return x;
         }
-
         public int getY(){
             return y;
         }
-
         public void setPosition(int x, int y){
             this.x = x;
             this.y = y;
@@ -53,8 +54,8 @@ public class Zombie {
         private void move(double speed) {
 
             setLocation(this.x - speed, this.y);
+
         }
-    
         
 
         private void setLocation(double i, int y2) {
