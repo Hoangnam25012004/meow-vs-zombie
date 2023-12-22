@@ -59,14 +59,12 @@ public class Zombie {
             //checkHealth();
         }
 
-        public void takeDamage() {
-            HP -= getDame() ; // Reduce health by the bullet's damage
+        public void takeDamage(int damageAmount) {
+            HP -= damageAmount; // Reduce health by the bullet's damage
         
             if (HP <= 0) {
-                onDeath(); // Call a method to handle zombie death
-            } else {
-                // Play pain sound or animation (optional)
-            }
+                // Death(); // Call a method to handle zombie death
+            } 
         }
     
         private void move(double speed) {
