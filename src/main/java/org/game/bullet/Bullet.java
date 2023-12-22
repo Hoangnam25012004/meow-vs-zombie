@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Bullet {
     private int  y;
     private double x;
-    private int Dame;
+    protected int Dame;
     private boolean isFrozen = false;
     private Graphical graphical;
     private double speed;
@@ -26,7 +26,10 @@ public class Bullet {
 
     Zombie zombie;
  
-    public int getDame() { return Dame; }
+    public int getDame() { 
+        return Dame; 
+    }
+
     public Bullet(double x, int y, int Dame){
         this.x = x;
         this.y = y;

@@ -58,6 +58,16 @@ public class Zombie {
             //attackPlayer();
             //checkHealth();
         }
+
+        public void takeDamage() {
+            HP -= getDame() ; // Reduce health by the bullet's damage
+        
+            if (HP <= 0) {
+                onDeath(); // Call a method to handle zombie death
+            } else {
+                // Play pain sound or animation (optional)
+            }
+        }
     
         private void move(double speed) {
 
@@ -184,6 +194,22 @@ public class Zombie {
         Rectangle zombieRectangle = zombie.getBoundary();
 
         return bulletRectangle.intersects(zombieRectangle);
+    }
+
+    
+    public void checkBulletCollisions() {
+        //ArrayList<Bullet> bullets = bulletList; // My neeeds to create bullet list for bullet collision dectection
+        ArrayList<Zombie> zombies = zombieList;
+    
+        for (Bullet bullet : bullets) {
+            for (Zombie zombie : zombies) {
+                if (isColliding(bullet, zombie)) {
+                    zombie.takeDamage(bullet.getDame());
+                    bullets.remove(bullet);
+                    break;
+                }
+            }
+        }
     }
 
 
