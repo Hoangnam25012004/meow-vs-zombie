@@ -51,7 +51,7 @@ public class Graphical extends JPanel implements Runnable{
 
 
     Thread gameThread;
-    Shooter shooter = new Shooter(this,160,110);
+    Shooter shooter = new Shooter(this,180,110);
     Zombie zombie_1 = new normalZombie(this,700,90);
     Zombie zombie_2 = new helmetZombie(this,700,300);
     Zombie zombie_3 = new catEarZombie(this, 750,400);
