@@ -18,14 +18,14 @@ public class Graphical extends JPanel implements Runnable{
 
     // screen setting
     final int originalTileSize = 16; //16x16 tile
-    private final int meowWidth = 13;
-    private final int meowHeight = 14;
+    private final int meowWidth = 15;
+    private final int meowHeight = 16;
 
-    private final int woolWidth = 5;
-    private final int woolHeight = 5;
+    private final int woolWidth = 6;
+    private final int woolHeight = 6;
 
     private final int zomWidth = 14;
-    private final int zomHeight = 22;
+    private final int zomHeight = 20;
     public final int scale = 4; // set scale all to 4
     public final int tileSize = originalTileSize*scale; // 64
 
@@ -51,7 +51,7 @@ public class Graphical extends JPanel implements Runnable{
 
 
     Thread gameThread;
-    Shooter shooter = new Shooter(this,140,110);
+    Shooter shooter = new Shooter(this,160,110);
     Zombie zombie_1 = new normalZombie(this,700,90);
     Zombie zombie_2 = new helmetZombie(this,700,300);
     Zombie zombie_3 = new catEarZombie(this, 750,400);

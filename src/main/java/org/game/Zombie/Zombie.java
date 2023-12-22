@@ -144,28 +144,28 @@ public class Zombie {
     }
 
 
-    public boolean isColliding(Bullet bullet, Zombie zombie) {
-        //Rectangle bulletRectangle = bullet.getBoundary();
-        Rectangle zombieRectangle = zombie.getBoundary();
-
-        return bulletRectangle.intersects(zombieRectangle);
-    }
-
-    
-    public void checkBulletCollisions() {
-        //ArrayList<Bullet> bullets = bulletList; // "My" neeeds to create bullet list for bullet collision dectection
-        ArrayList<Zombie> zombies = zombieList;
-
-        for (Bullet bullet : bullets) {
-            for (Zombie zombie : zombies) {
-                if (isColliding(bullet, zombie)) {
-                    zombie.takeDamage(bullet.getDame());
-                    //bullets.remove(bullet);
-                    break;
-                }
-            }
-        }
-    }
+//    public boolean isColliding(Bullet bullet, Zombie zombie) {
+//        //Rectangle bulletRectangle = bullet.getBoundary();
+//        Rectangle zombieRectangle = zombie.getBoundary();
+//
+//        return bulletRectangle.intersects(zombieRectangle);
+//    }
+//
+//
+//    public void checkBulletCollisions() {
+//        //ArrayList<Bullet> bullets = bulletList; // "My" neeeds to create bullet list for bullet collision dectection
+//        ArrayList<Zombie> zombies = zombieList;
+//
+//        for (Bullet bullet : bullets) {
+//            for (Zombie zombie : zombies) {
+//                if (isColliding(bullet, zombie)) {
+//                    zombie.takeDamage(bullet.getDame());
+//                    //bullets.remove(bullet);
+//                    break;
+//                }
+//            }
+//        }
+//    }
 
 
 
