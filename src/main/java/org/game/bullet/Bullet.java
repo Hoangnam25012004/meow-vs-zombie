@@ -24,8 +24,9 @@ public class Bullet {
     private int originalY;
     public BufferedImage bullet_1;
     private ArrayList<Bullet> bulletLists = new ArrayList<>();
+    Thread gameThread;
 
-
+    Bullet bullet;
     Zombie zombie;
  
     public int getDame() { 
@@ -107,4 +108,16 @@ public class Bullet {
     }
     public Rectangle getBoundary (){
         return new Rectangle((int) this.getX(), this.getY(), 5*graphical.scale, 5*graphical.scale) ;}
+
+    public void addBullet() {
+        long lastTime = System. nanoTime(); //check this moment time
+        long currentTime; //the currentTime
+        long timer = 0;
+        while (gameThread != null){
+            currentTime = System.nanoTime (); // Always update the currentTime after 1 Loop
+            timer += (currentTime - lastTime);
+            if (timer > 1000000000){
+                bulletLists.add (bullet);}
+        }
+    }
 }
