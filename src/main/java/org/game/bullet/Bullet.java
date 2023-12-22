@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Bullet {
     private int  y;
     private double x;
-    protected int Dame;
+    private int Dame;
     private boolean isFrozen = false;
     private Graphical graphical;
     private double speed;
