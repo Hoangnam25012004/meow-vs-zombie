@@ -3,7 +3,7 @@ package org.game.Collision;
 import org.game.MeowPack.Meow;
 import org.game.Hitbox.Rect;
 import org.game.MeowPack.Shooter;
-import org.game.Zom.Zombie;
+import org.game.Zombie.Zombie;
 import org.game.bullet.Bullet;
 import org.game.graphic.Graphical;
 
@@ -19,7 +19,7 @@ public class Collision {
 
     Graphical graphical;
 
-    Rect rect_zombie = new Rect(zombie.getX(), zombie.getY(), graphical.getZomWidth(),graphical.getZomHeight() );
+  //  Rect rect_zombie = new Rect(zombie.getX(), zombie.getY(), graphical.getZomWidth(),graphical.getZomHeight() );
 
     public Collision(Shooter shooter, Zombie zombie,Bullet bullet){
         this.shooter = shooter;

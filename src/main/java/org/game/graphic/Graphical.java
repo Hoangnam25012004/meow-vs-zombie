@@ -2,7 +2,10 @@ package org.game.graphic;
 
 import org.game.Collision.Collision;
 import org.game.MeowPack.Shooter;
-import org.game.Zom.Zombie;
+import org.game.Zombie.Zombie;
+import org.game.Zombie.catEarZombie;
+import org.game.Zombie.helmetZombie;
+import org.game.Zombie.normalZombie;
 import org.game.bullet.Bullet;
 
 import javax.swing.*;
@@ -49,12 +52,11 @@ public class Graphical extends JPanel implements Runnable{
 
     Thread gameThread;
     Shooter shooter = new Shooter(this,140,110);
-    Zombie zombie_1 = new Zombie(this,700,90);
-    Zombie zombie_2 = new Zombie(this,700,300);
-    Zombie zombie_3 = new Zombie(this, 750,400);
+    Zombie zombie_1 = new normalZombie(this,700,90);
+    Zombie zombie_2 = new helmetZombie(this,700,300);
+    Zombie zombie_3 = new catEarZombie(this, 750,400);
     Bullet bullet = new Bullet(this,140,110);
 
-    Collision collision;
 
 
 
@@ -125,9 +127,9 @@ public class Graphical extends JPanel implements Runnable{
         Graphics2D g2 = (Graphics2D)g;
         bg.render(g2);
         shooter.render(g2);
-        zombie_1.render1(g2);
-        zombie_2.render2(g2);
-        zombie_3.render3(g2);
+        zombie_1.render(g2);
+        zombie_2.render(g2);
+        zombie_3.render(g2);
         bullet.render(g2);
 
         g2.dispose();

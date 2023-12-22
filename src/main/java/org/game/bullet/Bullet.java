@@ -1,7 +1,8 @@
 package org.game.bullet;
 
 import org.game.MeowPack.Shooter;
-import org.game.Zom.Zombie;
+import org.game.Zombie.Zombie;
+import org.game.Zombie.Zombie;
 import org.game.graphic.Graphical;
 
 import javax.imageio.ImageIO;
@@ -22,6 +23,8 @@ public class Bullet {
     private int originalY;
 
     public BufferedImage bullet;
+
+    Zombie zombie;
  
     public int getDame() { return Dame; }
     public Bullet(double x, int y, int Dame){
