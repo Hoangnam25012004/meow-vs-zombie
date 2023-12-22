@@ -9,6 +9,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 
@@ -21,8 +22,9 @@ public class Bullet {
     private double speed;
     private int originalX;
     private int originalY;
+    public BufferedImage bullet_1;
+    private ArrayList<Bullet> bulletLists = new ArrayList<>();
 
-    public BufferedImage bullet;
 
     Zombie zombie;
  
@@ -74,13 +76,13 @@ public class Bullet {
 
     public void getBulletImage() {
         try {
-            bullet = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bullet/wool.png")));
+            bullet_1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bullet/wool.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     public void render(Graphics2D g2) {
-        g2.drawImage(bullet, (int) this.x, this.y,graphical.getwoolWidth(), graphical.getwoolHeight(), null);
+        g2.drawImage(bullet_1, (int) this.x, this.y,graphical.getwoolWidth(), graphical.getwoolHeight(), null);
     }
 
     private void setLocation(double i, int y2) {
@@ -102,6 +104,7 @@ public class Bullet {
             this.x = originalX;
             this.y = originalY;
         }
-
     }
+    public Rectangle getBoundary (){
+        return new Rectangle((int) this.getX(), this.getY(), 5*graphical.scale, 5*graphical.scale) ;}
 }
