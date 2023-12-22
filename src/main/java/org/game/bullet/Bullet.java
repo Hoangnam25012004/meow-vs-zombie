@@ -13,11 +13,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 
-public class Bullet {
-    private int  y;
-    private double x;
-    private int Dame;
-    private boolean isFrozen = false;
+public class Bullet extends BulletManager {
     private Graphical graphical;
     private double speed;
     private int originalX;
@@ -25,50 +21,14 @@ public class Bullet {
     public BufferedImage bullet_1;
     private ArrayList<Bullet> bulletLists = new ArrayList<>();
     Thread gameThread;
-
     Bullet bullet;
     Zombie zombie;
- 
-    public int getDame() { 
-        return Dame; 
-    }
-
-    public Bullet(double x, int y, int Dame){
-        this.x = x;
-        this.y = y;
-        this.Dame = Dame;
-    }
-    public boolean getisFrozen() {
-        return isFrozen;
-    }
-    public void setisFrozen(boolean isFrozen) {
-        this.isFrozen = isFrozen;
-    }
-
-    public double getX() {
-        return x;
-    }
-    public void setX(double x) {
-        this.x = x;
-    }
-
-    public int getY () {
-        return y;
-    }
-    public void setY(int y) {
-        this.y = y;
-    }
-    
-    public void move () {
-        if (this.x<1024) { 
-            this.x += 8;
-        }
-    }
     public void setPosition(int x, int y){
         this.x = x;
         this.y = y;
     }
-    public Bullet(Graphical graphical, int x, int y){
+    public Bullet(Graphical graphical, int x, int y, int Dame){
+        super(x,y,Dame);
         this.graphical = graphical;
         this.originalX = x;
         this.originalY = y;

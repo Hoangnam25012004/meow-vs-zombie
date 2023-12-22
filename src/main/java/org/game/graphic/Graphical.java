@@ -55,7 +55,7 @@ public class Graphical extends JPanel implements Runnable{
     Zombie zombie_1 = new normalZombie(this,700,90);
     Zombie zombie_2 = new helmetZombie(this,700,300);
     Zombie zombie_3 = new catEarZombie(this, 750,400);
-    Bullet bullet = new Bullet(this,140,110);
+    Bullet bullet = new Bullet(this,140,110, 30);
 
 
 
