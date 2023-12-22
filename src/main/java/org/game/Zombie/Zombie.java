@@ -153,7 +153,7 @@ public class Zombie {
 
     
     public void checkBulletCollisions() {
-        ArrayList<Bullet> bullets = bulletList; // "My" neeeds to create bullet list for bullet collision dectection
+        //ArrayList<Bullet> bullets = bulletList; // "My" neeeds to create bullet list for bullet collision dectection
         ArrayList<Zombie> zombies = zombieList;
     
         for (Bullet bullet : bullets) {
