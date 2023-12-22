@@ -2,6 +2,7 @@ package org.game.Zom;
 
 import org.game.Collision.Collision;
 import org.game.MeowPack.Shooter;
+import org.game.bullet.Bullet;
 import org.game.graphic.Graphical;
 
 import javax.imageio.ImageIO;
@@ -17,7 +18,7 @@ public class Zombie {
         protected int HP;
         protected double speed;
         protected int attackPower;
-        private double x;
+        private int x;
         private int y;
         private int originalX;
         private int originalY;
@@ -136,11 +137,7 @@ public class Zombie {
         */
 
 
-       /* public void setCollide(boolean c){
-            this.collide = c;
-        }*/
-
-    public void zom_update(Shooter shooter){
+        public void zom_update(Shooter shooter){
             move(4);
             if (this.x == 0){
                 this.x = originalX;
@@ -181,6 +178,20 @@ public class Zombie {
         //     }
         // }
 
+// -------------------------------------------------------------------------------
+// check collision and hit box
 
-    
+    public Rectangle getBoundary(){
+        return new Rectangle((int) this.getX(), this.getY(), 14 , 22);
     }
+
+
+    public boolean isColliding(Bullet bullet, Zombie zombie) {
+        //Rectangle bulletRectangle = bullet.getBoundary();
+        Rectangle zombieRectangle = zombie.getBoundary();
+
+        return bulletRectangle.intersects(zombieRectangle);
+    }
+
+
+}
