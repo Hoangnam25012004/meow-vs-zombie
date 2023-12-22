@@ -110,8 +110,6 @@ public class Graphical extends JPanel implements Runnable{
                 drawCount=0;
                 timer=0;
             }
-
-
         }
     }
     public void update() {

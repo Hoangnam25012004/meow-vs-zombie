@@ -140,7 +140,7 @@ public class Zombie {
 // check collision and hit box
 
     public Rectangle getBoundary(){
-        return new Rectangle((int) this.getX(), this.getY(), 14 , 22);
+        return new Rectangle((int) this.getX(), this.getY(), 14* graphical.scale , 22 * graphical.scale);
     }
 
 
@@ -153,7 +153,7 @@ public class Zombie {
 
     
     public void checkBulletCollisions() {
-        //ArrayList<Bullet> bullets = bulletList; // "My" neeeds to create bullet list for bullet collision dectection
+        ArrayList<Bullet> bullets = bulletList; // "My" neeeds to create bullet list for bullet collision dectection
         ArrayList<Zombie> zombies = zombieList;
     
         for (Bullet bullet : bullets) {
@@ -168,7 +168,6 @@ public class Zombie {
     }
 
 
-}
 
 //----------------------------------------------------------------------------
 // graphics
@@ -181,25 +180,14 @@ public class Zombie {
             getZomImage();
         }
 
-        private void setLocation(double i, int y2) {
-            this.x = i;
-            this.y = y2;
+        private void setLocation(int x , int y) {
+            this.x = x;
+            this.y = y;
         }
 
         
         public void zom_update(Shooter shooter){
             move(4);
-            if (this.x == 0){
-                this.x = originalX;
-                this.y = originalY;
-            }
-
-           if (this.getX() < (shooter.getMeowX() + (graphical.getmeowWidth() / 2)) &
-                    this.getX() > (shooter.getMeowX() - (graphical.getmeowWidth() / 2))){
-                this.x = originalX;
-                this.y = originalY;
-           }
-
         }
 
         public void getZomImage(){
@@ -210,4 +198,6 @@ public class Zombie {
         } catch (IOException e){e.printStackTrace();}
         }
         public void render(Graphics2D g2) {
+
         }
+}

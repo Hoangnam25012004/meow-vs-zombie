@@ -24,7 +24,7 @@ public class Shooter extends Meow {
     }
     public Shooter(int x,int y){
         setInitial(x,y);
-    };
+    }
     public Shooter(Graphical graphical,int x,int y) {
         this.graphical = graphical;
         getMeowShooterImage();
