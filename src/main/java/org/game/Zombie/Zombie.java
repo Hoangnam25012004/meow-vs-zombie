@@ -29,17 +29,11 @@ public class Zombie {
         public BufferedImage zom_1,zom_2,zom_3;
 
 
-        public Zombie(int HP, double speed2, int attackPower) {
+        public Zombie(int HP, double speed, int attackPower) {
             this.HP = HP;
-            this.speed = speed2;
+            this.speed = speed;
             this.attackPower = attackPower; 
         }
-        public Zombie(Graphical graphical,int x, int y){
-            this.graphical = graphical;
-            this.originalX = x;
-            this.originalY = y;
-            setPosition(x,y);
-            getZomImage();}
         
         public double getX(){
             return x;
@@ -51,33 +45,26 @@ public class Zombie {
             this.x = x;
             this.y = y;
         }
-    
-        public void act() {
-            move(speed);
-            //turnTowardsPlayer();
-            //attackPlayer();
-            //checkHealth();
+
+//--------------------------------------------------------------------------
+// Actions of the zombies
+
+        private void move(double speed) {
+            setLocation(this.x - speed, this.y);
         }
 
         public void takeDamage(int damageAmount) {
             HP -= damageAmount; // Reduce health by the bullet's damage
-        
-            if (HP <= 0) {
-                // Death(); // Call a method to handle zombie death
+           
+             if (HP <= 0) {
+                // Death(); // Call a method to handle zombie death, remove zombies
             } 
         }
     
-        private void move(double speed) {
-
-            setLocation(this.x - speed, this.y);
-
-        }
         
-
-        private void setLocation(double i, int y2) {
-            this.x = i;
-            this.y = y2;
-        }
+//----------------------------------------------------------------------------
+// spawn random type of zombies 
+// 1. Normal zombie 2. Zombie with cat ear 3. Zombie wearing helmet
 
         public Zombie createRandomZombie(){
         Random random = new Random();
@@ -93,6 +80,9 @@ public class Zombie {
                     return null; // never happends
             }
         }
+
+//------------------------------------------------------------------------------
+// spawn random zombies in random row order
 
         public void spawnRandomZombiesIn5RandomRows(int totalRows) {
             Random random = new Random();
@@ -146,6 +136,57 @@ public class Zombie {
         */
 
 
+// -------------------------------------------------------------------------------
+// check collision and hit box
+
+    public Rectangle getBoundary(){
+        return new Rectangle((int) this.getX(), this.getY(), 14 , 22);
+    }
+
+
+    public boolean isColliding(Bullet bullet, Zombie zombie) {
+        //Rectangle bulletRectangle = bullet.getBoundary();
+        Rectangle zombieRectangle = zombie.getBoundary();
+
+        return bulletRectangle.intersects(zombieRectangle);
+    }
+
+    
+    public void checkBulletCollisions() {
+        //ArrayList<Bullet> bullets = bulletList; // "My" neeeds to create bullet list for bullet collision dectection
+        ArrayList<Zombie> zombies = zombieList;
+    
+        for (Bullet bullet : bullets) {
+            for (Zombie zombie : zombies) {
+                if (isColliding(bullet, zombie)) {
+                    zombie.takeDamage(bullet.getDame());
+                    //bullets.remove(bullet);
+                    break;
+                }
+            }
+        }
+    }
+
+
+}
+
+//----------------------------------------------------------------------------
+// graphics
+
+ public Zombie(Graphical graphical,int x, int y){
+            this.graphical = graphical;
+            this.originalX = x;
+            this.originalY = y;
+            setPosition(x,y);
+            getZomImage();
+        }
+
+        private void setLocation(double i, int y2) {
+            this.x = i;
+            this.y = y2;
+        }
+
+        
         public void zom_update(Shooter shooter){
             move(4);
             if (this.x == 0){
@@ -167,48 +208,6 @@ public class Zombie {
             zom_2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/zom_2.png")));
             zom_3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/zom_3.png")));
         } catch (IOException e){e.printStackTrace();}
-    }
+        }
         public void render(Graphics2D g2) {
         }
-
-
-
-        // private void checkHealth() {
-        //     if (HP <= 0) {
-        //         getWorld().removeObject(this);
-        //     }
-        // }
-
-// -------------------------------------------------------------------------------
-// check collision and hit box
-
-    public Rectangle getBoundary(){
-        return new Rectangle((int) this.getX(), this.getY(), 14 , 22);
-    }
-
-
-    public boolean isColliding(Bullet bullet, Zombie zombie) {
-        //Rectangle bulletRectangle = bullet.getBoundary();
-        Rectangle zombieRectangle = zombie.getBoundary();
-
-        return bulletRectangle.intersects(zombieRectangle);
-    }
-
-    
-    public void checkBulletCollisions() {
-        //ArrayList<Bullet> bullets = bulletList; // My neeeds to create bullet list for bullet collision dectection
-        ArrayList<Zombie> zombies = zombieList;
-    
-        for (Bullet bullet : bullets) {
-            for (Zombie zombie : zombies) {
-                if (isColliding(bullet, zombie)) {
-                    zombie.takeDamage(bullet.getDame());
-                    bullets.remove(bullet);
-                    break;
-                }
-            }
-        }
-    }
-
-
-}
