@@ -15,7 +15,7 @@ public class Bullet extends BulletManager {
     private int originalX;
     private int originalY;
     public BufferedImage bullet_1;
-    private ArrayList<Bullet> bulletLists = new ArrayList<>();
+    public ArrayList<Bullet> bulletLists = new ArrayList<>();
     Thread gameThread;
     Bullet bullet;
     Zombie zombie;

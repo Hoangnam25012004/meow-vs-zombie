@@ -145,7 +145,7 @@ public class Zombie {
 
 
     public boolean isColliding(Bullet bullet, Zombie zombie) {
-        //Rectangle bulletRectangle = bullet.getBoundary();
+        Rectangle bulletRectangle = bullet.getBoundary();
         Rectangle zombieRectangle = zombie.getBoundary();
 
         return bulletRectangle.intersects(zombieRectangle);
@@ -153,7 +153,8 @@ public class Zombie {
 
 
     public void checkBulletCollisions() {
-        //ArrayList<Bullet> bullets = bulletList; // "My" neeeds to create bullet list for bullet collision dectection
+        ArrayList<Bullet> bulletLists = null;
+        ArrayList<Bullet> bullets = bulletLists; // "My" neeeds to create bullet list for bullet collision dectection
         ArrayList<Zombie> zombies = zombieList;
 
         for (Bullet bullet : bullets) {
@@ -180,14 +181,14 @@ public class Zombie {
             getZomImage();
         }
 
-        private void setLocation(int x , int y) {
+        private void setLocation(double x , int y) {
             this.x = x;
             this.y = y;
         }
 
         
         public void zom_update(Shooter shooter){
-            move(4);
+            move(2);
         }
 
         public void getZomImage(){

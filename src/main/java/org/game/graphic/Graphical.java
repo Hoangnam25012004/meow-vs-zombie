@@ -60,6 +60,7 @@ public class Graphical extends JPanel implements Runnable{
 
 
 
+
     public Graphical(){
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setDoubleBuffered(true);
@@ -117,6 +118,7 @@ public class Graphical extends JPanel implements Runnable{
         zombie_2.zom_update(shooter);
         zombie_3.zom_update(shooter);
         bullet.bullet_update(zombie_1);
+        shooter.meow_update();
 
 
     }
