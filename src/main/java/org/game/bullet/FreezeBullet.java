@@ -6,5 +6,7 @@ public class FreezeBullet extends BulletManager {
     }
 
 
+
+
     
 }
