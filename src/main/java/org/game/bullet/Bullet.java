@@ -64,21 +64,22 @@ public class Bullet extends BulletManager {
             this.x = originalX;
             this.y = originalY;
         }
+        addBullet();
     }
 
 
 
     //___________________________________________________________________________
     public void addBullet() {
-        long lastTime = System. nanoTime(); //check this moment time
-        long currentTime; //the currentTime
+        long Currenttime = System.nanoTime();
         long timer = 0;
-        while (gameThread != null){
-            currentTime = System.nanoTime (); // Always update the currentTime after 1 Loop
-            timer += (currentTime - lastTime);
-            if (timer > 1000000000){
-                bulletLists.add (bullet);}
+
+        if (timer > 1000000000){
+            bulletLists.add (bullet);
+            System.out.println(bulletLists);
+            timer = 0;
         }
+
     }
 
 
