@@ -29,7 +29,8 @@ public class Zombie {
         public BufferedImage zom_1,zom_2,zom_3;
 
 
-        public Zombie(int HP, double speed, int attackPower) {
+        public Zombie(Graphical graphical,int HP, double speed, int attackPower) {
+            this.graphical = graphical;
             this.HP = HP;
             this.speed = speed;
             this.attackPower = attackPower; 
