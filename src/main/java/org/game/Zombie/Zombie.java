@@ -18,7 +18,7 @@ public class Zombie {
         protected int HP;
         protected double speed;
         protected int attackPower;
-        private int x;
+        private double x;
         private int y;
         private int originalX;
         private int originalY;
@@ -42,7 +42,7 @@ public class Zombie {
         public int getY(){
             return y;
         }
-        public void setPosition(int x, int y){
+        public void setPosition(double x, int y){
             this.x = x;
             this.y = y;
         }
@@ -51,7 +51,7 @@ public class Zombie {
 // Actions of the zombies
 
         private void move(double speed) {
-            setLocation(this.x - speed, this.y);
+            //setLocation(this.x - speed, this.y);
         }
 
         public void takeDamage(int damageAmount) {
@@ -146,17 +146,18 @@ public class Zombie {
 
 
     public boolean isColliding(Bullet bullet, Zombie zombie) {
-        //Rectangle bulletRectangle = bullet.getBoundary();
+        Rectangle bulletRectangle = bullet.getBoundary();
         Rectangle zombieRectangle = zombie.getBoundary();
 
         return bulletRectangle.intersects(zombieRectangle);
     }
 
-    
+
     public void checkBulletCollisions() {
-        //ArrayList<Bullet> bullets = bulletList; // "My" neeeds to create bullet list for bullet collision dectection
+        ArrayList<Bullet> bulletLists = null;
+        ArrayList<Bullet> bullets = bulletLists; // "My" neeeds to create bullet list for bullet collision dectection
         ArrayList<Zombie> zombies = zombieList;
-    
+
         for (Bullet bullet : bullets) {
             for (Zombie zombie : zombies) {
                 if (isColliding(bullet, zombie)) {
@@ -181,14 +182,14 @@ public class Zombie {
             getZomImage();
         }
 
-        private void setLocation(int x , int y) {
+        private void setLocation(double x , int y) {
             this.x = x;
             this.y = y;
         }
 
         
         public void zom_update(Shooter shooter){
-            move(4);
+            move(2);
         }
 
         public void getZomImage(){

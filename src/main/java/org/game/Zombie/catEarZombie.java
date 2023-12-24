@@ -18,7 +18,7 @@ public class catEarZombie extends Zombie {
         getZomImage();}
     @Override
     public void render(Graphics2D g2){
-        g2.drawImage(zom_2, (int) super.getX(), super.getY(),graphical.getZomWidth(), graphical.getZomHeight(), null);
+        g2.drawImage(zom_2, (int) super.getX(), super.getY(),graphical.getZomWidth(), 23*graphical.scale, null);
 
     }
 }
