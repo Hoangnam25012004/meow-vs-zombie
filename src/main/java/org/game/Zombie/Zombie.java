@@ -26,6 +26,8 @@ public class Zombie {
     
         public Graphical graphical;
 
+        Bullet bullet;
+
         public BufferedImage zom_1,zom_2,zom_3;
 
 
@@ -154,8 +156,7 @@ public class Zombie {
 
 
     public void checkBulletCollisions() {
-        ArrayList<Bullet> bulletLists = null;
-        ArrayList<Bullet> bullets = bulletLists; // "My" neeeds to create bullet list for bullet collision dectection
+        ArrayList<Bullet> bullets = bullet.bulletLists; // "My" neeeds to create bullet list for bullet collision dectection
         ArrayList<Zombie> zombies = zombieList;
 
         for (Bullet bullet : bullets) {
