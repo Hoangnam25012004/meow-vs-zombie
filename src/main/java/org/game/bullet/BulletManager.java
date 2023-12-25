@@ -76,7 +76,7 @@ public class BulletManager extends Bullet {
 
         if (timer > 1000000000){
             bulletLists.add (bullet);
-            System.out.println(bulletLists);
+            System.out.println(bulletLigists);
             timer = 0;
         }
 
