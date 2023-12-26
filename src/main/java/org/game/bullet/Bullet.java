@@ -5,13 +5,14 @@ import org.game.graphic.Graphical;
 
 
 public class Bullet {
-    private Graphical graphical;
+    public Graphical graphical;
     public double x;
     public int y;
     private final int Dame;
     private boolean isFrozen = false;
 
-    public Bullet(double x, int y, int Dame){
+    public Bullet(Graphical graphical, double x, int y, int Dame){
+        this.graphical = graphical;
         this.x = x;
         this.y = y;
         this.Dame = Dame;

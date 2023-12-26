@@ -1,7 +1,8 @@
-package org.game.bullet;
+package org.game.Manager;
 import org.game.MeowPack.Shooter;
 import org.game.Zombie.Zombie;
 import org.game.Zombie.Zombie;
+import org.game.bullet.Bullet;
 import org.game.graphic.Graphical;
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -16,12 +17,10 @@ public class BulletManager extends Bullet {
     private int originalY;
     public BufferedImage bullet_1;
     public ArrayList<Bullet> bulletList = new ArrayList<>();
-    Thread gameThread;
-    Bullet bullet;
     Zombie zombie;
 
     public BulletManager(Graphical graphical, int x, int y, int Dame){
-        super(x,y,Dame);
+        super(graphical,x,y,Dame);
         this.graphical = graphical;
         this.originalX = x;
         this.originalY = y;
@@ -45,32 +44,32 @@ public class BulletManager extends Bullet {
     }
 
     public void render(Graphics2D g2) {
-        g2.drawImage(bullet_1, (int) this.x, this.y, graphical.getwoolWidth(), graphical.getwoolHeight(), null);
+        g2.drawImage(bullet_1, (int) super.x, super.y, graphical.getwoolWidth(), graphical.getwoolHeight(), null);
     }
 
     //___________________________________________________________________________
     private void move(double speed) {
-        setPosition(this.x + speed, this.y);
+        setPosition(super.x + speed, super.y);
     }
 
 
     public void bullet_update(Zombie zombie) {
         move(4);
-        if (this.x >= graphical.getScreenWidth()) {
-            this.x = originalX;
-            this.y = originalY;
+        if (super.x >= graphical.getScreenWidth()) {
+            super.x = originalX;
+            super.y = originalY;
         }
-        if (this.x < (zombie.getX()+graphical.getZomWidth()) & this.x > (zombie.getX() - graphical.getZomWidth())){
-            this.x = originalX;
-            this.y = originalY;
+        if (super.x < (zombie.getX()+graphical.getZomWidth()) & super.x > (zombie.getX() - graphical.getZomWidth())){
+            super.x = originalX;
+            super.y = originalY;
         }
-        addBullet();
+
     }
 
 
 
     //___________________________________________________________________________
-    public void addBullet() {
+  /*  public void addBullet() {
         long Currenttime = System.nanoTime();
         long timer = 0;
 
@@ -80,5 +79,5 @@ public class BulletManager extends Bullet {
             timer = 0;
         }
 
-    }
+    }*/
 }

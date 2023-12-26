@@ -17,7 +17,7 @@ public class Main {
         graphical.startGameThread();
 
         window.setLocationRelativeTo(null);
-        window.setVisible(true);
+        window.setVisible(true);    
 
 
     }

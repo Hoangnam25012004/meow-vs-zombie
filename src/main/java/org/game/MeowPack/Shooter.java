@@ -11,7 +11,7 @@ import java.util.Objects;
 
 public class Shooter extends Meow {
 
-    private BufferedImage meow_1, meow_2, meow_3;
+    private BufferedImage meow_1, meow_2, meow_3, meow_4,meow_5,meow_6;
     private Graphical graphical;
     private Bullet[] bullets;
     private boolean isAbleToFreeze;
@@ -37,6 +37,9 @@ public class Shooter extends Meow {
             meow_1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/meow_1.png")));
             meow_2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/meow_2.png")));
             meow_3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/meow_3.png")));
+            meow_4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/Icecat.png")));
+            meow_5 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/Icecat.png")));
+            meow_6 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/Icecat.png")));
         } catch (IOException e){e.printStackTrace();}
     }
 
@@ -59,12 +62,25 @@ public class Shooter extends Meow {
 
     @Override
     public void render(Graphics2D g2) {
-        if (counterNum == 1) {
-            g2.drawImage(meow_1,meowX,meowY,graphical.getmeowWidth(),graphical.getmeowHeight(),null);}
-        else if (counterNum == 2){
-            g2.drawImage(meow_2,meowX,meowY,graphical.getmeowWidth(),graphical.getmeowHeight(),null);
+        if (isAbleToFreeze == false) {
+            if (counterNum == 1) {
+                g2.drawImage(meow_1, meowX, meowY, graphical.getmeowWidth(), graphical.getmeowHeight(), null);
+            } else if (counterNum == 2) {
+                g2.drawImage(meow_2, meowX, meowY, graphical.getmeowWidth(), graphical.getmeowHeight(), null);
             } else if (counterNum == 3) {
-                g2.drawImage(meow_3,meowX,meowY,graphical.getmeowWidth(),graphical.getmeowHeight(),null);}
+                g2.drawImage(meow_3, meowX, meowY, graphical.getmeowWidth(), graphical.getmeowHeight(), null);
+            }
+        }
+        else {
+            if (counterNum == 1) {
+                g2.drawImage(meow_4, meowX, meowY, graphical.getmeowWidth(), graphical.getmeowHeight(), null);
+            } else if (counterNum == 2) {
+                g2.drawImage(meow_5, meowX, meowY, graphical.getmeowWidth(), graphical.getmeowHeight(), null);
+            } else if (counterNum == 3) {
+                g2.drawImage(meow_6, meowX, meowY, graphical.getmeowWidth(), graphical.getmeowHeight(), null);
+            }
+
+        }
     }
 
    @Override
