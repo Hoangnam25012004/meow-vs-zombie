@@ -15,7 +15,7 @@ public class BulletManager extends Bullet {
     private int originalX;
     private int originalY;
     public BufferedImage bullet_1;
-    public ArrayList<Bullet> bulletLists = new ArrayList<>();
+    public ArrayList<Bullet> bulletList = new ArrayList<>();
     Thread gameThread;
     Bullet bullet;
     Zombie zombie;
@@ -75,16 +75,10 @@ public class BulletManager extends Bullet {
         long timer = 0;
 
         if (timer > 1000000000){
-            bulletLists.add (bullet);
-            System.out.println(bulletLists);
+            bulletList.add (bullet);
+            System.out.println(bulletList);
             timer = 0;
         }
 
     }
-
-
-
-    //___________________________________________________________________________
-    public Rectangle getBoundary (){
-        return new Rectangle((int) this.getX(), this.getY(), 5*graphical.scale, 5*graphical.scale) ;}
 }

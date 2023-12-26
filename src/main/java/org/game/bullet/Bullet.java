@@ -1,6 +1,11 @@
 package org.game.bullet;
+import java.awt.*;
+
+import org.game.graphic.Graphical;
+
 
 public class Bullet {
+    private Graphical graphical;
     public double x;
     public int y;
     private final int Dame;
@@ -43,5 +48,8 @@ public class Bullet {
             this.x += 8;
         }
     }
-}
 
+
+public Rectangle getBoundary (){
+        return new Rectangle((int) this.getX(), this.getY(), 5*graphical.scale, 5*graphical.scale) ;}
+}

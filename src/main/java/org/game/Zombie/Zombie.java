@@ -3,6 +3,7 @@ package org.game.Zombie;
 import org.game.Collision.Collision;
 import org.game.MeowPack.Shooter;
 import org.game.bullet.Bullet;
+import org.game.bullet.BulletManager;
 import org.game.graphic.Graphical;
 
 import javax.imageio.ImageIO;
@@ -26,7 +27,7 @@ public class Zombie {
     
         public Graphical graphical;
 
-        Bullet bullet;
+        BulletManager bulletManager;
 
         public BufferedImage zom_1,zom_2,zom_3;
 
@@ -148,7 +149,7 @@ public class Zombie {
 
 
     public boolean isColliding(Bullet bullet, Zombie zombie) {
-        Rectangle bulletRectangle = bullet.getBoundary();
+        Rectangle bulletRectangle = bulletManager.getBoundary();
         Rectangle zombieRectangle = zombie.getBoundary();
 
         return bulletRectangle.intersects(zombieRectangle);
@@ -156,7 +157,7 @@ public class Zombie {
 
 
     public void checkBulletCollisions() {
-        ArrayList<Bullet> bullets = bullet.bulletLists; // "My" neeeds to create bullet list for bullet collision dectection
+        ArrayList<Bullet> bullets = bulletManager.bulletList; // "My" neeeds to create bullet list for bullet collision dectection
         ArrayList<Zombie> zombies = zombieList;
 
         for (Bullet bullet : bullets) {
