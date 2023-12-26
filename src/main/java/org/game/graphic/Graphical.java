@@ -33,16 +33,10 @@ public class Graphical extends JPanel implements Runnable{
     private final int maxScreencol = 16;
     private final int maxScreenrow = 9;
 
-    private final int grassCol = 9;
-    private final int grassRow = 5;
-    final int grassTile = 86;
-
 
     final int screenWidth = maxScreencol * tileSize; // 1024
     final int screenHeight = maxScreenrow * tileSize;// 576
 
-    private final int grassWidth = grassCol*grassTile; //774
-    private final int grassHeight = grassRow*grassTile; //430
 
     BackgroundGraphic bg = new BackgroundGraphic(this);
 
@@ -114,11 +108,11 @@ public class Graphical extends JPanel implements Runnable{
         }
     }
     public void update() {
-        zombie_1.zom_update(shooter);
-        zombie_2.zom_update(shooter);
-        zombie_3.zom_update(shooter);
+        zombie_1.update(shooter);
+        zombie_2.update(shooter);
+        zombie_3.update(shooter);
         bulletManager.bullet_update(zombie_1);
-        shooter.meow_update();
+        shooter.update();
 
 
 

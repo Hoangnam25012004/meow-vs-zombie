@@ -189,7 +189,7 @@ public class Zombie {
         }
 
         
-        public void zom_update(Shooter shooter){
+        public void update(Shooter shooter){
             move(2);
             //spawnRandomZombiesIn5RandomRows(5);
 

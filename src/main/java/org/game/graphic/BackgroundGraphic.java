@@ -11,6 +11,16 @@ public class BackgroundGraphic {
     public BufferedImage backgroundImage;
     private Graphical graphical;
 
+
+    private final int grassCol = 9;
+    private final int grassRow = 5;
+    final int grassTile = 86; //16x16
+    private final int grassWidth = grassCol*grassTile; //774
+    private final int grassHeight = grassRow*grassTile; //430
+
+
+
+
     public BackgroundGraphic(Graphical graphical){
         this.graphical=graphical;
         getBackgroundImage();

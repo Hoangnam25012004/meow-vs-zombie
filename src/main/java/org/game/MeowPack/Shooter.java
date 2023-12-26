@@ -11,7 +11,6 @@ import java.util.Objects;
 
 public class Shooter extends Meow {
 
-    private BufferedImage meow_1, meow_2, meow_3, meow_4,meow_5,meow_6;
     private Graphical graphical;
     private Bullet[] bullets;
     private boolean isAbleToFreeze;
@@ -28,20 +27,10 @@ public class Shooter extends Meow {
     }
     public Shooter(Graphical graphical,int x,int y) {
         this.graphical = graphical;
-        getMeowShooterImage();
+        getMeowImage();
         setInitial(x,y);
     }
 
-    public void getMeowShooterImage(){
-        try {
-            meow_1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/meow_1.png")));
-            meow_2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/meow_2.png")));
-            meow_3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/meow_3.png")));
-            meow_4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/Icecat.png")));
-            meow_5 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/Icecat.png")));
-            meow_6 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/Icecat.png")));
-        } catch (IOException e){e.printStackTrace();}
-    }
 
     public void shoot() {
 
@@ -85,18 +74,14 @@ public class Shooter extends Meow {
 
    @Override
     public void update() {
-    }
-
-    public void meow_update(){
-        counter++;
-        if (counter >20) {
-            if ( counterNum == 1){
-                counterNum = 2;
-            } else if (counterNum == 2){
-                counterNum = 3;
-            }else {counterNum =1;}
-            counter =0;
-        }
-
+       counter++;
+       if (counter >20) {
+           if ( counterNum == 1){
+               counterNum = 2;
+           } else if (counterNum == 2){
+               counterNum = 3;
+           }else {counterNum =1;}
+           counter =0;
+       }
     }
 }
