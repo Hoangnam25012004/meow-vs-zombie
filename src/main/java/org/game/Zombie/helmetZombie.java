@@ -5,8 +5,8 @@ import org.game.graphic.Graphical;
 import java.awt.*;
 
 public class helmetZombie extends Zombie {
-    public helmetZombie(int HP, double speed, int attackPower) {
-        super(HP, speed, attackPower);
+    public helmetZombie(Graphical graphical, int HP, double speed, int attackPower) {
+        super(graphical, HP, speed, attackPower);
         //TODO Auto-generated constructor stub
     
 

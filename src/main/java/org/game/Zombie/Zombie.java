@@ -31,7 +31,8 @@ public class Zombie {
         public BufferedImage zom_1,zom_2,zom_3;
 
 
-        public Zombie(int HP, double speed, int attackPower) {
+        public Zombie(Graphical graphical,int HP, double speed, int attackPower) {
+            this.graphical = graphical;
             this.HP = HP;
             this.speed = speed;
             this.attackPower = attackPower; 
@@ -66,18 +67,18 @@ public class Zombie {
         
 //----------------------------------------------------------------------------
 // spawn random type of zombies 
-// 1. Normal zombie 2. Zombie with cat ear 3. Zombie wearing helmet
+// 0. Normal zombie 1. Zombie with cat ear 2. Zombie wearing helmet
 
         public Zombie createRandomZombie(){
         Random random = new Random();
         int zombieType = random.nextInt(3);
             switch (zombieType) {
                 case 0:
-                    return new normalZombie(100, 0.5, 3);
+                    return new normalZombie(graphical,100 , 0.5, 3);
                 case 1: 
-                    return new catEarZombie(150, 0.5, 3);
+                    return new catEarZombie(graphical ,150, 0.5, 3);
                 case 2: 
-                    return new helmetZombie(200, 0.5, 3);
+                    return new helmetZombie(graphical,200, 0.5, 3);
                 default:
                     return null; // never happends
             }
@@ -190,6 +191,8 @@ public class Zombie {
         
         public void zom_update(Shooter shooter){
             move(2);
+            spawnRandomZombiesIn5RandomRows(5);
+
         }
 
         public void getZomImage(){

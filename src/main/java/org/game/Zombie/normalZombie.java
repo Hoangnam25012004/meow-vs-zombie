@@ -6,8 +6,8 @@ import java.awt.*;
 
 public class normalZombie extends Zombie {
 
-    public normalZombie(int HP, double speed, int attackPower) {
-        super(HP, speed, attackPower);
+    public normalZombie(Graphical graphical,int HP, double speed, int attackPower) {
+        super(graphical,HP, speed, attackPower);
         
         //TODO Auto-generated constructor stub
 
