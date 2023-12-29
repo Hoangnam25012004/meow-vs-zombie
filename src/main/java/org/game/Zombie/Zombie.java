@@ -100,10 +100,11 @@ public class Zombie {
             for (int i = 0; i < 5; i++) {
                 int row;
                 do {
-                    row = random.nextInt(totalRows); 
+                    row = (random.nextInt(totalRows)+1);
                 } while (contains(randomRows, row)); 
 
-                randomRows[i] = row; 
+                randomRows[i] = row;
+                System.out.println("ROW: " + row);
                 generatedRows.add(row); // Add the row to the set for future checks
             }
 
@@ -112,12 +113,16 @@ public class Zombie {
             for (int row : randomRows) {
                 int numZombies = random.nextInt(2) + random.nextInt(2); // Randomly spawn 1-2 zombies
                 for (int i = 0; i < numZombies; i++) {
+                    System.out.println(numZombies);
                     Zombie zombie = createRandomZombie();
                     // Add zombie to zombieList
                     if(zombie!=null){
                         zombieList.add(zombie);
+                        System.out.println(zombieList.size());
                     }
+
                 }
+                zombieList.clear();
             }
         }
         
@@ -199,7 +204,6 @@ public class Zombie {
         
         public void update(Shooter shooter){
             move(2);
-            //spawnRandomZombiesIn5RandomRows(5);
 
         }
 
@@ -211,6 +215,7 @@ public class Zombie {
         } catch (IOException e){e.printStackTrace();}
         }
         public void render(Graphics2D g2) {
+
 
         }
 }
