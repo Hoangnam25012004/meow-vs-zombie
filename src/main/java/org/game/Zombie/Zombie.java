@@ -101,7 +101,7 @@ public class Zombie {
                 int row;
                 do {
                     row = random.nextInt(totalRows); 
-                } while (generatedRows.contains(row)); 
+                } while (contains(randomRows, row)); 
 
                 randomRows[i] = row; 
                 generatedRows.add(row); // Add the row to the set for future checks
