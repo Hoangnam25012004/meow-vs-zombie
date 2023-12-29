@@ -10,8 +10,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Random;
+import java.util.Set;
 
 public class Zombie {
     
@@ -87,18 +89,24 @@ public class Zombie {
 //------------------------------------------------------------------------------
 // spawn random zombies in random row order
 
-        public void spawnRandomZombiesIn5RandomRows(int totalRows) {
+            public void spawnRandomZombiesIn5RandomRows(int totalRows) {
             Random random = new Random();
-            int[] randomRows = new int[5]; // Store 5 unique random row indices
-            // Select 5 unique random rows directly
+            int[] randomRows = new int[5]; 
+
+            // track generated rows
+            Set<Integer> generatedRows = new HashSet<>();
+
+            // Generate 5 unique random rows
             for (int i = 0; i < 5; i++) {
-                int row; // this is null
+                int row;
                 do {
-                    row = random.nextInt(totalRows);
-                    System.out.println("is loop"); // check if it is loop.
-                } while (contains(randomRows, row)); // so this is always true => always loop => wrong
-                randomRows[i] = row;
+                    row = random.nextInt(totalRows); 
+                } while (generatedRows.contains(row)); 
+
+                randomRows[i] = row; 
+                generatedRows.add(row); // Add the row to the set for future checks
             }
+
         
             // Spawn zombies in the chosen rows
             for (int row : randomRows) {
