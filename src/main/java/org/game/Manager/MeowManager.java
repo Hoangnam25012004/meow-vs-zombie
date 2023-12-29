@@ -1,6 +1,7 @@
 package org.game.Manager;
 
 import org.game.MeowPack.*;
+import org.game.bullet.Bullet;
 
 
 import javax.swing.*;
@@ -8,7 +9,9 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class MeowManager {
+    Bullet bullet;
     private Toolkit t = Toolkit.getDefaultToolkit();
     private static MeowManager instance = null;
     List<Meow> meows = new ArrayList<>();
@@ -57,4 +60,6 @@ public class MeowManager {
             meow.render(g2);
         }
     }
+
+
 }

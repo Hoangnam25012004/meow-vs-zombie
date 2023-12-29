@@ -67,28 +67,14 @@ public class BulletManager extends Bullet {
 
 
     //___________________________________________________________________________
-//   public void () {
-//        long Currenttime = System.nanoTime();
-//        long timer = 0;
-//
-//        if (timer > 1000000000){
-//            bulletList.add ();
-//            System.out.println(bulletList);
-//            timer = 0;
-//        }
-//
-//    }
-    public void shootBullet() {
-        Bullet bullet = new Bullet(this.x, this.y, 30);
-        bulletList.add(bullet);
-        /*for (Plant plant : plants) {
-            plant.update();
+   public void addBullet () {
+        long Currenttime = System.nanoTime();
+        bulletList.add(new Bullet (this.x, this.y, 30));
+        System.out.println(bulletList);
 
-            if (System.currentTimeMillis() - plant.lastShootTime >= plant.shootInterval) {
-                plant.shootBullet();
-                plant.lastShootTime = System.currentTimeMillis();
-            }
-        }*/
+        }
+
     }
+
 
 }

@@ -8,10 +8,12 @@ import org.game.Zombie.catEarZombie;
 import org.game.Zombie.helmetZombie;
 import org.game.Zombie.normalZombie;
 import org.game.bullet.Bullet;
-
+import org.game.Scenes.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+
+
 
 public class Graphical extends JPanel implements Runnable{
 
@@ -38,6 +40,13 @@ public class Graphical extends JPanel implements Runnable{
     final int screenHeight = maxScreenrow * tileSize;// 576
 
 
+    private Lose lose;
+    private MenuGame menuGame;
+    private Playing playing;
+    private Setting setting;
+    private Win win;
+
+
     BackgroundGraphic bg = new BackgroundGraphic(this);
 
 
@@ -58,6 +67,23 @@ public class Graphical extends JPanel implements Runnable{
     public Graphical(){
         this.setPreferredSize(new Dimension(screenWidth,screenHeight));
         this.setDoubleBuffered(true);
+    }
+    public Lose getLose() {
+        return lose;
+    }
+    public MenuGame getMenuGame() {
+        return menuGame;
+    }
+    public Playing getPlaying() {
+        return playing;
+    }
+
+    public Setting getSetting() {
+        return setting;
+    }
+
+    public Win getWin() {
+        return win;
     }
 
     public void startGameThread(){

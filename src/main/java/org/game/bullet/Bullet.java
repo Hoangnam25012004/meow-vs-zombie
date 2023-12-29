@@ -5,6 +5,7 @@ import org.game.graphic.Graphical;
 
 
 public class Bullet {
+    private final int dame = 0;
     public Graphical graphical;
     public double x;
     public int y;
