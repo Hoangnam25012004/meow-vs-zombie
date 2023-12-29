@@ -1,8 +1,8 @@
 package org.game.Zombie;
 
-import org.game.Collision.Collision;
 import org.game.MeowPack.Shooter;
 import org.game.bullet.Bullet;
+import org.game.Manager.BulletManager;
 import org.game.graphic.Graphical;
 
 import javax.imageio.ImageIO;
@@ -26,7 +26,7 @@ public class Zombie {
     
         public Graphical graphical;
 
-        Bullet bullet;
+        BulletManager bulletManager;
 
         public BufferedImage zom_1,zom_2,zom_3;
 
@@ -53,7 +53,7 @@ public class Zombie {
 // Actions of the zombies
 
         private void move(double speed) {
-            //setLocation(this.x - speed, this.y);
+            setLocation(this.x - speed, this.y);
         }
 
         public void takeDamage(int damageAmount) {
@@ -90,13 +90,13 @@ public class Zombie {
         public void spawnRandomZombiesIn5RandomRows(int totalRows) {
             Random random = new Random();
             int[] randomRows = new int[5]; // Store 5 unique random row indices
-        
             // Select 5 unique random rows directly
             for (int i = 0; i < 5; i++) {
-                int row;
+                int row; // this is null
                 do {
                     row = random.nextInt(totalRows);
-                } while (contains(randomRows, row)); 
+                    System.out.println("is loop"); // check if it is loop.
+                } while (contains(randomRows, row)); // so this is always true => always loop => wrong
                 randomRows[i] = row;
             }
         
@@ -148,7 +148,7 @@ public class Zombie {
 
 
     public boolean isColliding(Bullet bullet, Zombie zombie) {
-        Rectangle bulletRectangle = bullet.getBoundary();
+        Rectangle bulletRectangle = bulletManager.getBoundary();
         Rectangle zombieRectangle = zombie.getBoundary();
 
         return bulletRectangle.intersects(zombieRectangle);
@@ -156,7 +156,7 @@ public class Zombie {
 
 
     public void checkBulletCollisions() {
-        ArrayList<Bullet> bullets = bullet.bulletLists; // "My" neeeds to create bullet list for bullet collision dectection
+        ArrayList<Bullet> bullets = bulletManager.bulletList; // "My" neeeds to create bullet list for bullet collision dectection
         ArrayList<Zombie> zombies = zombieList;
 
         for (Bullet bullet : bullets) {
@@ -189,9 +189,9 @@ public class Zombie {
         }
 
         
-        public void zom_update(Shooter shooter){
+        public void update(Shooter shooter){
             move(2);
-            spawnRandomZombiesIn5RandomRows(5);
+            //spawnRandomZombiesIn5RandomRows(5);
 
         }
 

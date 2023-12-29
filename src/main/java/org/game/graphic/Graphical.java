@@ -1,6 +1,7 @@
 package org.game.graphic;
 
 import org.game.Collision.Collision;
+import org.game.Manager.BulletManager;
 import org.game.MeowPack.Shooter;
 import org.game.Zombie.Zombie;
 import org.game.Zombie.catEarZombie;
@@ -32,18 +33,11 @@ public class Graphical extends JPanel implements Runnable{
     private final int maxScreencol = 16;
     private final int maxScreenrow = 9;
 
-    private final int grassCol = 9;
-    private final int grassRow = 5;
-    final int grassTile = 86;
-
 
     final int screenWidth = maxScreencol * tileSize; // 1024
     final int screenHeight = maxScreenrow * tileSize;// 576
 
-    private final int grassWidth = grassCol*grassTile; //774
-    private final int grassHeight = grassRow*grassTile; //430
 
-    public BufferedImage backgroundImage;
     BackgroundGraphic bg = new BackgroundGraphic(this);
 
 
@@ -55,7 +49,7 @@ public class Graphical extends JPanel implements Runnable{
     Zombie zombie_1 = new normalZombie(this,700,90);
     Zombie zombie_2 = new helmetZombie(this,700,300);
     Zombie zombie_3 = new catEarZombie(this, 750,400);
-    Bullet bullet = new Bullet(this,140,110, 30);
+    BulletManager bulletManager = new BulletManager(this,140,110, 30);
 
 
 
@@ -114,11 +108,11 @@ public class Graphical extends JPanel implements Runnable{
         }
     }
     public void update() {
-        zombie_1.zom_update(shooter);
-        zombie_2.zom_update(shooter);
-        zombie_3.zom_update(shooter);
-        bullet.bullet_update(zombie_1);
-        shooter.meow_update();
+        zombie_1.update(shooter);
+        zombie_2.update(shooter);
+        zombie_3.update(shooter);
+        bulletManager.bullet_update(zombie_1);
+        shooter.update();
 
 
 
@@ -131,8 +125,7 @@ public class Graphical extends JPanel implements Runnable{
         zombie_1.render(g2);
         zombie_2.render(g2);
         zombie_3.render(g2);
-        bullet.render(g2);
-
+        bulletManager.render(g2);
         g2.dispose();
     }
 }

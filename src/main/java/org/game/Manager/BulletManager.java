@@ -1,7 +1,6 @@
-package org.game.bullet;
-import org.game.MeowPack.Shooter;
+package org.game.Manager;
 import org.game.Zombie.Zombie;
-import org.game.Zombie.Zombie;
+import org.game.bullet.Bullet;
 import org.game.graphic.Graphical;
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -15,13 +14,11 @@ public class BulletManager extends Bullet {
     private int originalX;
     private int originalY;
     public BufferedImage bullet_1;
-    public ArrayList<Bullet> bulletLists = new ArrayList<>();
-    Thread gameThread;
-    Bullet bullet;
+    public ArrayList<Bullet> bulletList = new ArrayList<>();
     Zombie zombie;
 
     public BulletManager(Graphical graphical, int x, int y, int Dame){
-        super(x,y,Dame);
+        super(graphical,x,y,Dame);
         this.graphical = graphical;
         this.originalX = x;
         this.originalY = y;
@@ -45,39 +42,24 @@ public class BulletManager extends Bullet {
     }
 
     public void render(Graphics2D g2) {
-        g2.drawImage(bullet_1, (int) this.x, this.y, graphical.getwoolWidth(), graphical.getwoolHeight(), null);
+        g2.drawImage(bullet_1, (int) super.x, super.y, graphical.getwoolWidth(), graphical.getwoolHeight(), null);
     }
 
     //___________________________________________________________________________
     private void move(double speed) {
-        setPosition(this.x + speed, this.y);
+        setPosition(super.x + speed, super.y);
     }
 
 
     public void bullet_update(Zombie zombie) {
         move(4);
-        if (this.x >= graphical.getScreenWidth()) {
-            this.x = originalX;
-            this.y = originalY;
+        if (super.x >= graphical.getScreenWidth()) {
+            super.x = originalX;
+            super.y = originalY;
         }
-        if (this.x < (zombie.getX()+graphical.getZomWidth()) & this.x > (zombie.getX() - graphical.getZomWidth())){
-            this.x = originalX;
-            this.y = originalY;
-        }
-        addBullet();
-    }
-
-
-
-    //___________________________________________________________________________
-    public void addBullet() {
-        long Currenttime = System.nanoTime();
-        long timer = 0;
-
-        if (timer > 1000000000){
-            bulletLists.add (bullet);
-            System.out.println(bulletLists);
-            timer = 0;
+        if (super.x < (zombie.getX()+graphical.getZomWidth()) & super.x > (zombie.getX() - graphical.getZomWidth())){
+            super.x = originalX;
+            super.y = originalY;
         }
 
     }
@@ -85,6 +67,28 @@ public class BulletManager extends Bullet {
 
 
     //___________________________________________________________________________
-    public Rectangle getBoundary (){
-        return new Rectangle((int) this.getX(), this.getY(), 5*graphical.scale, 5*graphical.scale) ;}
+//   public void () {
+//        long Currenttime = System.nanoTime();
+//        long timer = 0;
+//
+//        if (timer > 1000000000){
+//            bulletList.add ();
+//            System.out.println(bulletList);
+//            timer = 0;
+//        }
+//
+//    }
+    public void shootBullet() {
+        Bullet bullet = new Bullet(this.x, this.y, 30);
+        bulletList.add(bullet);
+        /*for (Plant plant : plants) {
+            plant.update();
+
+            if (System.currentTimeMillis() - plant.lastShootTime >= plant.shootInterval) {
+                plant.shootBullet();
+                plant.lastShootTime = System.currentTimeMillis();
+            }
+        }*/
+    }
+
 }

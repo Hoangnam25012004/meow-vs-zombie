@@ -11,7 +11,6 @@ import java.util.Objects;
 
 public class Shooter extends Meow {
 
-    private BufferedImage meow_1, meow_2, meow_3;
     private Graphical graphical;
     private Bullet[] bullets;
     private boolean isAbleToFreeze;
@@ -28,17 +27,10 @@ public class Shooter extends Meow {
     }
     public Shooter(Graphical graphical,int x,int y) {
         this.graphical = graphical;
-        getMeowShooterImage();
+        getMeowImage();
         setInitial(x,y);
     }
 
-    public void getMeowShooterImage(){
-        try {
-            meow_1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/meow_1.png")));
-            meow_2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/meow_2.png")));
-            meow_3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/meow_3.png")));
-        } catch (IOException e){e.printStackTrace();}
-    }
 
     public void shoot() {
 
@@ -59,28 +51,37 @@ public class Shooter extends Meow {
 
     @Override
     public void render(Graphics2D g2) {
-        if (counterNum == 1) {
-            g2.drawImage(meow_1,meowX,meowY,graphical.getmeowWidth(),graphical.getmeowHeight(),null);}
-        else if (counterNum == 2){
-            g2.drawImage(meow_2,meowX,meowY,graphical.getmeowWidth(),graphical.getmeowHeight(),null);
+        if (isAbleToFreeze == false) {
+            if (counterNum == 1) {
+                g2.drawImage(meow_1, meowX, meowY, graphical.getmeowWidth(), graphical.getmeowHeight(), null);
+            } else if (counterNum == 2) {
+                g2.drawImage(meow_2, meowX, meowY, graphical.getmeowWidth(), graphical.getmeowHeight(), null);
             } else if (counterNum == 3) {
-                g2.drawImage(meow_3,meowX,meowY,graphical.getmeowWidth(),graphical.getmeowHeight(),null);}
+                g2.drawImage(meow_3, meowX, meowY, graphical.getmeowWidth(), graphical.getmeowHeight(), null);
+            }
+        }
+        else {
+            if (counterNum == 1) {
+                g2.drawImage(meow_4, meowX, meowY, graphical.getmeowWidth(), graphical.getmeowHeight(), null);
+            } else if (counterNum == 2) {
+                g2.drawImage(meow_5, meowX, meowY, graphical.getmeowWidth(), graphical.getmeowHeight(), null);
+            } else if (counterNum == 3) {
+                g2.drawImage(meow_6, meowX, meowY, graphical.getmeowWidth(), graphical.getmeowHeight(), null);
+            }
+
+        }
     }
 
    @Override
     public void update() {
-    }
-
-    public void meow_update(){
-        counter++;
-        if (counter >20) {
-            if ( counterNum == 1){
-                counterNum = 2;
-            } else if (counterNum == 2){
-                counterNum = 3;
-            }else {counterNum =1;}
-            counter =0;
-        }
-
+       counter++;
+       if (counter >20) {
+           if ( counterNum == 1){
+               counterNum = 2;
+           } else if (counterNum == 2){
+               counterNum = 3;
+           }else {counterNum =1;}
+           counter =0;
+       }
     }
 }
