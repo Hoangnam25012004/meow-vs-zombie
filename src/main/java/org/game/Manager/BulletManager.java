@@ -67,9 +67,8 @@ public class BulletManager extends Bullet {
 
 
     //___________________________________________________________________________
-   public void addBullet () {
-        long Currenttime = System.nanoTime();
-        bulletList.add(new Bullet (this.x, this.y, 30));
+   public void addBullet (int x,int y) {
+        bulletList.add(new Bullet (x,y, 30));
         System.out.println(bulletList);
 
         }
@@ -77,4 +76,3 @@ public class BulletManager extends Bullet {
     }
 
 
-}
