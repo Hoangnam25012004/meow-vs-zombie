@@ -17,18 +17,19 @@ public class BulletManager extends Bullet {
     public ArrayList<Bullet> bulletList = new ArrayList<>();
     Zombie zombie;
 
-    public BulletManager(Graphical graphical, int x, int y, int Dame){
-        super(graphical,x,y,Dame);
+    public BulletManager(Graphical graphical, int x, int y, int Dame) {
+        super(graphical, x, y, Dame);
         this.graphical = graphical;
         this.originalX = x;
         this.originalY = y;
-        setPosition(x,y);
-        getBulletImage();}
+        setPosition(x, y);
+        getBulletImage();
+    }
 
-    public void setPosition(double x, int y){
+    public void setPosition(double x, int y) {
         this.x = x;
-        this.y = y;}
-
+        this.y = y;
+    }
 
 
     //___________________________________________________________________________
@@ -57,7 +58,7 @@ public class BulletManager extends Bullet {
             super.x = originalX;
             super.y = originalY;
         }
-        if (super.x < (zombie.getX()+graphical.getZomWidth()) & super.x > (zombie.getX() - graphical.getZomWidth())){
+        if (super.x < (zombie.getX() + graphical.getZomWidth()) & super.x > (zombie.getX() - graphical.getZomWidth())) {
             super.x = originalX;
             super.y = originalY;
         }
@@ -65,14 +66,14 @@ public class BulletManager extends Bullet {
     }
 
 
-
     //___________________________________________________________________________
-   public void addBullet (int x,int y) {
-        bulletList.add(new Bullet (x,y, 30));
+    public void addBullet(int x, int y) {
+        bulletList.add(new Bullet(x, y, 30));
         System.out.println(bulletList);
-
-        }
-
     }
 
+    public void slow(){
+
+    }
+}
 
