@@ -13,7 +13,7 @@ public class BulletManager extends Bullet {
     private double speed;
     private int originalX;
     private int originalY;
-    public BufferedImage bullet_1;
+    public BufferedImage bullet_1, bullet_2;
     public ArrayList<Bullet> bulletList = new ArrayList<>();
     Zombie zombie;
 
@@ -37,6 +37,7 @@ public class BulletManager extends Bullet {
     public void getBulletImage() {
         try {
             bullet_1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bullet/wool.png")));
+            bullet_2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bullet/IceFlower.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -44,6 +45,10 @@ public class BulletManager extends Bullet {
 
     public void render(Graphics2D g2) {
         g2.drawImage(bullet_1, (int) super.x, super.y, graphical.getwoolWidth(), graphical.getwoolHeight(), null);
+    }
+
+    public void render2(Graphics2D g2){
+        g2.drawImage(bullet_2, (int) super.x, super.y, graphical.getwoolWidth(), graphical.getwoolHeight(), null);
     }
 
     //___________________________________________________________________________

@@ -111,7 +111,7 @@ public class Zombie {
         
             // Spawn zombies in the chosen rows
             for (int row : randomRows) {
-                int numZombies = random.nextInt(2) + random.nextInt(2); // Randomly spawn 1-2 zombies
+                int numZombies = random.nextInt(3); // Randomly spawn 1-2 zombies
                 for (int i = 0; i < numZombies; i++) {
                     System.out.println(numZombies);
                     Zombie zombie = createRandomZombie();
