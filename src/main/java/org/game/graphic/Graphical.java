@@ -2,6 +2,7 @@ package org.game.graphic;
 
 import org.game.Collision.Collision;
 import org.game.Manager.BulletManager;
+import org.game.Manager.TileManager;
 import org.game.MeowPack.Shooter;
 import org.game.Zombie.Zombie;
 import org.game.Zombie.catEarZombie;
@@ -59,6 +60,7 @@ public class Graphical extends JPanel implements Runnable{
     Zombie zombie_2 = new helmetZombie(this,700,300);
     Zombie zombie_3 = new catEarZombie(this, 750,400);
     BulletManager bulletManager = new BulletManager(this,140,110, 30);
+    TileManager tileM = new TileManager(this);
 
 
 
@@ -147,6 +149,7 @@ public class Graphical extends JPanel implements Runnable{
         super.paint(g);
         Graphics2D g2 = (Graphics2D)g;
         bg.render(g2);
+        tileM.render(g2);
         shooter.render(g2);
         zombie_1.render(g2);
         zombie_2.render(g2);
