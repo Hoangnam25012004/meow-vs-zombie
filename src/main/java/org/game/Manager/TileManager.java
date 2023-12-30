@@ -34,7 +34,7 @@ public class TileManager {
 
 
     public void render(Graphics2D g2){
-        g2.drawImage(tile[0].image, 0 ,0 , graphical.tileSize, graphical.tileSize, null);
-        g2.drawImage(tile[1].image , 100,0,graphical.tileSize,graphical.tileSize,null);
+       // g2.drawImage(tile[0].image, 0 ,0 , graphical.tileSize, graphical.tileSize, null);
+       // g2.drawImage(tile[1].image , 100,0,graphical.tileSize,graphical.tileSize,null);
     }
 }
