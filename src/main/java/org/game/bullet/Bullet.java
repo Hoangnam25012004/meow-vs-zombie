@@ -12,11 +12,12 @@ public class Bullet {
     private final int Dame ;
     private boolean isFrozen = false;
 
-    public Bullet(Graphical graphical, double x, int y, int Dame){
+    public Bullet(Graphical graphical, double x, int y, int Dame, boolean isFrozen){
         this.graphical = graphical;
         this.x = x;
         this.y = y;
         this.Dame = Dame;
+        this.isFrozen = isFrozen;
     }
 
     public Bullet(double x, int y, int dame) {

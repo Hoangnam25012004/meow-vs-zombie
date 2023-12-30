@@ -17,8 +17,8 @@ public class BulletManager extends Bullet {
     public ArrayList<Bullet> bulletList = new ArrayList<>();
     Zombie zombie;
 
-    public BulletManager(Graphical graphical, int x, int y, int Dame) {
-        super(graphical, x, y, Dame);
+    public BulletManager(Graphical graphical, int x, int y, int Dame , boolean isFrozen) {
+        super(graphical, x, y, Dame, isFrozen);
         this.graphical = graphical;
         this.originalX = x;
         this.originalY = y;
@@ -37,18 +37,18 @@ public class BulletManager extends Bullet {
     public void getBulletImage() {
         try {
             bullet_1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bullet/wool.png")));
-            bullet_2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bullet/IceFlower.png")));
+            bullet_2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bullet/Icewool.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void render(Graphics2D g2) {
-        g2.drawImage(bullet_1, (int) super.x, super.y, graphical.getwoolWidth(), graphical.getwoolHeight(), null);
-    }
+        if (getisFrozen() == false) {
+            g2.drawImage(bullet_1, (int) super.x, super.y, graphical.getwoolWidth(), graphical.getwoolHeight(), null);
 
-    public void render2(Graphics2D g2){
-        g2.drawImage(bullet_2, (int) super.x, super.y, graphical.getwoolWidth(), graphical.getwoolHeight(), null);
+        } else {g2.drawImage(bullet_2, (int) super.x, super.y, graphical.getwoolWidth(), graphical.getwoolHeight(), null);}
+
     }
 
     //___________________________________________________________________________
