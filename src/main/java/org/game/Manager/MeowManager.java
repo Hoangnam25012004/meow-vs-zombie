@@ -11,7 +11,6 @@ import java.util.List;
 
 
 public class MeowManager {
-    Bullet bullet;
     private Toolkit t = Toolkit.getDefaultToolkit();
     private static MeowManager instance = null;
     List<Meow> meows = new ArrayList<>();
