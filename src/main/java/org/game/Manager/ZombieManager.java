@@ -102,7 +102,7 @@ public class ZombieManager extends Zombie {
 
         // Spawn zombies in the chosen rows
         for (int row : randomRows) {
-            int numZombies = random.nextInt(2) + random.nextInt(2); // Randomly spawn 1-2 zombies
+            int numZombies = random.nextInt(3); // Randomly spawn 1-2 zombies
             for (int i = 0; i < numZombies; i++) {
                 Zombie zombie = createRandomZombie();
                 // Add zombie to zombieList
@@ -122,21 +122,6 @@ public class ZombieManager extends Zombie {
         return false;
     }
 
-
-        /*public void spawnZombies(){
-             Random random = new Random();
-            // clear the existing zombie list
-            zombieList.clear();
-            // create random number of zombie for every row
-            for (int row = 0; row < 5; row ++){
-                int zombieCount = random.nextInt(2) + random.nextInt(2);
-                for( int i = 0; i < zombieCount; i++){
-                    Zombie zombie = createRandomZombie();
-                    zombieList.add(zombie);
-                }
-            }
-        }
-        */
 
 
 // -------------------------------------------------------------------------------
