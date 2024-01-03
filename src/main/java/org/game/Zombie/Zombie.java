@@ -20,10 +20,11 @@ public class Zombie {
         protected int HP;
         protected double speed;
         protected int attackPower;
-        private double x;
-        private int y;
         private int originalX;
         private int originalY;
+        private double x;
+        private int y;
+
         private ArrayList<Zombie> zombieList = new ArrayList<>();
     
         public Graphical graphical;
@@ -135,23 +136,6 @@ public class Zombie {
             return false;
         }
 
-
-        /*public void spawnZombies(){
-             Random random = new Random();
-            // clear the existing zombie list
-            zombieList.clear();
-            // create random number of zombie for every row
-            for (int row = 0; row < 5; row ++){
-                int zombieCount = random.nextInt(2) + random.nextInt(2);
-                for( int i = 0; i < zombieCount; i++){
-                    Zombie zombie = createRandomZombie();
-                    zombieList.add(zombie);
-                }
-            }
-        }
-        */
-
-
 // -------------------------------------------------------------------------------
 // check collision and hit box
 
@@ -176,7 +160,7 @@ public class Zombie {
             for (Zombie zombie : zombies) {
                 if (isColliding(bullet, zombie)) {
                     zombie.takeDamage(bullet.getDame());
-                    //bullets.remove(bullet);
+                    bullets.remove(bullet);
                     break;
                 }
             }
