@@ -10,6 +10,7 @@ import java.util.Objects;
 
 public class TileManager {
     Graphical graphical;
+
     Tile[] tile;
 
 
@@ -36,5 +37,12 @@ public class TileManager {
     public void render(Graphics2D g2){
        // g2.drawImage(tile[0].image, 0 ,0 , graphical.tileSize, graphical.tileSize, null);
        // g2.drawImage(tile[1].image , 100,0,graphical.tileSize,graphical.tileSize,null);
+
+        int col = 0;
+        int row =0;
+        int x = 0;
+        int y=0;
+
+       // while (col < graphical.grassCol)
     }
 }

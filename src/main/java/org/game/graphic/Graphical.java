@@ -35,6 +35,8 @@ public class Graphical extends JPanel implements Runnable{
 
     private final int maxScreencol = 16;
     private final int maxScreenrow = 9;
+    public final int grassCol = 9;
+    public final int grassRow = 5;
 
 
     final int screenWidth = maxScreencol * tileSize; // 1024
