@@ -15,6 +15,9 @@ public class MeowManager {
     private static MeowManager instance = null;
     List<Meow> meows = new ArrayList<>();
 
+    // GUI components?
+
+
     public static MeowManager getInstance()
     {
         if (instance == null)

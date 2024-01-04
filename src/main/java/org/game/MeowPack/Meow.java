@@ -58,7 +58,7 @@ public abstract class Meow
     public void setHealthPoint(int healthPoint) {
         this.healthPoint = healthPoint;
         if (healthPoint <= 0) {
-            // TODO: disappear
+            // TODO: disappear or something
         }
     }
 
