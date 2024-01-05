@@ -13,29 +13,50 @@ import java.util.Objects;
 
 public class TileManager {
     Graphical graphical;
-    Tile[] tile;
+    private Tile[] tile;
     int mapTileNum [][];
+    private boolean inTile = false;
 
 
     public TileManager(Graphical graphical){
         this.graphical = graphical;
         tile = new Tile[45];
         mapTileNum = new int[graphical.grassCol][graphical.grassRow];
+        initTiles();
         getTileImage();
         loadMap();
     }
 
+    public Tile[] getTile(){
+        return tile;
+    }
+
+    private void initTiles() {
+        int curX = 160, curY = 102, rowCounter = 0;
+        for (int i = 0; i < 45; i++) {
+            if (rowCounter >= 9) {
+                curY += graphical.grassTile;
+                curX = 160;
+                rowCounter = 0;
+            }
+            curX += graphical.grassTile;
+            tile[i] = new Tile(new Rectangle(curX, curY, graphical.grassTile, graphical.grassTile));
+            rowCounter++;
+        }
+    }
     public void getTileImage(){
         try {
 
             for (int i = 1; i <= 45; i++) {
 
-                tile[i-1] = new Tile();
                 tile[i-1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Background/land/land"+i+".png")));
 
 
             }
         } catch (IOException e){e.printStackTrace();}
+    }
+    public void setInTile(boolean b){
+        this.inTile = b;
     }
 
     public void loadMap(){
@@ -63,13 +84,9 @@ public class TileManager {
     }
 
     public void render(Graphics2D g2){
-       // g2.drawImage(tile[0].image, 0 ,0 , graphical.tileSize, graphical.tileSize, null);
-       // g2.drawImage(tile[1].image , 100,0,graphical.tileSize,graphical.tileSize,null);
-
         int col = 0;
         int row =0;
-        int x = 160;
-        int y=102;
+        int x = 160, y = 102;
 
         while (col < graphical.grassCol && row< graphical.grassRow){
             int tileNum = mapTileNum[col][row];
