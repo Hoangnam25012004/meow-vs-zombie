@@ -1,13 +1,37 @@
 package org.game.Scenes;
 
-import org.game.graphic.Graphical;
+import org.game.Manager.World;
+import org.game.Component.MyButtons;
 
 import java.awt.*;
+import javax.swing.*;
 
 public class MenuGame implements SceneMethods{
+    private World w;
+    private MyButtons bPlaying, bQuit, bWin;
+    private Image[] buttonOfMenu;
+    private Toolkit t = Toolkit.getDefaultToolkit();
+    public MenuGame(World w) {
+        this.w = w;
+    }
 
-    private Graphical graphical;
-    public MenuGame(Graphical graphical){this.graphical = graphical;}
+    public void initButtons() {
+        bPlaying = new MyButtons("Play", 437, 350,150,60);
+        bQuit = new MyButtons("Quit", 442, 440, 140, 55);
+        bWin = new MyButtons("Win", 0, 0, 140, 55);
+    }
+
+    private void importImg(){
+        buttonOfMenu = new Image[2];
+        try {
+            buttonOfMenu[0] = t.getImage(getClass().getResource("/scene/PLAY.png"));
+            buttonOfMenu[1] = t.getImage(getClass().getResource("/scene/EXIT.png"));
+        }catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error - importImage()");
+        }
+    }
+
     @Override
     public void render(Graphics g, Image img) {
 
@@ -26,5 +50,8 @@ public class MenuGame implements SceneMethods{
     @Override
     public void mouseReleased(int x, int y) {
 
+    }
+
+    public void updates() {
     }
 }

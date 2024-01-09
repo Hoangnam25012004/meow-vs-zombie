@@ -1,16 +1,28 @@
 package org.game.Scenes;
 
-import org.game.Manager.TileManager;
+import org.game.Manager.*;
+import org.game.bullet.Bullet;
 import org.game.graphic.Graphical;
+import org.game.Component.MyButtons;
 
+import static org.game.Scenes.GameScenes.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class Playing implements SceneMethods{
-
-    private Graphical graphical;
+public class Playing implements SceneMethods {
+    private BulletManager bulletManager;
+    private FishManager fishManager;
+    private MeowManager meowManager;
+    private MouseMotionManager mouseMotionManager;
+    private TileManager tileManager;
+    private ZombieManager zombieManager;
+    private Toolkit t = Toolkit.getDefaultToolkit();
+    private World w;
     private TileManager tm;
-    public Playing(Graphical graphical){this.graphical = graphical;}
+    public Playing(World w) {
+        this.w = w;
+//        initManagers();
+    }
 
     public TileManager getTm(){
         return tm;
@@ -34,5 +46,8 @@ public class Playing implements SceneMethods{
     @Override
     public void mouseReleased(int x, int y) {
 
+    }
+
+    public void updates() {
     }
 }

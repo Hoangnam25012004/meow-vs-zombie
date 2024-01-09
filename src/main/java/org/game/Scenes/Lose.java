@@ -1,13 +1,22 @@
 package org.game.Scenes;
 
-import org.game.graphic.Graphical;
-
+import org.game.Manager.*;
+import org.game.Component.MyButtons;
 import java.awt.*;
 
 public class Lose implements SceneMethods{
-    private Graphical graphical;
+    private World w;
+    private MyButtons bMenu;
+    private Image[] buttonOfLose;
+    private Toolkit t = Toolkit.getDefaultToolkit();
 
-    public Lose(Graphical graphical){this.graphical = graphical;}
+    public Lose(World w){
+        this.w = w;
+    }
+
+    private void initButtons() {
+        bMenu = new MyButtons("Main menu", 445,555,120,42);
+    }
 
     @Override
     public void render(Graphics g, Image img) {
@@ -27,5 +36,8 @@ public class Lose implements SceneMethods{
     @Override
     public void mouseReleased(int x, int y) {
 
+    }
+
+    public void updates() {
     }
 }

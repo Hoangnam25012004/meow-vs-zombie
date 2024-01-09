@@ -1,13 +1,22 @@
 package org.game.Scenes;
 
 import org.game.graphic.Graphical;
-
+import org.game.Manager.*;
+import org.game.Component.MyButtons;
 import java.awt.*;
 
 public class Win implements SceneMethods{
 
-    private Graphical graphical;
-    public Win(Graphical graphical){this.graphical = graphical;}
+    private World w;
+    private MyButtons bMenu;
+    private Image[] buttonOfWin;
+    private Toolkit t = Toolkit.getDefaultToolkit();
+    public Win(World w){
+        this.w = w;
+    }
+    public void initButtons(){
+        bMenu = new MyButtons("Main menu", 455,555,120,42);
+    }
     @Override
     public void render(Graphics g, Image img) {
 
@@ -26,5 +35,8 @@ public class Win implements SceneMethods{
     @Override
     public void mouseReleased(int x, int y) {
 
+    }
+
+    public void updates() {
     }
 }
