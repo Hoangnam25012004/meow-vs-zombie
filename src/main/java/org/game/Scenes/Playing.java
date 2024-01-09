@@ -2,7 +2,6 @@ package org.game.Scenes;
 
 import org.game.Manager.*;
 import org.game.bullet.Bullet;
-import org.game.graphic.Graphical;
 import org.game.Component.MyButtons;
 
 import static org.game.Scenes.GameScenes.*;
@@ -63,6 +62,14 @@ public class Playing implements SceneMethods {
     }
     public TileManager getTileManager(){
         return tileManager;
+    }
+
+    public FishManager getFishManager() {
+        return this.fishManager;
+    }
+
+    public ZombieManager getZombieManager() {
+        return this.zombieManager;
     }
     public void MousePress(){
         mouseMotionManager.returnToSelectPlantByMouse();

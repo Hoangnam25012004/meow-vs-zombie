@@ -1,205 +1,212 @@
 package org.game.Zombie;
 
-import org.game.MeowPack.Shooter;
-import org.game.bullet.Bullet;
-import org.game.Manager.BulletManager;
-import org.game.graphic.Graphical;
 
-import javax.imageio.ImageIO;
+import org.game.MeowPack.Meow;
+
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Random;
-import java.util.Set;
 
 public class Zombie {
-    
-        protected int HP;
-        protected double speed;
-        protected int attackPower;
-        private int originalX;
-        private int originalY;
-        private double x;
-        private int y;
+    private int hp, dmg, type;
+    private int width = 55, height = 110;
+    private float spd = 0.8f;
+    private boolean isCollided = false;
 
-        private ArrayList<Zombie> zombieList = new ArrayList<>();
-    
-        public Graphical graphical;
+    public boolean isSlowed() {
+        return isSlowed;
+    }
 
-        BulletManager bulletManager;
+    public void setSlowed(boolean slowed) {
+        isSlowed = slowed;
+    }
 
-        public BufferedImage zom_1,zom_2,zom_3;
+    public void setSpd(float spd) {
+        this.spd = spd;
+    }
 
-
-        public Zombie(Graphical graphical,int HP, double speed, int attackPower) {
-            this.graphical = graphical;
-            this.HP = HP;
-            this.speed = speed;
-            this.attackPower = attackPower; 
+    private double x, y;
+    private int frameCountMove = 0;
+    private double frameCDMove = 0;
+    private int frameCountMoveLimit;
+    private int frameCountEat = 0;
+    private int frameCDEat = 0;
+    private int frameCountEatLimit;
+    private boolean isAlived = true;
+    private boolean isDead = false;
+    private Rectangle bound;
+    private boolean isSlowed = false;
+    public boolean isDead() {
+        return isDead;
+    }
+    public void setDead(boolean dead) {
+        isDead = dead;
+    }
+    public Zombie(double x, double y, int type) {
+        this.x = x;
+        this.y = y;
+        this.type = type;
+        this.bound = new Rectangle((int)this.x+20,(int)this.y,width-20,height);
+        setStatus(this.type);
+        if(this.type == 0){
+            frameCountMoveLimit = 51;
+            frameCountEatLimit = 23;
+        } else if (this.type == 1) {
+            frameCountMoveLimit = 65;
+            width += 10;
+            height += 20;
+            this.y -= 20;
         }
-        
-        public double getX(){
-            return x;
+    }
+
+    private void setStatus(int type) {
+        switch (type) {
+            case 0:
+                hp = 70;
+                dmg = 20;
+                break;
+            case 1:
+                hp = 130;
+                dmg = 30;
+                break;
+            case 2:
+                hp = 90;
+                dmg = 80;
+                break;
         }
-        public int getY(){
-            return y;
+    }
+
+    public void dead() {
+        isAlived = false;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public int getDmg() {
+        return dmg;
+    }
+
+    public float getSpd() {
+        return spd;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setCollided(boolean collided) {
+        isCollided = collided;
+    }
+
+    public boolean isAlived() {
+        return isAlived;
+    }
+    public double X() {
+        return x;
+    }
+
+    public double Y() {
+        return y;
+    }
+
+    public void setHp(int hp) {
+        this.hp = hp;
+    }
+
+    public Rectangle getBound() {
+        return bound;
+    }
+
+    public void move() {
+        if(!isCollided){
+            x -= spd;
         }
-        public void setPosition(double x, int y){
-            this.x = x;
-            this.y = y;
-        }
+    }
 
-//--------------------------------------------------------------------------
-// Actions of the zombies
+    public boolean isCollided() {
+        return isCollided;
+    }
 
-        private void move(double speed) {
-            setLocation(this.x - speed, this.y);
-        }
+    public int getFrameCountEat() {
+        return frameCountEat;
+    }
 
-        public void takeDamage(int damageAmount) {
-            HP -= damageAmount; // Reduce health by the bullet's damage
-           
-             if (HP <= 0) {
-                // Death(); // Call a method to handle zombie death, remove zombies
-            } 
-        }
-    
-        
-//----------------------------------------------------------------------------
-// spawn random type of zombies 
-// 0. Normal zombie 1. Zombie with cat ear 2. Zombie wearing helmet
-
-        public Zombie createRandomZombie(){
-        Random random = new Random();
-        int zombieType = random.nextInt(3);
-            switch (zombieType) {
-                case 0:
-                    return new normalZombie(graphical,100 , 0.5, 3);
-                case 1: 
-                    return new catEarZombie(graphical ,150, 0.5, 3);
-                case 2: 
-                    return new helmetZombie(graphical,200, 0.5, 3);
-                default:
-                    return null; // never happends
-            }
-        }
-
-//------------------------------------------------------------------------------
-// spawn random zombies in random row order
-
-            public void spawnRandomZombiesIn5RandomRows(int totalRows) {
-            Random random = new Random();
-            int[] randomRows = new int[5]; 
-
-            // track generated rows
-            Set<Integer> generatedRows = new HashSet<>();
-
-            // Generate 5 unique random rows
-            for (int i = 0; i < 5; i++) {
-                int row;
-                do {
-                    row = (random.nextInt(totalRows)+1);
-                } while (contains(randomRows, row)); 
-
-                randomRows[i] = row;
-                System.out.println("ROW: " + row);
-                generatedRows.add(row); // Add the row to the set for future checks
-            }
-
-        
-            // Spawn zombies in the chosen rows
-            for (int row : randomRows) {
-                int numZombies = random.nextInt(3); // Randomly spawn 1-2 zombies
-                for (int i = 0; i < numZombies; i++) {
-                    System.out.println(numZombies);
-                    Zombie zombie = createRandomZombie();
-                    // Add zombie to zombieList
-                    if(zombie!=null){
-                        zombieList.add(zombie);
-                        System.out.println(zombieList.size());
+    public void updateFrameCountMove(){
+        if(!isCollided){
+            frameCDMove++;
+            if(frameCDMove%0.4 <0.5){
+                frameCountMove++;
+                if(type == 0){
+                    if(frameCountMove > 5 && frameCountMove <48)
+                        bound.x--;
+                    if(frameCountMove == frameCountMoveLimit-1){
+                        x = x-frameCountMove-1+8;
+                        frameCountMove = 0;
                     }
-
-                }
-                zombieList.clear();
-            }
-        }
-        
-        private boolean contains(int[] array, int value) {
-            for (int element : array) {
-                if (element == value) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-// -------------------------------------------------------------------------------
-// check collision and hit box
-
-    public Rectangle getBoundary(){
-        return new Rectangle((int) this.getX(), this.getY(), 14* graphical.scale , 22 * graphical.scale);
-    }
-
-
-    public boolean isColliding(Bullet bullet, Zombie zombie) {
-        Rectangle bulletRectangle = bulletManager.getBoundary();
-        Rectangle zombieRectangle = zombie.getBoundary();
-
-        return bulletRectangle.intersects(zombieRectangle);
-    }
-
-
-    public void checkBulletCollisions() {
-        ArrayList<Bullet> bullets = bulletManager.bulletList; // "My" neeeds to create bullet list for bullet collision dectection
-        ArrayList<Zombie> zombies = zombieList;
-
-        for (Bullet bullet : bullets) {
-            for (Zombie zombie : zombies) {
-                if (isColliding(bullet, zombie)) {
-                    zombie.takeDamage(bullet.getDame());
-                    bullets.remove(bullet);
-                    break;
+                } else if (type == 1){
+                    if(frameCountMove > 15 && frameCountMove <60)
+                        bound.x--;
+                    if(frameCountMove == frameCountMoveLimit-1){
+                        x = x-frameCountMove-1+18;
+                        frameCountMove = 0;
+                    }
                 }
             }
         }
     }
-
-
-
-//----------------------------------------------------------------------------
-// graphics
-
- public Zombie(Graphical graphical,int x, int y){
-            this.graphical = graphical;
-            this.originalX = x;
-            this.originalY = y;
-            setPosition(x,y);
-            getZomImage();
+    public void updateFrameCountEat(){
+        if(isCollided){
+            frameCDEat++;
+            if(frameCDEat%3 == 0){
+                frameCountEat++;
+            }
+            if(frameCountEat == frameCountEatLimit){
+                frameCountEat = 0;
+            }
+        } else {
+            frameCountEat = 0;
         }
+    }
 
-        private void setLocation(double x , int y) {
-            this.x = x;
-            this.y = y;
+
+    public int getFrameCountMove() {
+        return frameCountMove;
+    }
+
+    public void setFrameCountMove(int frameCountMove) {
+        this.frameCountMove = frameCountMove;
+    }
+
+
+    public void setFrameCDMove(int frameCDMove) {
+        this.frameCDMove = frameCDMove;
+    }
+
+    //    public void bite(FakePlant fakePlant) {
+//
+//    }
+    public void hurt() {
+
+    }
+    public void attackMeow(Meow meow){
+        meow.setHealthPoint(meow.getHealthPoint() - dmg);
+    }
+    public void defeatMeow(Meow meow){
+        if(meow.getHealthPoint() <= 0){
+            isCollided = false;
         }
+    }
 
-        
-        public void update(Shooter shooter){
-            move(2);
+    public int getWidth() {
+        return width;
+    }
 
-        }
+    public int getHeight() {
+        return height;
+    }
 
-        public void getZomImage(){
-        try {
-            zom_1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/zom_1.png")));
-            zom_2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/zom_2.png")));
-            zom_3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/zom_3.png")));
-        } catch (IOException e){e.printStackTrace();}
-        }
-        public void render(Graphics2D g2) {
+    public boolean isWalking() {
+        return !isCollided;
+    }
 
-
-        }
 }

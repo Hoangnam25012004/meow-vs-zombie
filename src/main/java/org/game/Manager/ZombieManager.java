@@ -6,7 +6,7 @@ import org.game.Zombie.normalZombie;
 import org.game.Zombie.helmetZombie;
 import org.game.Zombie.catEarZombie;
 import org.game.bullet.Bullet;
-import org.game.graphic.Graphical;
+
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -25,9 +25,11 @@ public class ZombieManager extends Zombie {
     private int y;
     private int originalX;
     private int originalY;
-    private ArrayList<Zombie> zombieList = new ArrayList<>();
+    private ArrayList<Zombie> zombieList;
 
-    public Graphical graphical;
+    public ArrayList<Zombie> getZombies() {
+        return zombieList;
+    }
 
     BulletManager bulletManager;
 

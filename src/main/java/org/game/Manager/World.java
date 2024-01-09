@@ -38,7 +38,6 @@ public class World extends JPanel implements Runnable {
         importImg();
         start();
 
-
     }
 
     public Lose getLose() {
@@ -165,6 +164,8 @@ public class World extends JPanel implements Runnable {
             }
         }
     }
+
+
 
 
 
