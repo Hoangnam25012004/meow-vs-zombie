@@ -16,7 +16,7 @@ import java.awt.image.BufferedImage;
 
 
 
-public class Graphical extends JPanel implements Runnable{
+public class Graphical{
 
 
 
@@ -70,8 +70,6 @@ public class Graphical extends JPanel implements Runnable{
 
 
     public Graphical(){
-        this.setPreferredSize(new Dimension(screenWidth,screenHeight));
-        this.setDoubleBuffered(true);
     }
     public Lose getLose() {
         return lose;
@@ -83,18 +81,7 @@ public class Graphical extends JPanel implements Runnable{
         return playing;
     }
 
-    public Setting getSetting() {
-        return setting;
-    }
 
-    public Win getWin() {
-        return win;
-    }
-
-    public void startGameThread(){
-        gameThread = new Thread(this);
-        gameThread.start();
-    }
 
     public int getScreenWidth() {
         return screenWidth;
@@ -110,34 +97,6 @@ public class Graphical extends JPanel implements Runnable{
     public int getwoolWidth(){return woolWidth*scale;}
     public int getwoolHeight(){return woolHeight*scale;}
 
-    @Override
-    public void run() {
-        double drawInterval = 1000000000/FPS; //0.0166667 second appear 1 frame
-        double delta = 0;
-        long lastTime = System.nanoTime(); //check this moment time
-        long currentTime; //the currentTime
-        long timer =0;
-        int drawCount = 0;
-
-        while (gameThread != null){
-            currentTime = System.nanoTime(); // Always update the currentTime after 1 loop
-
-            delta += (currentTime - lastTime)/drawInterval; // the time from the last time to the currenttime
-            timer += (currentTime - lastTime);
-            lastTime = currentTime;
-            if (delta>1) { //which mean its > 1 frame
-                update();
-                repaint();
-                delta--;
-                drawCount++;
-            }
-            if (timer > 1000000000){
-                System.out.println("FPS: "+drawCount);
-                drawCount=0;
-                timer=0;
-            }
-        }
-    }
     public void update() {
         zombie_1.update(shooter);
         zombie_2.update(shooter);
@@ -148,7 +107,7 @@ public class Graphical extends JPanel implements Runnable{
 
 
     }
-    public void paint(Graphics g){
+   /* public void paint(Graphics g){
         super.paint(g);
         Graphics2D g2 = (Graphics2D)g;
         bg.render(g2);
@@ -159,5 +118,5 @@ public class Graphical extends JPanel implements Runnable{
         zombie_3.render(g2);
         bulletManager.render(g2);
         g2.dispose();
-    }
+    }*/
 }

@@ -1,13 +1,25 @@
 package org.game.Scenes;
 
-import org.game.graphic.Graphical;
-
+import org.game.Manager.World;
+import org.game.Component.MyButtons;
 import java.awt.*;
 import java.util.Set;
 
 public class Setting implements SceneMethods{
-    private Graphical graphical;
-    public Setting(Graphical graphical){this.graphical = graphical;}
+    private World w;
+    private MyButtons bMenu, bQuit, bPlaying;
+    private Image[] buttonOfSetting;
+    private Toolkit t = Toolkit.getDefaultToolkit();
+
+    public Setting(World w){
+        this.w = w;
+    }
+
+    public void initButtons(){
+        bMenu = new MyButtons("Main menu", 277, 390,133,44);
+        bQuit = new MyButtons("Quit", 453, 390, 126, 44);
+        bPlaying = new MyButtons("Play", 620, 390, 126, 44);
+    }
     @Override
     public void render(Graphics g, Image img) {
 
@@ -26,5 +38,8 @@ public class Setting implements SceneMethods{
     @Override
     public void mouseReleased(int x, int y) {
 
+    }
+
+    public void updates() {
     }
 }

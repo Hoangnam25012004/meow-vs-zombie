@@ -14,8 +14,9 @@ public class MeowManager {
     private Toolkit t = Toolkit.getDefaultToolkit();
     private static MeowManager instance = null;
     List<Meow> meows = new ArrayList<>();
+    private boolean selected = true;
+    private boolean isTimetoPlant = false;
 
-    // GUI components?
 
 
     public static MeowManager getInstance()
@@ -30,6 +31,12 @@ public class MeowManager {
 
     }
 
+    public void setSelected(boolean b){
+        this.selected = b;
+    }
+    public void setTimetoPlant(boolean timetoPlant){
+        this.isTimetoPlant = timetoPlant;
+    }
     public void addMeow(Meow newMeow)
     {
         meows.add(newMeow);

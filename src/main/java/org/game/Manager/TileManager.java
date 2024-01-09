@@ -49,7 +49,7 @@ public class TileManager {
 
             for (int i = 1; i <= 45; i++) {
 
-                tile[i-1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Background/land/land"+i+".png")));
+                tile[i-1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Scene/land/land" +i+".png")));
 
 
             }
@@ -58,10 +58,13 @@ public class TileManager {
     public void setInTile(boolean b){
         this.inTile = b;
     }
+    public boolean isInTile() {
+        return inTile;
+    }
 
     public void loadMap(){
         try {
-            InputStream is = getClass().getResourceAsStream("/Background/LandTile.txt");
+            InputStream is = getClass().getResourceAsStream("/Scene/LandTile.txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             int col = 0;
             int row = 0;
@@ -82,6 +85,7 @@ public class TileManager {
 
         }catch (Exception e){}
     }
+
 
     public void render(Graphics2D g2){
         int col = 0;
