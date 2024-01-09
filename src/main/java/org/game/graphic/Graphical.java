@@ -151,8 +151,8 @@ public class Graphical extends JPanel implements Runnable{
     public void paint(Graphics g){
         super.paint(g);
         Graphics2D g2 = (Graphics2D)g;
-       // bg.render(g2);
-        tileM.render(g2);
+        bg.render(g2);
+        //tileM.render(g2);
         shooter.render(g2);
         zombie_1.render(g2);
         zombie_2.render(g2);
