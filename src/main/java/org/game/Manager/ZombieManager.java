@@ -6,6 +6,7 @@ import org.game.Zombie.normalZombie;
 import org.game.Zombie.helmetZombie;
 import org.game.Zombie.catEarZombie;
 import org.game.bullet.Bullet;
+import org.game.Scenes.Playing;
 
 
 import javax.imageio.ImageIO;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
 
-public class ZombieManager extends Zombie {
+public class ZombieManager {
 
     protected int HP;
     protected double speed;
@@ -36,8 +37,13 @@ public class ZombieManager extends Zombie {
     public BufferedImage zom_1,zom_2,zom_3;
 
 
-    public ZombieManager(Graphical graphical,int HP, double speed, int attackPower) {
-        super(graphical,HP, speed,attackPower);
+    private ZombieManager(Playing playing) {
+        this.playing = playing;
+        zombieList = new ArrayList<>();
+        importImg();
+        importNormalZombie();
+        importHelmetZombie();
+        importCatEarZombie();
     }
 
     public double getX(){

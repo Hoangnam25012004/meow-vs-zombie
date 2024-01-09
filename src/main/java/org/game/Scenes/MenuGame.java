@@ -44,7 +44,7 @@ public class MenuGame implements SceneMethods{
     public void mouseClicked(int x, int y) {
         if(bPlaying.getBounds().contains(x,y)) {
             setGameScenes(PLAYING);
-            w.getPlaying().getBarManager().setCDatStartOfGame();
+//            w.getPlaying().getBarManager().setCDatStartOfGame();
         } else if (bQuit.getBounds().contains(x,y)) {
             System.exit(0);
         }
@@ -63,12 +63,18 @@ public class MenuGame implements SceneMethods{
     public void updates() {
     }
 
+//    public void drawButtons(Graphics g) {
+//        bPlaying.draw(g);
+//        bQuit.draw(g);
+//        bWin.draw(g);
+//    }
+
     @Override
     public void render(Graphics g, Image img) {
         g.drawImage(img,0,0, w.getWidth(), w.getHeight(), null);
         initButtons();
 //        drawButtons(g);
-       // importImg();
-        //drawImg(g);
+        importImg();
+        drawImg(g);
     }
 }

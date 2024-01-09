@@ -1,7 +1,6 @@
 package org.game.Manager;
 import org.game.Zombie.Zombie;
 import org.game.bullet.Bullet;
-import org.game.graphic.Graphical;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -9,7 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 public class BulletManager extends Bullet {
-    private Graphical graphical;
     private double speed;
     private int originalX;
     private int originalY;

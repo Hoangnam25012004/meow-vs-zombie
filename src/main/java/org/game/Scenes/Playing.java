@@ -19,6 +19,7 @@ public class Playing implements SceneMethods {
     private KeyBoardManager keyBoardManager;
     private Toolkit t = Toolkit.getDefaultToolkit();
     private World w;
+    private boolean startWaveForCD = false;
     public Playing(World w) {
         this.w = w;
 //        initManagers();
@@ -70,6 +71,9 @@ public class Playing implements SceneMethods {
 
     public ZombieManager getZombieManager() {
         return this.zombieManager;
+    }
+    public boolean isStartWaveForCD() {
+        return startWaveForCD;
     }
     public void MousePress(){
         mouseMotionManager.returnToSelectPlantByMouse();

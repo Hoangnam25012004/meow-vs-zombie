@@ -234,6 +234,18 @@ public class MeowManager {
         isForbidden = true;
     }
 
+    public void updateFish(){
+        if(playing.isStartWaveForCD()){
+            Iterator<Meow> iterator = meowList.iterator();
+            while (iterator.hasNext()){
+                Meow meow = iterator.next();
+                if(meow.getID() == 0 && meow.isAlive()){
+                    meow.fishCreatedByFishBucket(playing.getFishManager());
+                }
+            }
+        }
+    }
+
     public void meowOnTile(Tile tile, int x, int y,int i){
         if(!tile.isOccupied()){
             Rectangle r = new Rectangle((int)tile.getBound().getX(), (int)tile.getBound().getY(), (int)tile.getBound().getWidth(), (int)tile.getBound().getHeight());
