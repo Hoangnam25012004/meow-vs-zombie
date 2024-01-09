@@ -58,6 +58,9 @@ public class TileManager {
     public void setInTile(boolean b){
         this.inTile = b;
     }
+    public boolean isInTile() {
+        return inTile;
+    }
 
     public void loadMap(){
         try {
@@ -82,6 +85,7 @@ public class TileManager {
 
         }catch (Exception e){}
     }
+
 
     public void render(Graphics2D g2){
         int col = 0;

@@ -16,16 +16,19 @@ public class Playing implements SceneMethods {
     private MouseMotionManager mouseMotionManager;
     private TileManager tileManager;
     private ZombieManager zombieManager;
+    private BarManager barManager;
+    private KeyBoardManager keyBoardManager;
     private Toolkit t = Toolkit.getDefaultToolkit();
     private World w;
-    private TileManager tm;
     public Playing(World w) {
         this.w = w;
 //        initManagers();
     }
 
-    public TileManager getTm(){
-        return tm;
+    public void mouseMove(int x, int y){
+        mouseMotionManager.changeStatusToMouse(x,y,w);
+        mouseMotionManager.mouseTrackPlantBar(x,y);
+        mouseMotionManager.tileTrack(x,y);
     }
 
     @Override
@@ -48,6 +51,26 @@ public class Playing implements SceneMethods {
 
     }
 
+    public MeowManager getMeowManager() {
+        return meowManager;
+    }
+
+    public BarManager getBarManager() {
+        return barManager;
+    }
+    public KeyBoardManager getKeyBoardManager(){
+        return keyBoardManager;
+    }
+    public TileManager getTileManager(){
+        return tileManager;
+    }
+    public void MousePress(){
+        mouseMotionManager.returnToSelectPlantByMouse();
+    }
+
+
+
     public void updates() {
     }
 }
+

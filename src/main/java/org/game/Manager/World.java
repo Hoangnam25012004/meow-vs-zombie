@@ -33,6 +33,11 @@ public class World extends JPanel implements Runnable {
 
     public World() {
         setPreferredSize(new Dimension(screenWidth, screenHeight));
+        initInput();
+        initClasses();
+        importImg();
+        start();
+
 
     }
 

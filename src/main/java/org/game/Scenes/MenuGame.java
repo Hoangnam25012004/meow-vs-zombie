@@ -32,10 +32,6 @@ public class MenuGame implements SceneMethods{
         }
     }
 
-    @Override
-    public void render(Graphics g, Image img) {
-
-    }
 
     @Override
     public void mouseClicked(int x, int y) {
@@ -53,5 +49,14 @@ public class MenuGame implements SceneMethods{
     }
 
     public void updates() {
+    }
+
+    @Override
+    public void render(Graphics g, Image img) {
+        g.drawImage(img,0,0, w.getWidth(), w.getHeight(), null);
+        initButtons();
+//        drawButtons(g);
+       // importImg();
+        //drawImg(g);
     }
 }
