@@ -9,13 +9,10 @@ import java.util.Objects;
 public class BackgroundGraphic {
 
     public BufferedImage backgroundImage;
-    private Graphical graphical;
 
 
 
-
-    public BackgroundGraphic(Graphical graphical){
-        this.graphical=graphical;
+    public BackgroundGraphic(){
         getBackgroundImage();
 
 
@@ -29,6 +26,6 @@ public class BackgroundGraphic {
     }
 
     public void render(Graphics2D g2){
-        g2.drawImage(backgroundImage, 0 ,0 ,graphical.getScreenWidth(), graphical.getScreenHeight(), null);
+        g2.drawImage(backgroundImage, 0 ,0 ,1024, 576, null);
     }
 }

@@ -7,11 +7,11 @@ public class Tile {
     private Rectangle bound;
 
     public BufferedImage image;
-    private Graphical graphical;
+    public int grassTile =87;
 
     public Tile(Rectangle bound){this.bound = bound;}
     public int getGrassTile(){
-        return graphical.grassTile;
+        return grassTile;
     }
 
     public Rectangle getBound() {

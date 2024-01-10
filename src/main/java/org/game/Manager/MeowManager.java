@@ -1,6 +1,6 @@
 package org.game.Manager;
 
-import org.game.MeowPack.Meow;
+import org.game.MeowPack.*;
 import org.game.Component.Tile;
 import org.game.Scenes.Playing;
 import org.game.Zombie.*;
@@ -95,11 +95,11 @@ public class MeowManager {
 
     public void initStorage(){
         for(int i = 0; i<10;i++){
-            meowList.add(new Meow(100,0,0,25,0,0,-999,60,70));
-            meowList.add(new Meow(100,1,20,58,59,0,-999,60,70));
-            meowList.add(new Meow(1000,2,0,81,0,0,-999,60,70));
-            meowList.add(new Meow(100,3,20,20,20,0,-999,60,70));
-            meowList.add(new Meow(10000,4,1000,30,0,0,-999,60,70));
+            meowList.add(new FishBucket(100,0,0,25,0,0,-999,60,70,50));
+            meowList.add(new Shooter(100,1,20,58,59,0,-999,60,70,100));
+            meowList.add(new StinkyPate(1000,2,0,81,0,0,-999,60,70,50));
+            meowList.add(new Shooter(100,3,20,20,20,0,-999,60,70,175));
+            meowList.add(new BombPate(10000,4,1000,30,0,0,-999,60,70,150));
         }
     }
 

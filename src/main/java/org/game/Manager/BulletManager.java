@@ -6,28 +6,23 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-public class BulletManager extends Bullet {
+public class BulletManager {
     private double speed;
+    private List<Bullet> bullet = new ArrayList<>();
     private int originalX;
     private int originalY;
     public BufferedImage bullet_1, bullet_2;
     public ArrayList<Bullet> bulletList = new ArrayList<>();
     Zombie zombie;
 
-    public BulletManager(Graphical graphical, int x, int y, int Dame , boolean isFrozen) {
-        super(graphical, x, y, Dame, isFrozen);
-        this.graphical = graphical;
+    public BulletManager(int x, int y, int Dame , boolean isFrozen) {
         this.originalX = x;
         this.originalY = y;
-        setPosition(x, y);
         getBulletImage();
     }
 
-    public void setPosition(double x, int y) {
-        this.x = x;
-        this.y = y;
-    }
 
 
     //___________________________________________________________________________
@@ -42,20 +37,26 @@ public class BulletManager extends Bullet {
     }
 
     public void render(Graphics2D g2) {
-        if (getisFrozen() == false) {
-            g2.drawImage(bullet_1, (int) super.x, super.y, graphical.getwoolWidth(), graphical.getwoolHeight(), null);
+        for (int i=0 ; i<= bullet.size();i++) {
+            if (!bullet.get(i).getisFrozen()) {
+                g2.drawImage(bullet_1, (int) bullet.get(i).getX(), bullet.get(i).getY(), bullet.get(i).getBulletSize(), bullet.get(i).getBulletSize(), null);
 
-        } else {g2.drawImage(bullet_2, (int) super.x, super.y, graphical.getwoolWidth(), graphical.getwoolHeight(), null);}
-
+            } else {
+                g2.drawImage(bullet_2,(int) bullet.get(i).getX(), bullet.get(i).getY(), bullet.get(i).getBulletSize(), bullet.get(i).getBulletSize(), null);
+            }
+        }
     }
 
     //___________________________________________________________________________
     private void move(double speed) {
-        setPosition(super.x + speed, super.y);
     }
+    public Rectangle getBoundary (Bullet bullet) {
+        return new Rectangle((int) bullet.getX(), bullet.getY(), 20, 20);
+
+}
 
 
-    public void bullet_update(Zombie zombie) {
+ /*   public void bullet_update(Zombie zombie) {
         move(4);
         if (super.x >= graphical.getScreenWidth()) {
             super.x = originalX;
@@ -68,13 +69,14 @@ public class BulletManager extends Bullet {
 
     }
 
+  */
+
 
     //___________________________________________________________________________
     public void addBullet(int x, int y) {
         bulletList.add(new Bullet(x, y, 30));
         System.out.println(bulletList);
     }
-
     public void slow(){
 
     }

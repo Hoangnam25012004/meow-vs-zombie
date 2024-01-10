@@ -1,19 +1,18 @@
 package org.game.bullet;
 import java.awt.*;
 
-import org.game.graphic.Graphical;
 
 
 public class Bullet {
     private final int dame = 0;
-    public Graphical graphical;
-    public double x;
-    public int y;
+    private double x;
+    private int y;
     private final int Dame ;
     private boolean isFrozen = false;
+    private final int bulletSize= 6;
 
-    public Bullet(Graphical graphical, double x, int y, int Dame, boolean isFrozen){
-        this.graphical = graphical;
+    public Bullet( double x, int y, int Dame, boolean isFrozen){
+
         this.x = x;
         this.y = y;
         this.Dame = Dame;
@@ -42,11 +41,15 @@ public class Bullet {
         return Dame;
     }
 
-    public boolean getisFrozen() {
-        return isFrozen;
+    public int getBulletSize() {
+        return bulletSize;
     }
+
     public void setisFrozen(boolean isFrozen) {
         this.isFrozen = isFrozen;
+    }
+    public boolean getisFrozen() {
+       return isFrozen;
     }
 
 
@@ -58,5 +61,5 @@ public class Bullet {
 
 
 public Rectangle getBoundary (){
-        return new Rectangle((int) this.getX(), this.getY(), 5*graphical.scale, 5*graphical.scale) ;}
+        return new Rectangle((int) this.getX(), this.getY(), 20, 20) ;}
 }

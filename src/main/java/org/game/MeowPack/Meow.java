@@ -35,6 +35,7 @@ public class Meow implements Shooter
     private Random random = new Random();
     private int explodeCD;
     private boolean isDangered = false;
+    public BufferedImage[] image = new BufferedImage[5];
 
     public int getATK() {
         return meowATK;
@@ -110,7 +111,7 @@ public class Meow implements Shooter
     }
 
 
-    public Meow(int meowHP, int meowId, int ATK, int frameCountIdleLimit,int frameCountAttackLimit,int x, int y,int width, int height){
+    public Meow(int meowHP, int meowId, int ATK, int frameCountIdleLimit,int frameCountAttackLimit,int x, int y,int width, int height , int price){
         this.frameCountIdleLimit = frameCountIdleLimit;
         this.frameCountAttackLimit = frameCountAttackLimit;
         this.healthPoint = meowHP;
@@ -120,7 +121,9 @@ public class Meow implements Shooter
         this.y = y;
         this.width = width;
         this.height = height;
+        this.price = price;
     }
+    public Meow(){}
 
     public String getMeowName() {
         return meowName;

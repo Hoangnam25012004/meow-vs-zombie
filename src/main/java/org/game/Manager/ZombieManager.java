@@ -2,9 +2,6 @@ package org.game.Manager;
 
 import org.game.MeowPack.Shooter;
 import org.game.Zombie.Zombie;
-import org.game.Zombie.normalZombie;
-import org.game.Zombie.helmetZombie;
-import org.game.Zombie.catEarZombie;
 import org.game.bullet.Bullet;
 import org.game.Scenes.Playing;
 
@@ -22,10 +19,9 @@ public class ZombieManager {
     protected int HP;
     protected double speed;
     protected int attackPower;
-    private double x;
-    private int y;
     private int originalX;
     private int originalY;
+    private Playing playing;
     private ArrayList<Zombie> zombieList;
 
     public ArrayList<Zombie> getZombies() {
@@ -35,34 +31,36 @@ public class ZombieManager {
     BulletManager bulletManager;
 
     public BufferedImage zom_1,zom_2,zom_3;
+    private static ZombieManager instance = null;
 
 
     private ZombieManager(Playing playing) {
         this.playing = playing;
         zombieList = new ArrayList<>();
-        importImg();
-        importNormalZombie();
-        importHelmetZombie();
-        importCatEarZombie();
+        getNormalZombie();
+        getHelmetZombie();
+        getCatEarZombie();
+    }
+    public static ZombieManager createZombieManager(Playing playing) {
+        if(instance == null) {
+            instance = new ZombieManager(playing);
+        } else {
+            System.out.println("Cannot create another ZombieManager");
+        }
+        return instance;
     }
 
-    public double getX(){
-        return x;
-    }
-    public int getY(){
-        return y;
-    }
-    public void setPosition(double x, int y){
-        this.x = x;
-        this.y = y;
-    }
+
 
 //--------------------------------------------------------------------------
 // Actions of the zombies
 
     private void move(double speed) {
-        setLocation(this.x - speed, this.y);
+        for (Zombie z : zombieList){
+            //z.X() = z.X() - speed; đang fix
+        }
     }
+
 
     public void takeDamage(int damageAmount) {
         HP -= damageAmount; // Reduce health by the bullet's damage
@@ -82,11 +80,11 @@ public class ZombieManager {
         int zombieType = random.nextInt(3);
         switch (zombieType) {
             case 0:
-                return new normalZombie(graphical,100 , 0.5, 3);
+                return new Zombie(originalX,originalY,0); // đang để tạm thg originX,Y
             case 1:
-                return new catEarZombie(graphical ,150, 0.5, 3);
+                return new Zombie(originalX,originalY,1);
             case 2:
-                return new helmetZombie(graphical,200, 0.5, 3);
+                return new Zombie(originalX,originalY,2);
             default:
                 return null; // never happends
         }
@@ -100,11 +98,11 @@ public class ZombieManager {
         int[] randomRows = new int[5]; // Store 5 unique random row indices
         // Select 5 unique random rows directly
         for (int i = 0; i < 5; i++) {
-            int row; // this is null
+            int row;
             do {
                 row = random.nextInt(totalRows);
-                System.out.println("is loop"); // check if it is loop.
-            } while (contains(randomRows, row)); // so this is always true => always loop => wrong
+                System.out.println("is loop");
+            } while (contains(randomRows, row));
             randomRows[i] = row;
         }
 
@@ -135,28 +133,23 @@ public class ZombieManager {
 // -------------------------------------------------------------------------------
 // check collision and hit box
 
-    public Rectangle getBoundary(){
-        return new Rectangle((int) this.getX(), this.getY(), 14* graphical.scale , 22 * graphical.scale);
-    }
-
-
     public boolean isColliding(Bullet bullet, Zombie zombie) {
-        Rectangle bulletRectangle = bulletManager.getBoundary();
-        Rectangle zombieRectangle = zombie.getBoundary();
+        Rectangle bulletRectangle = bulletManager.getBoundary(bullet);
+        Rectangle zombieRectangle = zombie.getBound();
 
         return bulletRectangle.intersects(zombieRectangle);
     }
 
 
     public void checkBulletCollisions() {
-        ArrayList<Bullet> bullets = bulletManager.bulletList; // "My" neeeds to create bullet list for bullet collision dectection
+        ArrayList<Bullet> bullets = bulletManager.bulletList;
         ArrayList<Zombie> zombies = zombieList;
 
         for (Bullet bullet : bullets) {
             for (Zombie zombie : zombies) {
                 if (isColliding(bullet, zombie)) {
-                    zombie.takeDamage(bullet.getDame());
-                    //bullets.remove(bullet);
+                    takeDamage(bullet.getDame());
+                    bullets.remove(bullet);
                     break;
                 }
             }
@@ -168,16 +161,6 @@ public class ZombieManager {
 //----------------------------------------------------------------------------
 // graphics
 
-    public ZombieManager(Graphical graphical,int x, int y){
-        super(graphical,x,y);
-        setPosition(x,y);
-        getZomImage();
-    }
-
-    private void setLocation(double x , int y) {
-        this.x = x;
-        this.y = y;
-    }
 
 
     public void update(Shooter shooter){
@@ -192,6 +175,16 @@ public class ZombieManager {
             zom_2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/zom_2.png")));
             zom_3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/zom_3.png")));
         } catch (IOException e){e.printStackTrace();}
+    }
+
+    public void getNormalZombie(){
+
+    }
+    public void getCatEarZombie(){
+
+    }
+    public void getHelmetZombie(){
+
     }
     public void render(Graphics2D g2) {
 

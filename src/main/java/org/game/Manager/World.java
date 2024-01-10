@@ -10,17 +10,17 @@ import java.util.ArrayList;
 public class World extends JPanel implements Runnable {
     private int screenWidth = 1024, screenHeight = 625;
     private ArrayList<Image> img = new ArrayList<>();
+    private Lose lose;
+    private MenuGame menuGame;
+    private Playing playing;
+    private Setting setting;
+    private Win win;
 
     private double FPS_SET = 60.0;
     private double UPS_SET = 60.0;
     private MyMouseListener myMouseListener;
     private KeyBoardListener keyBoardListener;
 
-//    private Lose lose;
-//    private Win win;
-//    private Playing playing;
-    private MenuGame menuGame;
-//    private Setting setting;
     private Toolkit t = Toolkit.getDefaultToolkit();
     private int frameCount = 0;
     private boolean FPSstop = false;
@@ -40,25 +40,25 @@ public class World extends JPanel implements Runnable {
 
     }
 
-//    public Lose getLose() {
-//        return lose;
-//    }
+    public Lose getLose() {
+       return lose;
+    }
 
     public MenuGame getMenuGame() {
         return menuGame;
     }
 
-//    public Playing getPlaying() {
-//        return playing;
-//    }
+    public Playing getPlaying() {
+        return playing;
+   }
 
-//    public Win getWin() {
-//        return win;
-//    }
+    public Win getWin() {
+        return win;
+    }
 
-//    public Setting getSetting() {
-//        return setting;
-//    }
+    public Setting getSetting() {
+        return setting;
+    }
 
     public void initInput() {
         myMouseListener = new MyMouseListener(this);
