@@ -186,26 +186,6 @@ public class Meow implements Shooter
     }
 
 
-//    public void getMeowImage(){
-//        try {
-//            meow_1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/meow_1.png")));
-//            meow_2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/meow_2.png")));
-//            meow_3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/meow_3.png")));
-//            meow_4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/Icecat.png")));
-//            meow_5 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/Icecat.png")));
-//            meow_6 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/Icecat.png")));
-//            bucket = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/bucket.png")));
-//            can_1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/can_1.png")));
-//            can_2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/can_2.png")));
-//            can_3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/can_3.png")));
-//            can_4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/can_4.png")));
-//            cattray1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/Cattray1.png")));
-//            cattray2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/Cattray2.png")));
-//            cattray3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/Cattray3.png")));
-//            cattray4 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/meowRes/Cattray4.png")));
-//        } catch (IOException e){e.printStackTrace();}
-//    }
-
 
     public void removeMeow(Meow meow, Iterator<Meow> iterator, TileManager tileManager, MeowManager meowManager){
         if(meow.getHealthPoint() <= 0){

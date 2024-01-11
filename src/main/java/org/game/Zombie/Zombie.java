@@ -59,17 +59,17 @@ public class Zombie {
 
     private void setStatus(int type) {
         switch (type) {
-            case 0:
+            case 0: //normal
                 hp = 70;
                 dmg = 20;
                 break;
-            case 1:
-                hp = 130;
-                dmg = 30;
+            case 1: //catear
+                hp = 100;
+                dmg = 20;
                 break;
-            case 2:
-                hp = 90;
-                dmg = 80;
+            case 2: //helmet
+                hp = 130;
+                dmg = 20;
                 break;
         }
     }

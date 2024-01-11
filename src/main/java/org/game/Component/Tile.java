@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class Tile {
     private final int ROWS = 5, COLS = 9;
-    private int wTile = 60, hTile = 70;
+    private int wTile = 87, hTile = 87;
     private Rectangle bound;
     private Boolean occupied = false;
     private int curX, curY;

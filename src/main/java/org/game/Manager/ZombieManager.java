@@ -4,6 +4,7 @@ import org.game.MeowPack.Shooter;
 import org.game.Zombie.Zombie;
 import org.game.bullet.Bullet;
 import org.game.Scenes.Playing;
+import org.game.Component.Tile;
 
 
 import javax.imageio.ImageIO;
@@ -29,8 +30,15 @@ public class ZombieManager {
     }
 
     BulletManager bulletManager;
+    World w;
 
-    public BufferedImage zom_1,zom_2,zom_3;
+    Tile tile;
+    public BufferedImage[] normalZombieMove = new BufferedImage[3];
+    public BufferedImage[] normalZombieEat = new BufferedImage[2];
+    public BufferedImage[] CatEarZombieMove = new BufferedImage[3];
+    public BufferedImage[] CatEarZombieEat = new BufferedImage[2];
+    public BufferedImage[] HelmetZombieMove = new BufferedImage[3];
+    public BufferedImage[] HelmetZombieEat = new BufferedImage[2];
     private static ZombieManager instance = null;
 
 
@@ -75,16 +83,16 @@ public class ZombieManager {
 // spawn random type of zombies
 // 0. Normal zombie 1. Zombie with cat ear 2. Zombie wearing helmet
 
-    public Zombie createRandomZombie(){
+    public Zombie createRandomZombie(int i){
         Random random = new Random();
         int zombieType = random.nextInt(3);
         switch (zombieType) {
             case 0:
-                return new Zombie(originalX,originalY,0); // đang để tạm thg originX,Y
+                return new Zombie(w.getScreenWidth() + random.nextInt(100), 102 + tile.gethTile()*i,0); // normal 102 is the starting y
             case 1:
-                return new Zombie(originalX,originalY,1);
+                return new Zombie(w.getScreenWidth() + random.nextInt(100),102 + tile.gethTile()*i,1); // catear
             case 2:
-                return new Zombie(originalX,originalY,2);
+                return new Zombie(w.getScreenWidth() + random.nextInt(100),102 + tile.gethTile()*i,2); // helmet
             default:
                 return null; // never happends
         }
@@ -110,7 +118,7 @@ public class ZombieManager {
         for (int row : randomRows) {
             int numZombies = random.nextInt(3); // Randomly spawn 1-2 zombies
             for (int i = 0; i < numZombies; i++) {
-                Zombie zombie = createRandomZombie();
+                Zombie zombie = createRandomZombie(row);
                 // Add zombie to zombieList
                 if(zombie!=null){
                     zombieList.add(zombie);
@@ -169,24 +177,76 @@ public class ZombieManager {
 
     }
 
-    public void getZomImage(){
-        try {
-            zom_1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/zom_1.png")));
-            zom_2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/zom_2.png")));
-            zom_3 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/zom_3.png")));
-        } catch (IOException e){e.printStackTrace();}
-    }
 
     public void getNormalZombie(){
-
+        try {
+            for (int i = 0; i < normalZombieMove.length; i++) { //move normal zome
+                normalZombieMove[i] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("zombieRes/normalZom/move/zommove_"+i+".png")));
+            }
+            for (int i = 0; i < normalZombieEat.length; i++) {
+                normalZombieEat[i] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("zombieRes/normalZom/move/zommeat_"+i+".png")));
+            }
+        } catch (Exception e){e.printStackTrace();}
     }
+
     public void getCatEarZombie(){
+        try {
+            for (int i = 0; i < CatEarZombieMove.length; i++) { //move normal zome
+                CatEarZombieMove[i] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("zombieRes/normalZom/move/zomcatear_"+i+".png")));
+            }
+            for (int i = 0; i < CatEarZombieEat.length; i++) {
+                CatEarZombieEat[i] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("zombieRes/normalZom/move/zomcateareat_"+i+".png")));
+            }
+        } catch (Exception e){e.printStackTrace();}
 
     }
     public void getHelmetZombie(){
+        try {
+            for (int i = 0; i < HelmetZombieMove.length; i++) { //move normal zome
+                HelmetZombieMove[i] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("zombieRes/normalZom/move/zomhelmet_"+i+".png")));
+            }
+            for (int i = 0; i < HelmetZombieEat.length; i++) {
+                HelmetZombieEat[i] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("zombieRes/normalZom/move/zomhelmeteat_"+i+".png")));
+            }
+        } catch (Exception e){e.printStackTrace();}
+
 
     }
-    public void render(Graphics2D g2) {
-
+    public void move(Zombie z) {
+        if(z.getType() == 0 || z.getType() == 1 || z.getType() == 2){
+            z.updateFrameCountMove();
+        } else {
+            z.move();
+        }
+    }
+    public void render(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        synchronized (zombieList) {
+            if (zombieList.size() > 0) {
+                for (Zombie z : zombieList) {
+                    if (z.isAlived()) {
+                        if(z.getType() == 0){
+                            if(!z.isCollided()){
+                                g.drawImage(normalZombieMove[z.getFrameCountMove()],(int) z.X(), (int) z.Y(), z.getWidth()+30, z.getHeight()+25, null);
+                            } else {
+                                g.drawImage(normalZombieEat[z.getFrameCountEat()],(int) z.X(), (int) z.Y()+8, z.getWidth()+18, z.getHeight(), null);
+                            }
+                        } else if (z.getType() == 1) {
+                            if(!z.isCollided()){
+                                g.drawImage(CatEarZombieMove[z.getFrameCountMove()],(int) z.X(), (int) z.Y(), z.getWidth()+30, z.getHeight()+25, null);
+                            } else {
+                                g.drawImage(CatEarZombieEat[z.getFrameCountEat()],(int) z.X(), (int) z.Y()+8, z.getWidth()+18, z.getHeight(), null);
+                            }
+                        } else if(z.getType() == 2){
+                            if(!z.isCollided()){
+                                g.drawImage(HelmetZombieMove[z.getFrameCountMove()],(int) z.X(), (int) z.Y(), z.getWidth()+30, z.getHeight()+25, null);
+                            } else {
+                                g.drawImage(HelmetZombieEat[z.getFrameCountEat()],(int) z.X(), (int) z.Y()+8, z.getWidth()+18, z.getHeight(), null);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
