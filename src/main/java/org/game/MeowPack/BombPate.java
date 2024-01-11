@@ -12,8 +12,8 @@ public class BombPate extends Meow {
     // Attack damage/ explode damage
     private float explosionRadius = 10.0f;
     private int explosionDamage = 1;
-    public BombPate(int meowHP, int meowId, int ATK, int frameCountIdleLimit,int frameCountAttackLimit,int x, int y,int width, int height , int price) {
-        super(meowHP, meowId, ATK, frameCountIdleLimit, frameCountAttackLimit,x, y, width,height ,price);
+    public BombPate(int meowHP, int meowId, int ATK,int x, int y,int width, int height , int price) {
+        super(meowHP, meowId, ATK,x, y, width,height ,price,false);
     }
 
     // Calls this function when zombies hit or collide with BombPate's rectangle

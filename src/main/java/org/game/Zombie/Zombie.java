@@ -134,34 +134,24 @@ public class Zombie {
     public void updateFrameCountMove(){
         if(!isCollided){
             frameCDMove++;
-            if(frameCDMove%0.4 <0.5){
+            if (frameCDMove > 20 && frameCountMove != 3){
                 frameCountMove++;
-                if(type == 0){
-                    if(frameCountMove > 5 && frameCountMove <48)
-                        bound.x--;
-                    if(frameCountMove == frameCountMoveLimit-1){
-                        x = x-frameCountMove-1+8;
-                        frameCountMove = 0;
-                    }
-                } else if (type == 1){
-                    if(frameCountMove > 15 && frameCountMove <60)
-                        bound.x--;
-                    if(frameCountMove == frameCountMoveLimit-1){
-                        x = x-frameCountMove-1+18;
-                        frameCountMove = 0;
-                    }
-                }
+                frameCDMove =0;
+            } else if(frameCDMove>20 && frameCountMove == 3){
+                frameCountMove = 0;
+                frameCDMove = 0;
             }
         }
     }
     public void updateFrameCountEat(){
         if(isCollided){
             frameCDEat++;
-            if(frameCDEat%3 == 0){
+            if (frameCDEat >20 && frameCountEat != 2){
                 frameCountEat++;
-            }
-            if(frameCountEat == frameCountEatLimit){
-                frameCountEat = 0;
+                frameCDEat =0 ;
+            } else if (frameCDEat >20 && frameCountEat ==2){
+                frameCountEat =0;
+                frameCDEat = 0;
             }
         } else {
             frameCountEat = 0;

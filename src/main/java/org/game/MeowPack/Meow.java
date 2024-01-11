@@ -23,6 +23,7 @@ public class Meow implements Shooter
     private int meowATK;
     private int price;
     private boolean alive = false;
+    private boolean isAbleToFreeze = false;
 
     private int frameCountIdleLimit;
     private int frameCountAttackLimit;
@@ -111,9 +112,7 @@ public class Meow implements Shooter
     }
 
 
-    public Meow(int meowHP, int meowId, int ATK, int frameCountIdleLimit,int frameCountAttackLimit,int x, int y,int width, int height , int price){
-        this.frameCountIdleLimit = frameCountIdleLimit;
-        this.frameCountAttackLimit = frameCountAttackLimit;
+    public Meow(int meowHP, int meowId, int ATK,int x, int y,int width, int height , int price , boolean isAbleToFreeze){
         this.healthPoint = meowHP;
         this.meowId = meowId;
         this.meowATK = ATK;
@@ -122,6 +121,7 @@ public class Meow implements Shooter
         this.width = width;
         this.height = height;
         this.price = price;
+        this.isAbleToFreeze = isAbleToFreeze;
     }
     public Meow(){}
 

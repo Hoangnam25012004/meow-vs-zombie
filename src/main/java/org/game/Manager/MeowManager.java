@@ -95,11 +95,11 @@ public class MeowManager {
 
     public void initStorage(){
         for(int i = 0; i<10;i++){
-            meowList.add(new FishBucket(100,0,0,25,0,0,-999,60,70,50));
-            meowList.add(new Shooter(100,1,20,58,59,0,-999,60,70,100));
-            meowList.add(new StinkyPate(1000,2,0,81,0,0,-999,60,70,50));
-            meowList.add(new Shooter(100,3,20,20,20,0,-999,60,70,175));
-            meowList.add(new BombPate(10000,4,1000,30,0,0,-999,60,70,150));
+            meowList.add(new FishBucket(100,0,0,0,-999,60,70,50));
+            meowList.add(new Shooter(100,1,20,0,-999,60,70,100,false));
+            meowList.add(new StinkyPate(1000,2,0,0,-999,60,70,50));
+            meowList.add(new Shooter(100,3,20,0,-999,60,70,175,true));
+            meowList.add(new BombPate(10000,4,1000,0,-999,60,70,150));
         }
     }
 
@@ -124,11 +124,10 @@ public class MeowManager {
     }
 
     public void importMeow(){
-        for (int i = 0;i<meow_idle.length;i++){
-            meow_idle[i] = t.getImage(getClass().getResource("/peaShooter - idle/PeaShooter_Idle1-"+i+".png"));
-        }
-        for(int i = 0;i <= meow_attack.length;i++){
-            meow_attack[i] = t.getImage(getClass().getResource("/Meow - attack/meow_-"+i+".png"));
+        meow_idle[0] = t.getImage(getClass().getResource("/Meow - attack/meow_1.png"));
+
+        for(int i = 1;i <= meow_attack.length;i++){
+            meow_attack[i-1] = t.getImage(getClass().getResource("/Meow - attack/meow_"+i+".png"));
         }
     }
 
@@ -138,9 +137,7 @@ public class MeowManager {
         }
     }
     public void importIceMeow(){
-        for(int i = 0;i<iceMeow_Idle.length;i++){
-            iceMeow_Idle[i] = t.getImage(getClass().getResource("/IceMeow - idle/iceMeow_idle-"+i+".png"));
-        }
+        iceMeow_Idle[0] = t.getImage(getClass().getResource("/IceMeow - idle/iceMeow_idle-0.png"));
         for(int i = 0;i < iceMeow_Attack.length;i++){
             iceMeow_Attack[i] = t.getImage(getClass().getResource("/IceMeow - attack/iceMeow_attack-"+i+".png"));
         }
@@ -156,7 +153,7 @@ public class MeowManager {
         }
     }
 
-    public void drawPlantAttackTest(Graphics g, Meow m){
+    public void drawMeowAttackTest(Graphics g, Meow m){
         if(m.getID() == 1 && waitingTime <240){
             g.drawImage(meow_attack[m.getFrameCountAttack()], m.getX(), m.getY(), m.getWidth(), m.getHeight(), null);
         } else if(m.getID() == 3 && waitingTime<240){
@@ -164,7 +161,7 @@ public class MeowManager {
         }
     }
 
-    public void drawPlant(Graphics g){
+    public void drawMeow(Graphics g){
         Iterator<Meow> iterator = meowList.iterator();
         while (iterator.hasNext()){
             Meow m = iterator.next();
@@ -188,7 +185,7 @@ public class MeowManager {
                 } else if (m.getID() == 4){
                     g.drawImage(pateBomb[m.getFrameCountIdle()],m.getX(), m.getY(), m.getWidth(), m.getHeight(), null);
                 }
-                drawPlantAttackTest(g,m);
+                drawMeowAttackTest(g,m);
             }
         }
     }
@@ -451,7 +448,7 @@ public class MeowManager {
     }
 
     public void draw(Graphics g){
-        drawPlant(g);
+        drawMeow(g);
         drawExplosion(g);
     }
 

@@ -16,8 +16,8 @@ public class Shooter extends Meow {
     private int meowX,meowY;
     private int counter = 0, counterNum = 1;
 
-    public Shooter(int meowHP, int meowId, int ATK, int frameCountIdleLimit,int frameCountAttackLimit,int x, int y,int width, int height , int price) {
-        super(meowHP, meowId, ATK, frameCountIdleLimit, frameCountAttackLimit,x, y, width,height ,price);
+    public Shooter(int meowHP, int meowId, int ATK,int x, int y,int width, int height , int price , boolean isAbleToFreeze) {
+        super(meowHP, meowId, ATK,x, y, width,height ,price , isAbleToFreeze);
     }
 
     public void shoot() {
