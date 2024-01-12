@@ -63,11 +63,6 @@ public class MenuGame implements SceneMethods{
     public void updates() {
     }
 
-//    public void drawButtons(Graphics g) {
-//        bPlaying.draw(g);
-//        bQuit.draw(g);
-//        bWin.draw(g);
-//    }
 
     @Override
     public void render(Graphics g, Image img) {

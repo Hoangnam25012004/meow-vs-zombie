@@ -3,6 +3,7 @@ package org.game.Manager;
 
 import org.game.Fish.Fish;
 import org.game.MeowPack.Meow;
+import org.game.Scenes.Playing;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Random;
 
 public class FishManager {
+    private Playing playing;
     private Toolkit t = Toolkit.getDefaultToolkit();
     private Image fishImage = t.getImage(getClass().getResource("/Fish/fish.png"));;
     private List<Fish> listOfFish = new ArrayList<>();
@@ -21,19 +23,19 @@ public class FishManager {
     private int randomTimeFishDrop = 600;
     private int fakeSize = 6000;
     private static FishManager instance;
-//    private FishManager(Playing playing){
-//        this.playing = playing;
-//        fishInit();
-//    }
+    private FishManager(Playing playing){
+        this.playing = playing;
+        fishInit();
+    }
 
-//    public static FishManager createFishManager(Playing playing) {
-//        if(instance == null) {
-//            instance = new FishManager(playing);
-//        } else {
-//            System.out.println("Cannot create another TileManager");
-//        }
-//        return instance;
-//    }
+    public static FishManager createFishManager(Playing playing) {
+        if(instance == null) {
+            instance = new FishManager(playing);
+        } else {
+            System.out.println("Cannot create another TileManager");
+        }
+        return instance;
+    }
     private void fishInit(){
         for(int i = 0;i< 6000;i++){
             int randx = random.nextInt(300)+550;

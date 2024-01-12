@@ -25,7 +25,7 @@ public class Meow implements Shooter
     private boolean alive = false;
     private boolean isAbleToFreeze = false;
 
-    private int frameCountIdleLimit;
+    private int frameCountIdleLimit = 1;
     private int frameCountAttackLimit;
     private int frameCountIdle = 0;
     private int frameCountAttack = 0;
@@ -79,15 +79,6 @@ public class Meow implements Shooter
         }
     }
 
-    public void updateFrameCountIdle(){
-        frameCDIdle++;
-        if(frameCDIdle%3 == 0){
-            frameCountIdle++;
-            if(frameCountIdle == frameCountIdleLimit){
-                frameCountIdle = 0;
-            }
-        }
-    }
 
     public void updateFrameCountAttack(){
         frameCDAttack++;

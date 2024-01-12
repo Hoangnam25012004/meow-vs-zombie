@@ -16,6 +16,7 @@ public class Playing implements SceneMethods {
     private TileManager tileManager;
     private ZombieManager zombieManager;
     private BarManager barManager;
+    //private NotifManager notifManager;
     private KeyBoardManager keyBoardManager;
     private Toolkit t = Toolkit.getDefaultToolkit();
     private World w;
@@ -24,6 +25,18 @@ public class Playing implements SceneMethods {
         this.w = w;
 //        initManagers();
     }
+    private void initManagers() {
+        mouseMotionManager = new MouseMotionManager(this);
+        //singleton application
+        //notifManager = NotifManager.createNotifManager(this);
+        zombieManager = ZombieManager.createZombieManager(this);
+//        ZombieManager zombieManager1 = ZombieManager.createZombieManager(this);
+        barManager = BarManager.createBar(this);
+        tileManager = TileManager.createTileManager(this);
+        meowManager = MeowManager.createMeowManager(this);
+        fishManager = FishManager.createFishManager(this);
+        bulletManager = new BulletManager();
+    }
 
     public void mouseMove(int x, int y){
         mouseMotionManager.changeStatusToMouse(x,y,w);
@@ -31,10 +44,6 @@ public class Playing implements SceneMethods {
         mouseMotionManager.tileTrack(x,y);
     }
 
-    @Override
-    public void render(Graphics g, Image img) {
-
-    }
 
     @Override
     public void mouseClicked(int x, int y) {
@@ -61,6 +70,9 @@ public class Playing implements SceneMethods {
     public KeyBoardManager getKeyBoardManager(){
         return keyBoardManager;
     }
+    public MouseMotionManager getMouseMotionManager() {
+        return mouseMotionManager;
+    }
     public TileManager getTileManager(){
         return tileManager;
     }
@@ -82,6 +94,22 @@ public class Playing implements SceneMethods {
 
 
     public void updates() {
+    }
+
+    @Override
+    public void render(Graphics g, Image img) {
+        g.drawImage(img, 0, 0, w.getWidth(), w.getHeight(), null);
+//        buttonManager.drawButtons(g);
+//        tileManager.drawTiles(g, plantManager);
+//        tileManager.drawTiles(g, houseOwnerManager);
+        barManager.draw(g);
+        mouseMotionManager.drawPlantSelectedByMouse(g);
+        tileManager.draw(g); //fix laij chon bang chuot thoi
+        meowManager.draw(g);
+        zombieManager.render(g);
+        fishManager.drawFish(g);
+      //  notifManager.drawNotif(g);
+        bulletManager.drawProjectile(g);
     }
 }
 
