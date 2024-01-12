@@ -1,9 +1,8 @@
 package org.game.Manager;
 
-//import Audio.Audio;
-//import Plant.Plant;
+
 import org.game.Fish.Fish;
-import org.game.MeowPack.FishBucket;
+import org.game.MeowPack.Meow;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -49,12 +48,12 @@ public class FishManager {
         listOfFish.get(randx).setThere(true);
         fakeSize--;
     }
-    public void fishCreatedByFishBucket(FishBucket fish){
+    public void fishCreatedByFishBucket(Meow meow){
         int randx = random.nextInt(fakeSize);
-        listOfFish.get(randx).setX(fish.getX());
-        listOfFish.get(randx).setY(fish.getY()-30);
-        listOfFish.get(randx).setBound(new Rectangle(fish.getX(),fish.getY()-30,70,70));
-        listOfFish.get(randx).setBoundaryDrop(fish.getY()+30);
+        listOfFish.get(randx).setX(meow.getX());
+        listOfFish.get(randx).setY(meow.getY()-30);
+        listOfFish.get(randx).setBound(new Rectangle(meow.getX(),meow.getY()-30,70,70));
+        listOfFish.get(randx).setBoundaryDrop(meow.getY()+30);
         listOfFish.get(randx).setThere(true);
         fakeSize--;
     }

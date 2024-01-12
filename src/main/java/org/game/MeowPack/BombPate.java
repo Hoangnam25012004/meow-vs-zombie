@@ -1,28 +1,28 @@
 package org.game.MeowPack;
 
+import org.game.Manager.ZombieManager;
 import org.game.Zombie.Zombie;
-import org.game.graphic.Graphical;
 
 import java.awt.*;
 
 public class BombPate extends Meow {
-    private Graphical graphical;
+    public ZombieManager zombieManager;
     private int meowX,meowY;
 
     // Attack damage/ explode damage
     private float explosionRadius = 10.0f;
     private int explosionDamage = 1;
-    public BombPate(int meowId, String meowName,int x, int y, int width, int height, int healthPoint, int price) {
-        super(meowId, meowName, x, y, width, height, healthPoint, price);
+    public BombPate(int meowHP, int meowId, int ATK,int x, int y,int width, int height , int price) {
+        super(meowHP, meowId, ATK,x, y, width,height ,price,false);
     }
 
     // Calls this function when zombies hit or collide with BombPate's rectangle
     public void expolde(Zombie zombie) {
         if (isWithinExplosionRange(zombie))
         {
-            zombie.takeDamage(explosionDamage);
+            zombieManager.takeDamage(explosionDamage);
             // or
-            // zombie.die() or zombie.destroy()...
+            // zombie.die() or zombie.destroy()... okie chị ui
         }
     }
 
@@ -34,19 +34,9 @@ public class BombPate extends Meow {
 
     private float calculateDistance(Zombie zombie)
     {
-        return (float)Math.sqrt(Math.pow(zombie.getX() - getX(), 2) + Math.pow(zombie.getY() - getY(), 2));
+        return (float)Math.sqrt(Math.pow(zombie.X() - getX(), 2) + Math.pow(zombie.Y() - getY(), 2));
     }
 
-    @Override
-    public void render(Graphics2D g2) {
-        g2.drawImage(can_1, meowX, meowY, graphical.getmeowWidth(), graphical.getmeowHeight(), null);
-        g2.drawImage(can_2, meowX, meowY, graphical.getmeowWidth(), graphical.getmeowHeight(), null);
-        g2.drawImage(can_3, meowX, meowY, graphical.getmeowWidth(), graphical.getmeowHeight(), null);
-        g2.drawImage(can_4, meowX, meowY, graphical.getmeowWidth(), graphical.getmeowHeight(), null);
-
-    }
-
-    @Override
     public void update() {
 
     }

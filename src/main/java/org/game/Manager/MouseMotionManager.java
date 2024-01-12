@@ -1,7 +1,7 @@
 package org.game.Manager;
 
 import org.game.Scenes.Playing;
-import org.game.graphic.Graphical;
+
 
 import java.awt.*;
 
@@ -21,8 +21,8 @@ public class MouseMotionManager {
     }
     public void returnToSelectPlantByMouse(){
         playing.getMeowManager().setSelected(false);
-        playing.getMeowManager().setTimetoPlant(true);
-        playing.getBarManager().setPlantLocked(false);
+        playing.getMeowManager().setTimeToMeow(true);
+        playing.getBarManager().setMeowLocked(false);
     }
     public void changeStatusToMouse(int x, int y, World w){
         Rectangle world = new Rectangle(w.getX(),w.getY(),w.getWidth(),w.getHeight());
@@ -35,13 +35,13 @@ public class MouseMotionManager {
         }
     }
     public void mouseTrackPlantBar(int x, int y){
-        for(int i = 0;i<playing.getBarManager().getPickPlant().length;i++){
-            Rectangle r = playing.getBarManager().getPickPlant()[i].getBounds();
+        for(int i = 0;i<playing.getBarManager().getPickMeow().length;i++){
+            Rectangle r = playing.getBarManager().getPickMeow()[i].getBounds();
             if(r.contains(x,y)){
                 if(playing.getTileManager().isInTile()){
                     playing.getTileManager().setInTile(false);
                     playing.getMeowManager().setSelected(false);
-                    playing.getBarManager().setPlantLocked(false);
+                    playing.getBarManager().setMeowLocked(false);
                    // playing.getMeowManager().setShoveled(false);
                 }
                 plantPickedByMouse = i;
@@ -66,8 +66,8 @@ public class MouseMotionManager {
         this.tileSelectedByMouse = tileSelectedByMouse;
     }
     public void tileTrack(int x, int y){
-        for(int i = 0;i<playing.getTileManager().getTile().length;i++){
-            Rectangle r = new Rectangle((int)playing.getTileManager().getTile()[i].getBound().getX(),(int)playing.getTileManager().getTile()[i].getBound().getY(),playing.getTileManager().getTile()[i].getGrassTile() ,playing.getTileManager().getTile()[i].getGrassTile());
+        for(int i = 0;i<playing.getTileManager().getTiles().length;i++){
+            Rectangle r = new Rectangle((int)playing.getTileManager().getTiles()[i].getBound().getX(),(int)playing.getTileManager().getTiles()[i].getBound().getY(),playing.getTileManager().getTiles()[i].getwTile(),playing.getTileManager().getTiles()[i].gethTile());
             if(r.contains(x,y)){
                 playing.getTileManager().setInTile(true);
                 tileSelectedByMouse = i;

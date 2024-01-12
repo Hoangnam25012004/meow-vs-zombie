@@ -1,6 +1,5 @@
 package org.game.Scenes;
 
-import org.game.graphic.Graphical;
 import org.game.Manager.*;
 import org.game.Component.MyButtons;
 import java.awt.*;

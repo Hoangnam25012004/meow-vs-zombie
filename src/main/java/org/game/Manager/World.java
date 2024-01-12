@@ -8,19 +8,19 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class World extends JPanel implements Runnable {
-    private int screenWidth = 1024, screenHeight = 625;
+    private int screenWidth = 1024, screenHeight = 576;
     private ArrayList<Image> img = new ArrayList<>();
+    private Lose lose;
+    private MenuGame menuGame;
+    private Playing playing;
+    private Setting setting;
+    private Win win;
 
     private double FPS_SET = 60.0;
     private double UPS_SET = 60.0;
     private MyMouseListener myMouseListener;
     private KeyBoardListener keyBoardListener;
 
-    private Lose lose;
-    private Win win;
-    private Playing playing;
-    private MenuGame menuGame;
-    private Setting setting;
     private Toolkit t = Toolkit.getDefaultToolkit();
     private int frameCount = 0;
     private boolean FPSstop = false;
@@ -38,11 +38,17 @@ public class World extends JPanel implements Runnable {
         importImg();
         start();
 
+    }
 
+    public int getScreenHeight() {
+        return screenHeight;
+    }
+    public int getScreenWidth(){
+        return screenWidth;
     }
 
     public Lose getLose() {
-        return lose;
+       return lose;
     }
 
     public MenuGame getMenuGame() {
@@ -51,7 +57,7 @@ public class World extends JPanel implements Runnable {
 
     public Playing getPlaying() {
         return playing;
-    }
+   }
 
     public Win getWin() {
         return win;
@@ -73,10 +79,10 @@ public class World extends JPanel implements Runnable {
 
     public void initClasses() {
         menuGame = new MenuGame(this);
-        playing = new Playing(this);
-        win = new Win(this);
-        lose = new Lose(this);
-        setting = new Setting(this);
+//        playing = new Playing(this);
+//        win = new Win(this);
+//        lose = new Lose(this);
+//        setting = new Setting(this);
     }
 
     @Override
@@ -90,17 +96,17 @@ public class World extends JPanel implements Runnable {
             case MENU:
                 menuGame.render(g, img.get(0));
                 break;
-            case PLAYING:
-                playing.render(g, img.get(1));
-                break;
-            case LOSE:
-                lose.render(g, img.get(2));
-                break;
-            case SETTING:
-                setting.render(g, img.get(3));
-                break;
-            case WIN:
-                win.render(g,img.get(4));
+//            case PLAYING:
+//                playing.render(g, img.get(1));
+//                break;
+//            case LOSE:
+//                lose.render(g, img.get(2));
+//                break;
+//            case SETTING:
+//                setting.render(g, img.get(3));
+//                break;
+//            case WIN:
+//                win.render(g,img.get(4));
         }
     }
 
@@ -109,17 +115,17 @@ public class World extends JPanel implements Runnable {
             case MENU:
                 getMenuGame().updates();
                 break;
-            case PLAYING:
-                getPlaying().updates();
-                break;
-            case LOSE:
-                getLose().updates();
-                break;
-            case SETTING:
-                getSetting().updates();
-                break;
-            case WIN:
-                getWin().updates();
+//            case PLAYING:
+//                getPlaying().updates();
+//                break;
+//            case LOSE:
+//                getLose().updates();
+//                break;
+//            case SETTING:
+//                getSetting().updates();
+//                break;
+//            case WIN:
+//                getWin().updates();
         }
     }
 
@@ -165,6 +171,8 @@ public class World extends JPanel implements Runnable {
             }
         }
     }
+
+
 
 
 
