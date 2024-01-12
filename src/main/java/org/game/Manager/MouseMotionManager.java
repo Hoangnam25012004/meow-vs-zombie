@@ -49,6 +49,10 @@ public class MouseMotionManager {
             }
         }
     }
+    public void drawPlantSelectedByMouse(Graphics g){
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.drawImage(playing.getBarManager().getPickedMeow(), (int)playing.getBarManager().getPickMeow()[plantPickedByMouse].getBounds().getX(),(int)playing.getBarManager().getPickMeow()[plantPickedByMouse].getBounds().getY(),(int)playing.getBarManager().getPickMeow()[plantPickedByMouse].getBounds().getWidth(),(int)playing.getBarManager().getPickMeow()[plantPickedByMouse].getBounds().getHeight(),null);
+    }
     public boolean getisControlledByMouse() {
         return isControlledByMouse;
     }

@@ -13,7 +13,6 @@ import java.util.List;
 public class BarManager {
     private Image[] pick_meowBar;
     private Image[] meowInCD;
-//    private Image dog;
     private Image pickedMeow;
     private Image meowBar;
     private MyButtons pickMeow[];
@@ -57,29 +56,30 @@ public class BarManager {
 
     private void initButtons() {
         pickMeow = new MyButtons[5];
-        pickMeow[0] = new MyButtons("Fish", 458, 20, 80, 70);
+        pickMeow[0] = new MyButtons("Bucket", 458, 20, 80, 70);
         pickMeow[1] = new MyButtons("Meow", 553, 20, 80, 70);
         pickMeow[2] = new MyButtons("Stinky Pate", 648, 20, 80, 70);
         pickMeow[3] = new MyButtons("Ice Meow", 743, 20, 80, 70);
         pickMeow[4] = new MyButtons("Pate Bomb", 838, 20, 80, 70);
-//        pickMeow[5] = new MyButtons("Dog",940,20,80,70);
     }
 
     private void importImg(){
         pick_meowBar = new Image[5];
         try {
-            pick_meowBar[0] = t.getImage(getClass().getResource("/meowBar/fish.png"));
-            pick_meowBar[1] = t.getImage(getClass().getResource("/meowBar/meow.png"));
-            pick_meowBar[2] = t.getImage(getClass().getResource("/meowBar/stinkyPate.png"));
-            pick_meowBar[3] = t.getImage(getClass().getResource("/meowBar/iceMeow.png"));
+            pick_meowBar[0] = t.getImage(getClass().getResource("/meowBar/Bucket.png"));
+            pick_meowBar[1] = t.getImage(getClass().getResource("/meowBar/Meow.png"));
+            pick_meowBar[2] = t.getImage(getClass().getResource("/meowBar/Tray.png"));
+            pick_meowBar[3] = t.getImage(getClass().getResource("/meowBar/Icecat.png"));
             pick_meowBar[4] = t.getImage(getClass().getResource("/meowBar/pateBomb.png"));
-//            pick_meowBar[5] = t.getImage(getClass().getResource("/shovel/shovel.png"));
             pickedMeow = t.getImage(getClass().getResource("/meowBar/plantSelected.png"));
-            meowBar = t.getImage(getClass().getResource("/meowBar/meowPanel.png"));
+            meowBar = t.getImage(getClass().getResource("/meowBar/MeowBar.png"));
         }catch (Exception e){
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error - importImage()");
         }
+    }
+    public Image getPickedMeow() {
+        return pickedMeow;
     }
 
     public boolean[] getIsMeowInCD() {
@@ -134,7 +134,9 @@ public class BarManager {
         playing.getMeowManager().setFishCostHold(150);
     }
 
-
+    public boolean[] getIsMeowEnoughFish() {
+        return isMeowEnoughFish;
+    }
     public void setCDatStartOfGame(){
         meowCD[1] = 205;
         meowCD[2] = 205;
@@ -150,7 +152,27 @@ public class BarManager {
         isMeowInCD[4] = true;
     }
 
+    public void drawMeowInCD(Graphics g){
+        int distance = 0;
+        Graphics2D g2d = (Graphics2D) g;
+        for(int i = 0;i<5;i++){
+            if(isMeowInCD[i]){
+                g.drawImage(meowInCD[i], 458 + distance, 20, 80, 70, null);
+                int cd = (meowCD[i]+59)/60;
+                g2d.setColor(Color.YELLOW);
+                g2d.setFont(new Font("Arial",Font.BOLD,30));
+                g2d.drawString(String.format("%d",cd),483 + distance,65);
+            }
+            distance += 95;
+        }
+    }
+
     public MyButtons[] getPickMeow(){
         return pickMeow;
+    }
+
+    public void draw(Graphics g){
+        drawMeowbar(g);
+        drawMeowInCD(g);
     }
 }

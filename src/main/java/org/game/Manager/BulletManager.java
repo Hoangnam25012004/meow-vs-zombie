@@ -1,51 +1,51 @@
 package org.game.Manager;
 import org.game.Zombie.Zombie;
 import org.game.bullet.Bullet;
+import org.game.bullet.BulletLogic;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
-public class BulletManager {
-    private double speed;
-    private List<Bullet> bullet = new ArrayList<>();
+public class BulletManager extends BulletLogic {
+    private Image[] bulletImage = new Image[2];
     private int originalX;
     private int originalY;
     public BufferedImage bullet_1, bullet_2;
     public ArrayList<Bullet> bulletList = new ArrayList<>();
     Zombie zombie;
 
-    public BulletManager(int x, int y, int Dame , boolean isFrozen) {
-        this.originalX = x;
-        this.originalY = y;
-        getBulletImage();
-    }
-
 
 
     //___________________________________________________________________________
     //
-    public void getBulletImage() {
+
+    @Override
+    public void drawProjectile(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
         try {
-            bullet_1 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bullet/wool.png")));
-            bullet_2 = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bullet/Icewool.png")));
+            bulletImage[0] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bullet/wool.png")));
+            bulletImage[1] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bullet/Icewool.png")));
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public void render(Graphics2D g2) {
-        for (int i=0 ; i<= bullet.size();i++) {
-            if (!bullet.get(i).getisFrozen()) {
-                g2.drawImage(bullet_1, (int) bullet.get(i).getX(), bullet.get(i).getY(), bullet.get(i).getBulletSize(), bullet.get(i).getBulletSize(), null);
-
-            } else {
-                g2.drawImage(bullet_2,(int) bullet.get(i).getX(), bullet.get(i).getY(), bullet.get(i).getBulletSize(), bullet.get(i).getBulletSize(), null);
+        synchronized (getBullet()){
+            Iterator<Bullet> iterator = getBullet().iterator();
+            while ((iterator.hasNext())) {
+                Bullet bullet = iterator.next();
+                if(!bullet.getisFrozen()){
+                    g2d.drawImage(bulletImage[0],(int) bullet.getX(),bullet.getY(),30,30,null);
+                } else if(bullet.getisFrozen()){
+                    g2d.drawImage(bulletImage[1],(int) bullet.getX(),bullet.getY()-10,70,30,null);
+                }
             }
         }
     }
+
 
     //___________________________________________________________________________
     private void move(double speed) {

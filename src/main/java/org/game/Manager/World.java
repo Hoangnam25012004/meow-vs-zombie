@@ -79,10 +79,10 @@ public class World extends JPanel implements Runnable {
 
     public void initClasses() {
         menuGame = new MenuGame(this);
-//        playing = new Playing(this);
-//        win = new Win(this);
-//        lose = new Lose(this);
-//        setting = new Setting(this);
+        playing = new Playing(this);
+        win = new Win(this);
+        lose = new Lose(this);
+        setting = new Setting(this);
     }
 
     @Override
@@ -96,17 +96,17 @@ public class World extends JPanel implements Runnable {
             case MENU:
                 menuGame.render(g, img.get(0));
                 break;
-//            case PLAYING:
-//                playing.render(g, img.get(1));
-//                break;
-//            case LOSE:
-//                lose.render(g, img.get(2));
-//                break;
-//            case SETTING:
-//                setting.render(g, img.get(3));
-//                break;
-//            case WIN:
-//                win.render(g,img.get(4));
+            case PLAYING:
+                playing.render(g, img.get(1));
+                break;
+            case LOSE:
+                lose.render(g, img.get(2));
+                break;
+            case SETTING:
+                setting.render(g, img.get(3));
+                break;
+            case WIN:
+                win.render(g,img.get(4));
         }
     }
 
@@ -115,17 +115,17 @@ public class World extends JPanel implements Runnable {
             case MENU:
                 getMenuGame().updates();
                 break;
-//            case PLAYING:
-//                getPlaying().updates();
-//                break;
-//            case LOSE:
-//                getLose().updates();
-//                break;
-//            case SETTING:
-//                getSetting().updates();
-//                break;
-//            case WIN:
-//                getWin().updates();
+            case PLAYING:
+                getPlaying().updates();
+                break;
+            case LOSE:
+                getLose().updates();
+               break;
+            case SETTING:
+                getSetting().updates();
+                break;
+            case WIN:
+                getWin().updates();
         }
     }
 

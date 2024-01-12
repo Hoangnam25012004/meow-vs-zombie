@@ -195,7 +195,6 @@ public class MeowManager {
         while (iterator.hasNext()){
             Meow meow = iterator.next();
             if(meow.isAlive() || waitingTime<240){
-                meow.updateFrameCountIdle();
                 if(meow.getID() == 1 || meow.getID() == 3){
                     meow.updateFrameCountAttack();
                 }
