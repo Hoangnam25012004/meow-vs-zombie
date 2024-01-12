@@ -22,9 +22,6 @@ public class BarManager {
     private boolean[] isMeowEnoughFish = new boolean[5];
     private boolean isMeowLocked = false;
     private static BarManager instance = null;
-    public BarManager(){
-
-    }
 
     public boolean isMeowLocked() {
         return isMeowLocked;
@@ -41,7 +38,7 @@ public class BarManager {
     private BarManager(Playing playing) {
         initButtons();
         importImg();
-//        initPlantInCD();
+        initmeowInCD();
         this.playing = playing;
     }
 
@@ -152,6 +149,19 @@ public class BarManager {
         isMeowInCD[4] = true;
     }
 
+    public void initmeowInCD(){
+        meowInCD = new Image[5];
+        try {
+            meowInCD[0] = t.getImage(getClass().getResource("/meowBar/meowINCD/Bucket.png"));
+            meowInCD[1] = t.getImage(getClass().getResource("/meowBar/meowINCD/Meow.png"));
+            meowInCD[2] = t.getImage(getClass().getResource("/meowBar/meowINCD/Tray.png"));
+            meowInCD[3] = t.getImage(getClass().getResource("/meowBar/meowINCD/Icecat.png"));
+            meowInCD[4] = t.getImage(getClass().getResource("/meowBar/meowINCD/Food.png"));
+        } catch (Exception e){
+
+        }
+    }
+
     public void drawMeowInCD(Graphics g){
         int distance = 0;
         Graphics2D g2d = (Graphics2D) g;
@@ -166,6 +176,7 @@ public class BarManager {
             distance += 95;
         }
     }
+
 
     public MyButtons[] getPickMeow(){
         return pickMeow;
