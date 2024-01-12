@@ -23,14 +23,13 @@ public class Playing implements SceneMethods {
     private boolean startWaveForCD = false;
     public Playing(World w) {
         this.w = w;
-//        initManagers();
+        initManagers();
     }
     private void initManagers() {
         mouseMotionManager = new MouseMotionManager(this);
         //singleton application
         //notifManager = NotifManager.createNotifManager(this);
         zombieManager = ZombieManager.createZombieManager(this);
-//        ZombieManager zombieManager1 = ZombieManager.createZombieManager(this);
         barManager = BarManager.createBar(this);
         tileManager = TileManager.createTileManager(this);
         meowManager = MeowManager.createMeowManager(this);
@@ -103,8 +102,8 @@ public class Playing implements SceneMethods {
 //        tileManager.drawTiles(g, plantManager);
 //        tileManager.drawTiles(g, houseOwnerManager);
         barManager.draw(g);
-        mouseMotionManager.drawPlantSelectedByMouse(g);
-        tileManager.draw(g); //fix laij chon bang chuot thoi
+        mouseMotionManager.drawMeowSelectedByMouse(g);
+        tileManager.draw(g);
         meowManager.draw(g);
         zombieManager.render(g);
         fishManager.drawFish(g);

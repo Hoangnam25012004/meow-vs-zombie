@@ -4,16 +4,18 @@ import org.game.Component.Tile;
 import org.game.Scenes.Playing;
 
 //import javax.imageio.ImageIO;
+import javax.imageio.ImageIO;
 import java.awt.*;
-//import java.io.BufferedReader;
-//import java.io.IOException;
-//import java.io.InputStream;
-//import java.io.InputStreamReader;
-//import java.util.Objects;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.Objects;
+
 
 public class TileManager {
     private Tile[] tiles = new Tile[45];
-    private int wTile = 60, hTile = 70;
+    private int wTile = 86, hTile = 86;
     private Playing playing;
     private Image[] meowLightBlur = new Image[5];
     private Image[] meowHardBlur = new Image[5];
@@ -23,6 +25,7 @@ public class TileManager {
     public int hTileOfLake = 70;
     private static TileManager instance;
     private boolean isInTile = false;
+    int[][] mapTileNum;
 
     public boolean isInTile() {
         return isInTile;
@@ -30,9 +33,12 @@ public class TileManager {
 
     private TileManager(Playing playing) {
         initTiles();
-//        importHardBlurPlant();
-//        importLightBlurPlant();
+        importHardBlurMeow();
+        importLightBlurMeow();
         initTilesOfLake();
+        mapTileNum = new int[9][5];
+        loadMap();
+        getTileImage();
         this.playing = playing;
     }
 
@@ -47,35 +53,35 @@ public class TileManager {
 
 
     private void initTiles() {
-        int curX = 300, curY = 171, rowCounter = 0;
+        int curX = 90, curY = 102, rowCounter = 0;
         for (int i = 0; i < 45; i++) {
             if (rowCounter >= 9) {
-                curY += hTile + 10;
-                curX = 300;
+                curY += hTile;
+                curX = 90;
                 rowCounter = 0;
             }
-            curX += (wTile + 10);
-            tiles[i] = new Tile(new Rectangle(curX, curY, wTile, hTile));
+            curX += wTile;
+            tiles[i] = new Tile(new Rectangle(curX, curY, wTile, hTile) );
             rowCounter++;
         }
     }
 
     public void importLightBlurMeow(){
-        meowLightBlur[0] = t.getImage(getClass().getResource("/Blur_Plants/Sunflower/sunflower (light - blur).png"));
-        meowLightBlur[1] = t.getImage(getClass().getResource("/Blur_Plants/Peashooter/peashooter (light - blur).png"));
-        meowLightBlur[2] = t.getImage(getClass().getResource("/Blur_Plants/Wall-nut/wall-nut (light - blur).png"));
-        meowLightBlur[3] = t.getImage(getClass().getResource("/Blur_Plants/ShadowPea/ShadowPea (light - blur).png"));
-        meowLightBlur[4] = t.getImage(getClass().getResource("/Blur_Plants/CherryBomb/cherrybomb (light - blur).png"));
+        meowLightBlur[0] = t.getImage(getClass().getResource("/BlurMeow/LightBlur/bucket 1.png"));
+        meowLightBlur[1] = t.getImage(getClass().getResource("/BlurMeow/LightBlur/cat-sit 1.png"));
+        meowLightBlur[2] = t.getImage(getClass().getResource("/BlurMeow/LightBlur/Cattray (1)1.png"));
+        meowLightBlur[3] = t.getImage(getClass().getResource("/BlurMeow/LightBlur/Icecat 1.png"));
+        meowLightBlur[4] = t.getImage(getClass().getResource("/BlurMeow/LightBlur/food 1.png"));
     }
     public void importHardBlurMeow(){
-        meowHardBlur[0] = t.getImage(getClass().getResource("/Blur_Plants/Sunflower/sunflower (hard - blur).png"));
-        meowHardBlur[1] = t.getImage(getClass().getResource("/Blur_Plants/Peashooter/peashooter (hard - blur).png"));
-        meowHardBlur[2] = t.getImage(getClass().getResource("/Blur_Plants/Wall-nut/wall-nut (hard - blur).png"));
-        meowHardBlur[3] = t.getImage(getClass().getResource("/Blur_Plants/ShadowPea/ShadowPea (hard - blur).png"));
-        meowHardBlur[4] = t.getImage(getClass().getResource("/Blur_Plants/CherryBomb/cherrybomb (hard - blur).png"));
+        meowHardBlur[0] = t.getImage(getClass().getResource("/BlurMeow/HardBlur/bucket 1.png"));
+        meowHardBlur[1] = t.getImage(getClass().getResource("/BlurMeow/HardBlur/cat-sit 1.png"));
+        meowHardBlur[2] = t.getImage(getClass().getResource("/BlurMeow/HardBlur/Cattray (1)1.png"));
+        meowHardBlur[3] = t.getImage(getClass().getResource("/BlurMeow/HardBlur/Icecat 1.png"));
+        meowHardBlur[4] = t.getImage(getClass().getResource("/BlurMeow/HardBlur/food 1.png"));
     }
 
-    public void drawTiles(Graphics g, LakeManager lakeManager) {
+ /*   public void drawTiles(Graphics g, LakeManager lakeManager) {
         int curX = 200;
         int curY = 171;
 
@@ -86,6 +92,24 @@ public class TileManager {
             g.fillRect(r.x, r.y, r.width, r.height);
 
             curY += t.getHTileOfHouseOwner() + 10;
+        }
+    }*/
+    public void drawTiles(Graphics g){
+        int col = 0;
+        int row =0;
+        int x = 176, y = 102;
+
+        while (col < 9 && row< 5){
+            int tileNum = mapTileNum[col][row];
+            g.drawImage(tiles[tileNum].image,x,y,wTile,hTile,null);
+            col++;
+            x += wTile;
+            if (col == 9){
+                col = 0;
+                x =176 ;
+                row++;
+                y += hTile;
+            }
         }
     }
 
@@ -113,7 +137,7 @@ public class TileManager {
     }
     public void drawMeowPreparedToPlace(Graphics g){
         if((playing.getMeowManager().isSelected() && playing.getMouseMotionManager().getisControlledByMouse()) || !playing.getMouseMotionManager().getisControlledByMouse()){
-            Rectangle r = new Rectangle((int)tiles[playing.getKeyBoardManager().getTileSelectedByKeyBoard()].getBound().getX(),(int)tiles[playing.getKeyBoardManager().getTileSelectedByKeyBoard()].getBound().getY(),tiles[playing.getKeyBoardManager().getTileSelectedByKeyBoard()].getwTile(),tiles[playing.getKeyBoardManager().getTileSelectedByKeyBoard()].gethTile());
+            Rectangle r = new Rectangle((int)tiles[playing.getMouseMotionManager().getTileSelectedByMouse()].getBound().getX(),(int)tiles[playing.getMouseMotionManager().getTileSelectedByMouse()].getBound().getY(),tiles[playing.getMouseMotionManager().getTileSelectedByMouse()].getwTile(),tiles[playing.getMouseMotionManager().getTileSelectedByMouse()].gethTile());
             if(playing.getMeowManager().getIDhold() >= 0){
                 if(!playing.getBarManager().getIsMeowInCD()[playing.getMeowManager().getIDhold()] && playing.getBarManager().getIsMeowEnoughFish()[playing.getMeowManager().getIDhold()] && !playing.getMeowManager().isForbidden()){
                     Graphics2D g2d = (Graphics2D) g;
@@ -138,7 +162,7 @@ public class TileManager {
         g2d.drawImage(playing.getBarManager().getPickedMeow(),(int)tiles[playing.getMouseMotionManager().getTileSelectedByMouse()].getBound().getX(),(int)tiles[playing.getMouseMotionManager().getTileSelectedByMouse()].getBound().getY(),tiles[playing.getMouseMotionManager().getTileSelectedByMouse()].getwTile(),tiles[playing.getMouseMotionManager().getTileSelectedByMouse()].gethTile(),null);
     }
     public void draw(Graphics g){
-//        drawTiles(g);
+        drawTiles(g);
         drawMeowPreparedToPlace(g);
         drawTileSelectedByMouse(g);
     }
@@ -147,42 +171,38 @@ public class TileManager {
 
 
 
-//    public void getTileImage(){
-//        try {
-//
-//            for (int i = 1; i <= 45; i++) {
-//
-//                tile[i-1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Scene/land/land" +i+".png")));
-//
-//
-//            }
-//        } catch (IOException e){e.printStackTrace();}
-//    }
+    public void getTileImage(){
+        try {
+            for (int i = 1; i <= 45; i++) {
+                tiles[i-1].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Scene/land/land" +i+".png")));
+            }
+        } catch (IOException e){e.printStackTrace();}
+    }
 
 
-//    public void loadMap(){
-//        try {
-//            InputStream is = getClass().getResourceAsStream("/Scene/LandTile.txt");
-//            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-//            int col = 0;
-//            int row = 0;
-//            while (col < graphical.grassCol & row<graphical.grassRow){
-//                String line = br.readLine();
-//                while(col < graphical.grassCol){
-//                    String number[] = line.split(" ");
-//                    int num = Integer.parseInt(number[col]);
-//                    mapTileNum[col][row] = num;
-//                    col++;
-//                }
-//                if (col == graphical.grassCol){
-//                    col = 0;
-//                    row++;
-//                }
-//            }
-//            br.close();
-//
-//        }catch (Exception e){}
-//    }
+    public void loadMap(){
+        try {
+            InputStream is = getClass().getResourceAsStream("/Scene/LandTile.txt");
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            int col = 0;
+            int row = 0;
+            while (col < 9 & row< 5){
+                String line = br.readLine();
+                while(col < 9){
+                    String number[] = line.split(" ");
+                    int num = Integer.parseInt(number[col]);
+                    mapTileNum[col][row] = num;
+                    col++;
+                }
+                if (col == 9){
+                    col = 0;
+                    row++;
+                }
+            }
+            br.close();
+
+        }catch (Exception e){e.printStackTrace();}
+    }
 //
 //
 //    public void render(Graphics2D g2){

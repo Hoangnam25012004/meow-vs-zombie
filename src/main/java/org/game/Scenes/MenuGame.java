@@ -44,7 +44,7 @@ public class MenuGame implements SceneMethods{
     public void mouseClicked(int x, int y) {
         if(bPlaying.getBounds().contains(x,y)) {
             setGameScenes(PLAYING);
-//            w.getPlaying().getBarManager().setCDatStartOfGame();
+            w.getPlaying().getBarManager().setCDatStartOfGame();
         } else if (bQuit.getBounds().contains(x,y)) {
             System.exit(0);
         }

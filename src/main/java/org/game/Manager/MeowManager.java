@@ -13,13 +13,13 @@ import java.util.List;
 import java.util.Random;
 
 public class MeowManager {
-    private final Image[] fish = new Image[27];
-    private final Image[] meow_idle = new Image[59];
-    private final Image[] meow_attack = new Image[59];
-    private final Image[] stinkyPate = new Image[82];
-    private final Image[] iceMeow_Idle = new Image[23];
-    private final Image[] iceMeow_Attack = new Image[21];
-    private final Image[] pateBomb = new Image[49];
+    private final Image[] fish = new Image[1];
+    private final Image[] meow_idle = new Image[1];
+    private final Image[] meow_attack = new Image[3];
+    private final Image[] stinkyPate = new Image[4];
+    private final Image[] iceMeow_Idle = new Image[1];
+    private final Image[] iceMeow_Attack = new Image[3];
+    private final Image[] pateBomb = new Image[4];
     private Toolkit t = Toolkit.getDefaultToolkit();
     private List<Meow> meowList = new ArrayList<>();
     private boolean isTimeToMeow = false;
@@ -295,7 +295,7 @@ public class MeowManager {
         }
     }
 
-    public List<Meow> getPlantList() {
+    public List<Meow> getMeowList() {
         return meowList;
     }
 

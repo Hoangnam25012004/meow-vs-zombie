@@ -92,10 +92,10 @@ public class BarManager {
     }
 
     public void drawMeowbar(Graphics g){
-        g.setColor(Color.black);
+    /*    g.setColor(Color.black);
         g.drawRect(365, 10,575,90);
         g.setColor(Color.pink);
-        g.fillRect(365, 10, 575, 90);
+        g.fillRect(365, 10, 575, 90); */
         g.drawImage(meowBar, 365, 10, 575, 90, null);
         Graphics2D g2d = (Graphics2D) g;
         int distance = 0;

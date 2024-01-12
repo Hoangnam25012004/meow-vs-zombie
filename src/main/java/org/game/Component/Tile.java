@@ -4,10 +4,12 @@ import org.game.Manager.MeowManager;
 import org.game.Scenes.Playing;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Tile {
     private final int ROWS = 5, COLS = 9;
-    private int wTile = 87, hTile = 87;
+    public BufferedImage image;
+    private int wTile = 86, hTile = 86;
     private Rectangle bound;
     private Boolean occupied = false;
     private int curX, curY;
@@ -71,6 +73,14 @@ public class Tile {
 
     public Rectangle getBounds() {
         return bound;
+    }
+
+    public int getROWS(){
+        return ROWS;
+    }
+
+    public int getCOLS(){
+        return COLS;
     }
 }
 

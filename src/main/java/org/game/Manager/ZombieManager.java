@@ -173,10 +173,10 @@ public class ZombieManager {
     public void getNormalZombie(){
         try {
             for (int i = 1; i <= normalZombieMove.length; i++) { //move normal zome
-                normalZombieMove[i-1] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("zombieRes/normalZom/move/zommove_"+i+".png")));
+                normalZombieMove[i-1] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/normalZom/move/zommove_" + i + ".png")));
             }
             for (int i = 1; i <= normalZombieEat.length; i++) {
-                normalZombieEat[i-1] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("zombieRes/normalZom/move/zommeat_"+i+".png")));
+                normalZombieEat[i-1] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/normalZom/eat/zomeat_"+i+".png")));
             }
         } catch (Exception e){e.printStackTrace();}
     }
@@ -184,10 +184,10 @@ public class ZombieManager {
     public void getCatEarZombie(){
         try {
             for (int i = 1; i <= CatEarZombieMove.length; i++) { //move normal zome
-                CatEarZombieMove[i-1] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("zombieRes/normalZom/move/zomcatear_"+i+".png")));
+                CatEarZombieMove[i-1] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/CatEarZom/move/zomcatear_"+i+".png")));
             }
             for (int i = 1; i <= CatEarZombieEat.length; i++) {
-                CatEarZombieEat[i-1] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("zombieRes/normalZom/move/zomcateareat_"+i+".png")));
+                CatEarZombieEat[i-1] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/CatEarZom/eat/zomcateareat_"+i+".png")));
             }
         } catch (Exception e){e.printStackTrace();}
 
@@ -195,10 +195,10 @@ public class ZombieManager {
     public void getHelmetZombie(){
         try {
             for (int i = 1; i <= HelmetZombieMove.length; i++) { //move normal zome
-                HelmetZombieMove[i-1] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("zombieRes/normalZom/move/zomhelmet_"+i+".png")));
+                HelmetZombieMove[i-1] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/HelmetZom/move/zomhelmet_"+i+".png")));
             }
             for (int i = 1; i <= HelmetZombieEat.length; i++) {
-                HelmetZombieEat[i-1] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("zombieRes/normalZom/move/zomhelmeteat_"+i+".png")));
+                HelmetZombieEat[i-1] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/zombieRes/HelmetZom/eat/zomhelmeteat_"+i+".png")));
             }
         } catch (Exception e){e.printStackTrace();}
 
