@@ -42,6 +42,7 @@ public class MouseMotionManager {
                     playing.getTileManager().setInTile(false);
                     playing.getMeowManager().setSelected(false);
                     playing.getBarManager().setMeowLocked(false);
+                    playing.getMeowManager().setIsDog(false);
                 }
                 meowPickedByMouse = i;
                 //playing.getKeyBoardManager().setPlantPickedByKeyBoard(meowPickedByMouse);

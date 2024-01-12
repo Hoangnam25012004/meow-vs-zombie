@@ -27,7 +27,7 @@ public class MeowManager {
     private boolean selected = true;
     private boolean isMeowed = false;
     private boolean isForbidden = false;
-//    private boolean isShoveled = false;
+    private boolean isDog = false;
     private int IDhold;
     private int fishCostHold;
     private static MeowManager instance;
@@ -347,6 +347,9 @@ public class MeowManager {
             }
         }
         return start;
+    }
+    public void setIsDog(boolean isDog){
+        this.isDog = isDog;
     }
 
     public void calmMeow(){

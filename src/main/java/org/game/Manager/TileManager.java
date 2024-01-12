@@ -19,6 +19,7 @@ public class TileManager {
     private Playing playing;
     private Image[] meowLightBlur = new Image[5];
     private Image[] meowHardBlur = new Image[5];
+   // private Image dogSprite = t.getImage(getClass().getResource("/shovel/shovel-sprite.png"));
     private Toolkit t = Toolkit.getDefaultToolkit();
     private Tile[] tilesOfLake = new Tile[5];
     public int wTileOfLake = 125;
@@ -203,24 +204,5 @@ public class TileManager {
 
         }catch (Exception e){e.printStackTrace();}
     }
-//
-//
-//    public void render(Graphics2D g2){
-//        int col = 0;
-//        int row =0;
-//        int x = 160, y = 102;
-//
-//        while (col < graphical.grassCol && row< graphical.grassRow){
-//            int tileNum = mapTileNum[col][row];
-//            g2.drawImage(tile[tileNum].image,x,y,graphical.grassTile,graphical.grassTile,null);
-//            col++;
-//            x += graphical.grassTile;
-//            if (col == graphical.grassCol){
-//                col = 0;
-//                x =160 ;
-//                row++;
-//                y += graphical.grassTile;
-//            }
-//        }
-//    }
+
 }
