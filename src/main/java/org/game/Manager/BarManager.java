@@ -100,12 +100,12 @@ public class BarManager {
         g.drawRect(365, 10,575,90);
         g.setColor(Color.pink);
         g.fillRect(365, 10, 575, 90); */
-        g.drawImage(meowBar, 365, 10, 575, 90, null);
+        g.drawImage(meowBar, 0, 0, 612, 108, null);
         Graphics2D g2d = (Graphics2D) g;
         int distance = 0;
         for (Image p : pick_meowBar){
-            g.drawImage(p, 458 + distance, 20, 80, 70, null);
-            distance += 95;
+            g.drawImage(p,95 + distance, 12, 100, 74, null );
+            distance += 100;
         }
     }
 
@@ -174,13 +174,13 @@ public class BarManager {
         Graphics2D g2d = (Graphics2D) g;
         for(int i = 0;i<5;i++){
             if(isMeowInCD[i]){
-                g.drawImage(meowInCD[i], 458 + distance, 20, 80, 70, null);
+                g.drawImage(meowInCD[i], 95 + distance, 12, 100, 74, null);
                 int cd = (meowCD[i]+59)/60;
                 g2d.setColor(Color.YELLOW);
                 g2d.setFont(new Font("Arial",Font.BOLD,30));
-                g2d.drawString(String.format("%d",cd),483 + distance,65);
+                g2d.drawString(String.format("%d",cd),95 + 86*4/5 + distance,13 +86/2 - 4);
             }
-            distance += 95;
+            distance += 100;
         }
     }
 

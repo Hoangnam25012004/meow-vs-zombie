@@ -168,9 +168,13 @@ public class TileManager {
         drawTileSelectedByMouse(g);
     }
 
+    public int getwTile(){
+        return wTile;
+    }
 
-
-
+    public int gethTile() {
+        return hTile;
+    }
 
     public void getTileImage(){
         try {
