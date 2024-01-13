@@ -15,7 +15,9 @@ public class BarManager {
     private Image[] meowInCD;
     private Image pickedMeow;
     private Image meowBar;
+  //  private Image dog;
     private MyButtons pickMeow[];
+
     private List<Integer> meowPickedID = new ArrayList<>();
     private boolean[] isMeowInCD = new boolean[5];
     private boolean[] isCDReducing = new boolean[5];
@@ -58,6 +60,7 @@ public class BarManager {
         pickMeow[2] = new MyButtons("Stinky Pate", 648, 20, 80, 70);
         pickMeow[3] = new MyButtons("Ice Meow", 743, 20, 80, 70);
         pickMeow[4] = new MyButtons("Pate Bomb", 838, 20, 80, 70);
+        //pickPlant[5] = new MyButtons("Shovel",940,20,80,70);
     }
 
     private void importImg(){
@@ -68,6 +71,7 @@ public class BarManager {
             pick_meowBar[2] = t.getImage(getClass().getResource("/meowBar/Tray.png"));
             pick_meowBar[3] = t.getImage(getClass().getResource("/meowBar/Icecat.png"));
             pick_meowBar[4] = t.getImage(getClass().getResource("/meowBar/pateBomb.png"));
+            //pick_plantBar[5] = t.getImage(getClass().getResource("/shovel/shovel.png"));
             pickedMeow = t.getImage(getClass().getResource("/meowBar/plantSelected.png"));
             meowBar = t.getImage(getClass().getResource("/meowBar/MeowBar.png"));
         }catch (Exception e){
@@ -92,10 +96,10 @@ public class BarManager {
     }
 
     public void drawMeowbar(Graphics g){
-        g.setColor(Color.black);
+    /*    g.setColor(Color.black);
         g.drawRect(365, 10,575,90);
         g.setColor(Color.pink);
-        g.fillRect(365, 10, 575, 90);
+        g.fillRect(365, 10, 575, 90); */
         g.drawImage(meowBar, 365, 10, 575, 90, null);
         Graphics2D g2d = (Graphics2D) g;
         int distance = 0;
@@ -135,14 +139,17 @@ public class BarManager {
         return isMeowEnoughFish;
     }
     public void setCDatStartOfGame(){
+        meowCD[0] = 205;
         meowCD[1] = 205;
         meowCD[2] = 205;
         meowCD[3] = 205;
         meowCD[4] = 205;
+        meowPickedID.add(0);
         meowPickedID.add(1);
         meowPickedID.add(2);
         meowPickedID.add(3);
         meowPickedID.add(4);
+        isMeowInCD[0] = true;
         isMeowInCD[1] = true;
         isMeowInCD[2] = true;
         isMeowInCD[3] = true;

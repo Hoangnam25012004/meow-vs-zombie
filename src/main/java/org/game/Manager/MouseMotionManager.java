@@ -7,11 +7,11 @@ import java.awt.*;
 
 public class MouseMotionManager {
     private Playing playing;
-    private int plantPickedByMouse = 0;
+    private int meowPickedByMouse = 0;
     private int tileSelectedByMouse;
 
-    public void setPlantPickedByMouse(int plantPickedByMouse) {
-        this.plantPickedByMouse = plantPickedByMouse;
+    public void setmeowPickedByMouse(int meowPickedByMouse) {
+        this.meowPickedByMouse = meowPickedByMouse;
     }
 
     private boolean isMouseMoveForFirstTime = true;
@@ -42,16 +42,16 @@ public class MouseMotionManager {
                     playing.getTileManager().setInTile(false);
                     playing.getMeowManager().setSelected(false);
                     playing.getBarManager().setMeowLocked(false);
-                   // playing.getMeowManager().setShoveled(false);
+                    playing.getMeowManager().setIsDog(false);
                 }
-                plantPickedByMouse = i;
-                //playing.getKeyBoardManager().setPlantPickedByKeyBoard(plantPickedByMouse);
+                meowPickedByMouse = i;
+                //playing.getKeyBoardManager().setPlantPickedByKeyBoard(meowPickedByMouse);
             }
         }
     }
-    public void drawPlantSelectedByMouse(Graphics g){
+    public void drawMeowSelectedByMouse(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
-        g2d.drawImage(playing.getBarManager().getPickedMeow(), (int)playing.getBarManager().getPickMeow()[plantPickedByMouse].getBounds().getX(),(int)playing.getBarManager().getPickMeow()[plantPickedByMouse].getBounds().getY(),(int)playing.getBarManager().getPickMeow()[plantPickedByMouse].getBounds().getWidth(),(int)playing.getBarManager().getPickMeow()[plantPickedByMouse].getBounds().getHeight(),null);
+        g2d.drawImage(playing.getBarManager().getPickedMeow(), (int)playing.getBarManager().getPickMeow()[meowPickedByMouse].getBounds().getX(),(int)playing.getBarManager().getPickMeow()[meowPickedByMouse].getBounds().getY(),(int)playing.getBarManager().getPickMeow()[meowPickedByMouse].getBounds().getWidth(),(int)playing.getBarManager().getPickMeow()[meowPickedByMouse].getBounds().getHeight(),null);
     }
     public boolean getisControlledByMouse() {
         return isControlledByMouse;

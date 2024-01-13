@@ -8,7 +8,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class World extends JPanel implements Runnable {
-    private int screenWidth = 1024, screenHeight = 576;
+    private final int screenWidth = 1070, screenHeight = 576;
     private ArrayList<Image> img = new ArrayList<>();
     private Lose lose;
     private MenuGame menuGame;
