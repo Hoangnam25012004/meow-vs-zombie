@@ -170,12 +170,12 @@ public class MeowManager {
                     g.drawImage(fish[m.getFrameCountIdle()], m.getX(), m.getY(), m.getWidth(), m.getHeight(), null);
                 } else if (m.getID() == 1){
                     if(!m.isDangered()){
-                        g.drawImage(meow_idle[m.getFrameCountIdle()], m.getX(), m.getY(), m.getWidth(), m.getHeight(), null);
+                        g.drawImage(meow_idle[m.getFrameCountIdle()], m.getX(), m.getY()+7, m.getWidth()-3, m.getHeight()-7, null);
                     } else {
-                        g.drawImage(meow_attack[m.getFrameCountAttack()], m.getX(), m.getY(), m.getWidth(), m.getHeight(), null);
+                        g.drawImage(meow_attack[m.getFrameCountAttack()], m.getX(), m.getY()+7, m.getWidth()-3, m.getHeight()-7, null);
                     }
                 } else if (m.getID() == 2){
-                    g.drawImage(stinkyPate[m.getFrameCountIdle()], m.getX(), m.getY(), m.getWidth(), m.getHeight(), null);
+                    g.drawImage(stinkyPate[m.getFrameCountIdle()], m.getX()+13, m.getY()+30, m.getWidth()-30, m.getHeight()-30, null);
                 } else if (m.getID() == 3){
                     if(!m.isDangered()){
                         g.drawImage(iceMeow_Idle[m.getFrameCountIdle()], m.getX()-10, m.getY()-30, m.getWidth()+30, m.getHeight()+30, null);
@@ -183,7 +183,7 @@ public class MeowManager {
                         g.drawImage(iceMeow_Attack[m.getFrameCountAttack()], m.getX()-10, m.getY()-30, m.getWidth()+30, m.getHeight()+30, null);
                     }
                 } else if (m.getID() == 4){
-                    g.drawImage(pateBomb[m.getFrameCountIdle()],m.getX(), m.getY(), m.getWidth(), m.getHeight(), null);
+                    g.drawImage(pateBomb[m.getFrameCountIdle()],m.getX(), m.getY()-40, m.getWidth()+5, m.getHeight()+40, null);
                 }
                 drawMeowAttackTest(g,m);
             }
