@@ -3,16 +3,20 @@ package org.game.Scenes;
 import org.game.Manager.*;
 import org.game.bullet.Bullet;
 import org.game.Component.MyButtons;
+import org.game.Audio.*;
 
 import static org.game.Scenes.GameScenes.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
+
 public class Playing implements SceneMethods {
     private BulletManager bulletManager;
+    private NotifManager notifManager;
     private FishManager fishManager;
     private MeowManager meowManager;
     private ButtonManager buttonManager;
+    private WaveManager waveManager;
     private MouseMotionManager mouseMotionManager;
     private TileManager tileManager;
     private ZombieManager zombieManager;
@@ -21,6 +25,7 @@ public class Playing implements SceneMethods {
     private KeyBoardManager keyBoardManager;
     private Toolkit t = Toolkit.getDefaultToolkit();
     private World w;
+    private boolean startWave = false, callHorde = false, zombieApproaching = false;
     private boolean startWaveForCD = false;
     public Playing(World w) {
         this.w = w;
@@ -31,6 +36,7 @@ public class Playing implements SceneMethods {
         //singleton application
         //notifManager = NotifManager.createNotifManager(this);
         zombieManager = ZombieManager.createZombieManager(this);
+        waveManager = WaveManager.createWaveManager(this);
         barManager = BarManager.createBar(this);
         tileManager = TileManager.createTileManager(this);
         meowManager = MeowManager.createMeowManager(this);
@@ -78,6 +84,9 @@ public class Playing implements SceneMethods {
     public MouseMotionManager getMouseMotionManager() {
         return mouseMotionManager;
     }
+    public NotifManager getNotifManager() {
+        return notifManager;
+    }
     public TileManager getTileManager(){
         return tileManager;
     }
@@ -89,8 +98,12 @@ public class Playing implements SceneMethods {
     public ZombieManager getZombieManager() {
         return this.zombieManager;
     }
+    public WaveManager getWaveManager(){  return this.waveManager;}
     public boolean isStartWaveForCD() {
         return startWaveForCD;
+    }
+    public boolean isStartWave() {
+        return startWave;
     }
     public void MousePress(){
         mouseMotionManager.returnToSelectPlantByMouse();
@@ -102,6 +115,64 @@ public class Playing implements SceneMethods {
         meowManager.update();
         barManager.update();
     }
+    public void setStartWaveForCD(boolean startWaveForCD) {
+        this.startWaveForCD = startWaveForCD;
+    }
+    private void startGame() {
+        startWave = true;
+        callHorde = false;
+        startWaveForCD = true;
+        meowManager.setSelected(false);
+        meowManager.setForbidden(false);
+        System.out.println("click on start");
+        waveManager.readyNewWave();
+        notifManager.reset();
+    }
+    private boolean isTimeForNewZombie() {
+        if (waveManager.isTimeForNewZombie()) {
+            if (waveManager.isThereMoreZombieInWave()) {
+                return true;
+            }
+        }
+        return false;
+    }
+    private void spawnZombie() {
+        zombieManager.createRandomZombie(waveManager.getNextZombie());
+    }
+    public void setupZombie(){
+        if(zombieManager.iszReachedEnd()) {
+            setGameScenes(LOSE);
+            Audio.lose();
+            Audio.stopRoof();
+            Audio.stopReadySetPlant();
+        }
+        if(getNotifManager().getWaveCDTime().isEndCDWave()) {
+            System.out.println("startGame");
+            startGame();
+        }
+        if (startWave) {
+            if (isTimeForNewZombie()) {
+                spawnZombie();
+            }
+            if (waveManager.hordeDead() && callHorde == true) {
+                startWave = false;
+            }
+            if (zombieManager.allZombieDead() && !callHorde) {
+                zombieManager.getZombies().clear();
+                if (waveManager.isEndWaves()) {
+                    setGameScenes(WIN);
+                    Audio.stopRoof();
+                    Audio.stopReadySetPlant();
+                    Audio.win();
+                } else {
+                    waveManager.createHorde();
+                    callHorde = true;
+                    zombieApproaching = true;
+                }
+//                notifManager.setNotif(new PlayingNotif(0));
+            }
+        }
+    }
 
     public void chooseMeow(int x, int y){
         for (MyButtons b2 : barManager.getPickMeow()) {
@@ -111,12 +182,9 @@ public class Playing implements SceneMethods {
                 meowManager.setSelected(true);
                 if(!barManager.isMeowLocked()){
                     if (b2.getText().contains("Bucket")) {
-                        if(!isStartWaveForCD()){
-                            meowManager.meowForbiddenFromStart();
-                        } else {
-                            meowManager.setForbidden(false);
-                            barManager.bucket();
-                        }
+                        meowManager.setForbidden(false);
+                        barManager.bucket();
+
                     } else if (b2.getText().contains("Meow")) {
                         meowManager.setForbidden(false);
                         barManager.Meow();
@@ -137,6 +205,9 @@ public class Playing implements SceneMethods {
                 barManager.setMeowLocked(true);
             }
         }
+    }
+    public boolean isZombieApproaching() {
+        return zombieApproaching;
     }
  /*   public void changeScene(int x, int y){
         if (buttonManager.getbSetting().getBounds().contains(x, y)) {

@@ -22,7 +22,9 @@ public class ZombieManager {
     protected int attackPower;
     private int originalX;
     private int originalY;
+    private static boolean zReachedEnd = false;
     private Playing playing;
+
     private ArrayList<Zombie> zombieList;
 
     public ArrayList<Zombie> getZombies() {
@@ -101,7 +103,7 @@ public class ZombieManager {
 //------------------------------------------------------------------------------
 // spawn random zombies in random row order
 
-    public void spawnRandomZombiesIn5RandomRows(int totalRows) {
+    public void spawnRandomZombiesIn5RandomRows(int totalRows,int numberZom) {
         Random random = new Random();
         int[] randomRows = new int[5]; // Store 5 unique random row indices
         // Select 5 unique random rows directly
@@ -116,7 +118,7 @@ public class ZombieManager {
 
         // Spawn zombies in the chosen rows
         for (int row : randomRows) {
-            int numZombies = random.nextInt(3); // Randomly spawn 1-2 zombies
+            int numZombies = random.nextInt(numberZom); // Randomly spawn 1-2 zombies
             for (int i = 0; i < numZombies; i++) {
                 Zombie zombie = createRandomZombie(row);
                 // Add zombie to zombieList
@@ -162,6 +164,22 @@ public class ZombieManager {
                 }
             }
         }
+    }
+    public boolean allZombieDead() {
+        for (Zombie z : zombieList) {
+            if (z.isAlived()) {
+                return false;
+            }
+        }
+        return true;
+    }
+    public void createHorde(int count) {
+        for (int i = 0; i < count; i++) {
+            spawnRandomZombiesIn5RandomRows(5,count);
+        }
+    }
+    public static boolean iszReachedEnd() {
+        return zReachedEnd;
     }
 
 

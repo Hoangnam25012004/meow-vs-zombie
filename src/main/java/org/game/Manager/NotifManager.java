@@ -1,10 +1,7 @@
-/* package org.game.Manager;
-import Timer.timeCDWave;
-import Timer.timeLogic;
-import Timer.timeStage;
-import notification.NotifPattern;
-import notification.PlayingNotif;
-import scenes.Playing;
+package org.game.Manager;
+import org.game.Timer.*;
+import org.game.notification.*;
+import org.game.Scenes.Playing;
 
 import java.awt.*;
 
@@ -102,4 +99,3 @@ public class NotifManager {
         return waveCDTime;
     }
 }
-*/
