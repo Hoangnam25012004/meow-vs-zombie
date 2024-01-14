@@ -257,6 +257,27 @@ public class BarManager {
         }
     }
 
+    public void drawMeowNotEnoughFish(Graphics g){
+        int x = 95;
+        int y =12;
+
+        if(playing.getFishManager().getFishHold() < 50){
+            g.drawImage(meowInCD[0],x,y, 100, 74, null);
+            g.drawImage(meowInCD[1],x+100,y, 100, 74, null);
+            g.drawImage(meowInCD[2],x+200,y, 100, 74, null);
+            g.drawImage(meowInCD[3],x+300,y, 100, 74, null);
+            g.drawImage(meowInCD[4],x+400,y, 100, 74, null);
+        } else if(playing.getFishManager().getFishHold() < 100){
+            g.drawImage(meowInCD[1],x+100,y, 100, 74, null);
+            g.drawImage(meowInCD[3],x+300,y, 100, 74, null);
+            g.drawImage(meowInCD[4],x+400,y, 100, 74, null);
+        } else if(playing.getFishManager().getFishHold() < 150){
+            g.drawImage(meowInCD[3],x+300,y, 100, 74, null);
+            g.drawImage(meowInCD[4],x+400,y, 100, 74, null);
+        } else if(playing.getFishManager().getFishHold() < 175){
+            g.drawImage(meowInCD[3],x+300,y, 100, 74, null);
+        }
+    }
 
     public MyButtons[] getPickMeow(){
         return pickMeow;
@@ -265,5 +286,6 @@ public class BarManager {
     public void draw(Graphics g){
         drawMeowbar(g);
         drawMeowInCD(g);
+        drawMeowNotEnoughFish(g);
     }
 }

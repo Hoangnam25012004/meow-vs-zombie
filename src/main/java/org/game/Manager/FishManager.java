@@ -118,17 +118,18 @@ public class FishManager {
         Graphics2D g2n = (Graphics2D) g;
         g2n.setFont(new Font("Arial",Font.BOLD,16));
         g2n.setColor(Color.BLACK);
-        g2n.drawString(String.format("%d",fishHold),getAlignment(),95);
+        g2n.drawString(String.format("%d",fishHold),getAlignment(),85);
     }
     public int getAlignment(){
+        int x=43;
         if(fishHold == 0){
-            return 405;
+            return x;
         } else if(fishHold < 100){
-            return 400;
+            return x-5;
         } else if(fishHold < 1000){
-            return 395;
+            return x-10;
         } else {
-            return 390;
+            return x-15;
         }
     }
     public void drawFish(Graphics g){
