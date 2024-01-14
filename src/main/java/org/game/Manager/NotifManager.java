@@ -31,7 +31,7 @@ public class NotifManager {
     public void setUpNotif() {
         notifs[0] = new PlayingNotif(0, 4);
         clearStageTime = new timeStage(this.notifs[0].timeNotif(), 1);
-        notifs[1] = new PlayingNotif(1, playing.getWaveManager().getCoolDownWave());
+        notifs[1] = new PlayingNotif(1, 10);
         waveCDTime = new timeCDWave(this.notifs[1].timeNotif(), 1);
         waveCDTime.resetTime();
     }

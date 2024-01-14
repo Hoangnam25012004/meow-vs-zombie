@@ -32,9 +32,10 @@ public class Playing implements SceneMethods {
         initManagers();
     }
     private void initManagers() {
+        buttonManager = new ButtonManager(this);
         mouseMotionManager = new MouseMotionManager(this);
         //singleton application
-        //notifManager = NotifManager.createNotifManager(this);
+        notifManager = NotifManager.createNotifManager(this);
         zombieManager = ZombieManager.createZombieManager(this);
         waveManager = WaveManager.createWaveManager(this);
         barManager = BarManager.createBar(this);
@@ -53,7 +54,7 @@ public class Playing implements SceneMethods {
 
     @Override
     public void mouseClicked(int x, int y) {
-        //changeScene(x,y);
+        changeScene(x,y);
         chooseMeow(x,y);
 
     }
@@ -112,6 +113,8 @@ public class Playing implements SceneMethods {
 
 
     public void updates() {
+        setupZombie();
+       // zombieManager.update();
         meowManager.update();
         barManager.update();
     }
@@ -125,7 +128,7 @@ public class Playing implements SceneMethods {
         meowManager.setSelected(false);
         meowManager.setForbidden(false);
         System.out.println("click on start");
-        waveManager.readyNewWave();
+        //waveManager.readyNewWave();
         notifManager.reset();
     }
     private boolean isTimeForNewZombie() {
@@ -137,14 +140,14 @@ public class Playing implements SceneMethods {
         return false;
     }
     private void spawnZombie() {
-        zombieManager.createRandomZombie(waveManager.getNextZombie());
+        zombieManager.spawnRandomZombiesIn5RandomRows(5,waveManager.getNextZombie());
     }
     public void setupZombie(){
         if(zombieManager.iszReachedEnd()) {
             setGameScenes(LOSE);
-            Audio.lose();
+          /*  Audio.lose();
             Audio.stopRoof();
-            Audio.stopReadySetPlant();
+            Audio.stopReadySetPlant();*/
         }
         if(getNotifManager().getWaveCDTime().isEndCDWave()) {
             System.out.println("startGame");
@@ -210,13 +213,14 @@ public class Playing implements SceneMethods {
     public boolean isZombieApproaching() {
         return zombieApproaching;
     }
- /*   public void changeScene(int x, int y){
+    public void changeScene(int x, int y){
         if (buttonManager.getbSetting().getBounds().contains(x, y)) {
            /* Audio.setting();
             Audio.stopRoof();
             Audio.stopReadySetPlant();
-            setGameScenes(SETTING);
+            setGameScenes(SETTING); */
         } else if (buttonManager.getbStart().getBounds().contains(x, y)) {
+            System.out.println("click on start button");
             if (!startWave && zombieManager.allZombieDead()) {
                 startGame();
                 startWave = true;
@@ -227,7 +231,7 @@ public class Playing implements SceneMethods {
                 notifManager.reset();
             }
         }
-    } */
+    }
     @Override
     public void render(Graphics g, Image img) {
         g.drawImage(img, 0, 0, w.getWidth(), w.getHeight(), null);
@@ -237,11 +241,13 @@ public class Playing implements SceneMethods {
         barManager.draw(g);
         mouseMotionManager.drawMeowSelectedByMouse(g);
         tileManager.draw(g);
+        notifManager.drawNotif(g);
         meowManager.draw(g);
         zombieManager.render(g);
         fishManager.drawFish(g);
       //  notifManager.drawNotif(g);
         bulletManager.drawProjectile(g);
+        buttonManager.drawImg(g);
     }
 }
 

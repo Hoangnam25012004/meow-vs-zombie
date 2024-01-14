@@ -19,10 +19,9 @@ public class PlayingNotif implements NotifPattern {
                 this.time = time;
                 break;
             case 1:
-                this.time = time; //won't need time for NotifManager --> already have one in waveManager
+                this.time = time;
                 break;
             case 2:
-                //horde appear
                 break;
             default:
                 System.out.println("undefined notif type!");
@@ -40,7 +39,7 @@ public class PlayingNotif implements NotifPattern {
         try {
             switch (type) {
                 case 0:
-                    image = t.getImage(getClass().getResource("/notification/stage_clear.png"));
+                    image = t.getImage(getClass().getResource("/noti/stage_clear.png"));
                     break;
                 case 1:
                     break;
