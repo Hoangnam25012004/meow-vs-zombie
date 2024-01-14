@@ -55,11 +55,11 @@ public class BarManager {
 
     private void initButtons() {
         pickMeow = new MyButtons[5];
-        pickMeow[0] = new MyButtons("Bucket", 458, 20, 80, 70);
-        pickMeow[1] = new MyButtons("Meow", 553, 20, 80, 70);
-        pickMeow[2] = new MyButtons("Stinky Pate", 648, 20, 80, 70);
-        pickMeow[3] = new MyButtons("Ice Meow", 743, 20, 80, 70);
-        pickMeow[4] = new MyButtons("Pate Bomb", 838, 20, 80, 70);
+        pickMeow[0] = new MyButtons("Bucket", 95, 12, 100, 74);
+        pickMeow[1] = new MyButtons("Meow", 195, 12, 100, 74);
+        pickMeow[2] = new MyButtons("Stinky Pate", 295, 12, 100, 74);
+        pickMeow[3] = new MyButtons("Ice Meow", 395, 12, 100, 74);
+        pickMeow[4] = new MyButtons("Pate Bomb", 495, 12, 100, 74);
         //pickPlant[5] = new MyButtons("Shovel",940,20,80,70);
     }
 
