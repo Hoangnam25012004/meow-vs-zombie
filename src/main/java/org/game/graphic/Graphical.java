@@ -1,4 +1,4 @@
-package org.game.graphic;
+/*package org.game.graphic;
 
 import org.game.Collision.Collision;
 import org.game.Manager.BulletManager;
@@ -107,7 +107,7 @@ public class Graphical{
 
 
     }
-   /* public void paint(Graphics g){
+   public void paint(Graphics g){
         super.paint(g);
         Graphics2D g2 = (Graphics2D)g;
        // bg.render(g2);
@@ -118,5 +118,6 @@ public class Graphical{
         zombie_3.render(g2);
         bulletManager.render(g2);
         g2.dispose();
-    }*/
+    }
 }
+*/
