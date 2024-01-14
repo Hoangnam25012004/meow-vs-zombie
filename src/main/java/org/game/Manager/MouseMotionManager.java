@@ -71,7 +71,23 @@ public class MouseMotionManager {
     }
     public void tileTrack(int x, int y){
         for(int i = 0;i<playing.getTileManager().getTiles().length;i++){
-            Rectangle r = new Rectangle((int)playing.getTileManager().getTiles()[i].getBound().getX(),(int)playing.getTileManager().getTiles()[i].getBound().getY(),playing.getTileManager().getTiles()[i].getwTile(),playing.getTileManager().getTiles()[i].gethTile());
+            Rectangle r = new Rectangle(
+                    (int)playing.
+                            getTileManager().
+                            getTiles()[i].
+                            getBound().
+                            getX(),
+                    (int)playing.getTileManager().
+                            getTiles()[i].
+                            getBound().getY(),
+                    playing.getTileManager().
+                            getTiles()[i].
+                            getwTile(),
+                    playing.
+                            getTileManager().
+                            getTiles()[i].
+                            gethTile()
+            );
             if(r.contains(x,y)){
                 playing.getTileManager().setInTile(true);
                 tileSelectedByMouse = i;
