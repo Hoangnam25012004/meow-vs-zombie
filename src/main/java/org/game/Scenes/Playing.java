@@ -191,9 +191,10 @@ public class Playing implements SceneMethods {
                     } else if (b2.getText().contains("Stinky Pate")) {
                         meowManager.setForbidden(false);
                         barManager.StinkyPate();
-                    } else if (b2.getText().contains("Ice Meow")) {
+                    } else if (b2.getText().contains("IceCat")) {
                         meowManager.setForbidden(false);
                         barManager.IceMeow();
+                        System.out.println("Contain");
                     } else if (b2.getText().contains("Pate Bomb")) {
                         meowManager.setForbidden(false);
                         barManager.PateBomb();

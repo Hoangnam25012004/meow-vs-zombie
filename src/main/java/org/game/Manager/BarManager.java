@@ -58,7 +58,7 @@ public class BarManager {
         pickMeow[0] = new MyButtons("Bucket", 95, 12, 100, 74);
         pickMeow[1] = new MyButtons("Meow", 195, 12, 100, 74);
         pickMeow[2] = new MyButtons("Stinky Pate", 295, 12, 100, 74);
-        pickMeow[3] = new MyButtons("Ice Meow", 395, 12, 100, 74);
+        pickMeow[3] = new MyButtons("IceCat", 395, 12, 100, 74);
         pickMeow[4] = new MyButtons("Pate Bomb", 495, 12, 100, 74);
         //pickPlant[5] = new MyButtons("Shovel",940,20,80,70);
     }
@@ -123,6 +123,7 @@ public class BarManager {
     }
     public void IceMeow(){
         playing.getMeowManager().setIDhold(3);
+
         meowPickedID.add(3);
         playing.getMeowManager().setFishCostHold(175);
     }
