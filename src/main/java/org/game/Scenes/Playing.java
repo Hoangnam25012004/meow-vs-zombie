@@ -117,6 +117,8 @@ public class Playing implements SceneMethods {
        // zombieManager.update();
         meowManager.update();
         barManager.update();
+        zombieManager.updates();
+        waveManager.updates();
     }
     public void setStartWaveForCD(boolean startWaveForCD) {
         this.startWaveForCD = startWaveForCD;
@@ -140,7 +142,9 @@ public class Playing implements SceneMethods {
         return false;
     }
     private void spawnZombie() {
-        zombieManager.spawnRandomZombiesIn5RandomRows(5,waveManager.getNextZombie());
+        if (zombieManager.getTotalZom() >0 ) {
+            zombieManager.spawnRandomZombiesIn5RandomRows(5, 3);
+        }
     }
     public void setupZombie(){
         if(zombieManager.iszReachedEnd()) {

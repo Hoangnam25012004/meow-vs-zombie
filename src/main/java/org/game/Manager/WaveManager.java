@@ -51,19 +51,6 @@ public class WaveManager {
         }
     }
 
-    public int getNextZombie() {
-        zomSpawnTime.resetTime();
-        if (waves[curWave].amountType(curZom) > 0) {
-            waves[curWave].recudeWave(curZom);
-            if(waves[curWave].amountType(curZom) == 0) {
-                curZom++;
-                return curZom-1;
-            }
-            return curZom;
-        }
-        return -1;
-    }
-
     public boolean isTimeForNewZombie() {
         return zomSpawnTime.isTime();
     }
@@ -97,7 +84,7 @@ public class WaveManager {
     public void createHorde() {
         //ini hordeNum = 20
         hordeActive = true;
-        playing.getZombieManager().createHorde(hordeNum);
+       // playing.getZombieManager().createHorde(hordeNum);
         hordeNum += 15;
     }
     public int getCurWave() {

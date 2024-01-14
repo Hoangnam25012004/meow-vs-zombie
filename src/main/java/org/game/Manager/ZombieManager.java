@@ -18,12 +18,10 @@ import java.util.Random;
 public class ZombieManager {
 
     protected int HP;
-    protected double speed;
-    protected int attackPower;
-    private int originalX;
-    private int originalY;
+    private int totalZom = 20;
     private static boolean zReachedEnd = false;
     private Playing playing;
+    private Zombie zombie;
 
     private ArrayList<Zombie> zombieList;
 
@@ -32,9 +30,6 @@ public class ZombieManager {
     }
 
     BulletManager bulletManager;
-    World w;
-
-    Tile tile;
     public BufferedImage[] normalZombieMove = new BufferedImage[3];
     public BufferedImage[] normalZombieEat = new BufferedImage[2];
     public BufferedImage[] CatEarZombieMove = new BufferedImage[3];
@@ -42,6 +37,7 @@ public class ZombieManager {
     public BufferedImage[] HelmetZombieMove = new BufferedImage[3];
     public BufferedImage[] HelmetZombieEat = new BufferedImage[2];
     private static ZombieManager instance = null;
+    private static int realTimeCounter = 0;
 
 
     private ZombieManager(Playing playing) {
@@ -65,12 +61,6 @@ public class ZombieManager {
 //--------------------------------------------------------------------------
 // Actions of the zombies
 
-    private void move(double speed) {
-        for (Zombie z : zombieList){
-            //z.X() = z.X() - speed; đang fix
-        }
-    }
-
 
     public void takeDamage(int damageAmount) {
         HP -= damageAmount; // Reduce health by the bullet's damage
@@ -85,45 +75,48 @@ public class ZombieManager {
 // spawn random type of zombies
 // 0. Normal zombie 1. Zombie with cat ear 2. Zombie wearing helmet
 
-    public Zombie createRandomZombie(int i){
-        Random random = new Random();
-        int zombieType = random.nextInt(3);
-        switch (zombieType) {
-            case 0:
-                return new Zombie(w.getScreenWidth() + random.nextInt(100), 102 + tile.gethTile()*i,0); // normal 102 is the starting y
-            case 1:
-                return new Zombie(w.getScreenWidth() + random.nextInt(100),102 + tile.gethTile()*i,1); // catear
-            case 2:
-                return new Zombie(w.getScreenWidth() + random.nextInt(100),102 + tile.gethTile()*i,2); // helmet
-            default:
-                return null; // never happends
-        }
-    }
 
 //------------------------------------------------------------------------------
 // spawn random zombies in random row order
 
+    public int getTotalZom(){
+        return totalZom;
+    }
     public void spawnRandomZombiesIn5RandomRows(int totalRows,int numberZom) {
         Random random = new Random();
         int[] randomRows = new int[5]; // Store 5 unique random row indices
         // Select 5 unique random rows directly
-        for (int i = 0; i < 5; i++) {
+        for (int i=0 ; i<5; i++){
             int row;
-            do {
-                row = random.nextInt(totalRows);
-                System.out.println("is loop");
-            } while (contains(randomRows, row));
+            do{
+                row = random.nextInt(totalRows)+1;
+            }
+            while (contains(randomRows,row));
             randomRows[i] = row;
         }
 
         // Spawn zombies in the chosen rows
-        for (int row : randomRows) {
-            int numZombies = random.nextInt(numberZom); // Randomly spawn 1-2 zombies
-            for (int i = 0; i < numZombies; i++) {
-                Zombie zombie = createRandomZombie(row);
-                // Add zombie to zombieList
-                if(zombie!=null){
-                    zombieList.add(zombie);
+        synchronized (zombieList) {
+            for (int row : randomRows) {
+                int numZombies = random.nextInt(numberZom); // Randomly spawn 1-2 zombies
+                for (int i = 0; i < numZombies; i++) {
+                    int zombieType = random.nextInt(3);
+                    System.out.println(zombieType);
+                    System.out.println("ROW"+row);
+                    switch (zombieType) {
+                        case 0:
+                            zombieList.add(new Zombie((double)1070 + random.nextInt(100), (double) 86 * row - 27, 0)); // normal 102 is the starting y
+                        case 1:
+                            zombieList.add(new Zombie((double) 1070 + random.nextInt(100), (double) 86 * row - 27, 1)); // catear
+                        case 2:
+                            zombieList.add(new Zombie((double) 1070 + random.nextInt(100), (double) 86 * row - 27, 2)); // helmet
+                    }
+                    System.out.println("row"+row);
+                    for (Zombie z : zombieList){
+                        System.out.println("TYPE: "+ z.getType());
+                    }
+                    totalZom -= numZombies;
+
                 }
             }
         }
@@ -226,8 +219,26 @@ public class ZombieManager {
         if(z.getType() == 0 || z.getType() == 1 || z.getType() == 2){
             z.updateFrameCountMove();
             z.updateFrameCountEat();
-        } else {
-            z.move();
+        }
+        z.move();
+    }
+    public static void frameCount(){
+        if(realTimeCounter<30){
+            realTimeCounter++;
+        }
+    }
+    public void updates() {
+        frameCount();
+        for (Zombie z : zombieList) {
+            if (z.isAlived()) {
+                // Cập nhật tọa độ di chuyển cho zombie còn sống
+                if (z.X() <= 100) {
+                    z.dead();
+                    zReachedEnd = true;
+                } else {
+                    move(z);
+                }
+            }
         }
     }
     public void render(Graphics g) {

@@ -134,10 +134,10 @@ public class Zombie {
     public void updateFrameCountMove(){
         if(!isCollided){
             frameCDMove++;
-            if (frameCDMove > 20 && frameCountMove != 3){
+            if (frameCDMove > 20 && frameCountMove != 2){
                 frameCountMove++;
                 frameCDMove =0;
-            } else if(frameCDMove>20 && frameCountMove == 3){
+            } else if(frameCDMove>20 && frameCountMove == 2){
                 frameCountMove = 0;
                 frameCDMove = 0;
             }
