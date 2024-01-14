@@ -1,5 +1,6 @@
 package org.game.Manager;
 
+import org.game.Audio.Audio;
 import org.game.MeowPack.*;
 import org.game.Component.Tile;
 import org.game.Scenes.Playing;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Random;
 
 public class MeowManager {
-    private final Image[] fish = new Image[1];
+    private final Image[] bucket = new Image[1];
     private final Image[] meow_idle = new Image[1];
     private final Image[] meow_attack = new Image[3];
     private final Image[] stinkyPate = new Image[4];
@@ -48,7 +49,7 @@ public class MeowManager {
         this.playing = playing;
         importPateBomb();
         importMeow();
-        importFish();
+        importBucket();
         importStinkyPate();
         importIceMeow();
         meowForbiddenFromStart();
@@ -117,9 +118,9 @@ public class MeowManager {
         return selected;
     }
 
-    public void importFish(){
-        for(int i = 0;i<fish.length;i++){
-            fish[i] = t.getImage(getClass().getResource("/Fish/fish.png"));
+    public void importBucket(){
+        for(int i = 0;i<bucket.length;i++){
+            bucket[i] = t.getImage(getClass().getResource("/meowRes/bucket.png"));
         }
     }
 
@@ -167,7 +168,7 @@ public class MeowManager {
             Meow m = iterator.next();
             if(m.isAlive() || waitingTime<240){
                 if (m.getID() == 0){
-                    g.drawImage(fish[m.getFrameCountIdle()], m.getX(), m.getY(), m.getWidth(), m.getHeight(), null);
+                    g.drawImage(bucket[m.getFrameCountIdle()], m.getX(), m.getY(), m.getWidth(), m.getHeight(), null);
                 } else if (m.getID() == 1){
                     if(!m.isDangered()){
                         g.drawImage(meow_idle[m.getFrameCountIdle()], m.getX(), m.getY()+7, m.getWidth()-3, m.getHeight()-7, null);
@@ -273,13 +274,13 @@ public class MeowManager {
                     playing.getBarManager().setMeowLocked(false);
                 }
             } else if(selected && playing.getBarManager().getIsMeowInCD()[playing.getBarManager().getMeowPickedID().get(playing.getBarManager().getMeowPickedID().size()-1)]) {
-                //Audio.meowNotAvailable();
+                Audio.meowNotAvailable();
             }
         } else {
             for (int i = 0; i < playing.getTileManager().getTiles().length; i++){
                 Rectangle r = playing.getTileManager().getTiles()[i].getBound();
                 if(r.contains(x,y)){
-                    //Audio.plantNotAvailable();
+                    Audio.meowNotAvailable();
                 }
             }
         }
