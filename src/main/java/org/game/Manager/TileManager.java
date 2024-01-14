@@ -142,17 +142,12 @@ public class TileManager {
             if(playing.getMeowManager().getIDhold() >= 0){
                 if(!playing.getBarManager().getIsMeowInCD()[playing.getMeowManager().getIDhold()] && playing.getBarManager().getIsMeowEnoughFish()[playing.getMeowManager().getIDhold()] && !playing.getMeowManager().isForbidden()){
                     Graphics2D g2d = (Graphics2D) g;
-                    if(playing.getMeowManager().getIDhold() != 3){
-                        g2d.drawImage(meowLightBlur[playing.getMeowManager().getIDhold()],(int)r.getX(),(int)r.getY()+5,(int)r.getWidth()-15,(int)r.getHeight()-15,null);
-                    } else {
-                        g2d.drawImage(meowLightBlur[playing.getMeowManager().getIDhold()],(int)r.getX(),(int)r.getY()-25,(int)r.getWidth(),(int)r.getHeight()+15,null);
-                    }
+
+                    g2d.drawImage(meowLightBlur[playing.getMeowManager().getIDhold()],(int)r.getX(),(int)r.getY()+5,(int)r.getWidth()-15,(int)r.getHeight()-15,null);
+
                 } else {
-                    Graphics2D g2n = (Graphics2D) g;
-                    if(playing.getMeowManager().getIDhold() != 3){
+                    Graphics2D g2n = (Graphics2D) g;{
                         g2n.drawImage(meowHardBlur[playing.getMeowManager().getIDhold()],(int)r.getX(),(int)r.getY()+5,(int)r.getWidth()-15,(int)r.getHeight()-15,null);
-                    } else {
-                        g2n.drawImage(meowHardBlur[playing.getMeowManager().getIDhold()],(int)r.getX(),(int)r.getY()-25,(int)r.getWidth(),(int)r.getHeight()+15,null);
                     }
                 }
             }

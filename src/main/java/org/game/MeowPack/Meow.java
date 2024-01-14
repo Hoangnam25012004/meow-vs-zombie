@@ -186,7 +186,7 @@ public class Meow implements Shooter
                 Rectangle r = tile.getBound();
                 if(r.contains(meow.getX()+1,meow.getY()+1)){
                     tile.setOccupied(false);
-                    tile.setPlanted(false);
+                    tile.setPlaced(false);
                 }
             }
             alive = false;

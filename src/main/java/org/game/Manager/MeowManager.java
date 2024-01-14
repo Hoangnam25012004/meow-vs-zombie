@@ -252,8 +252,8 @@ public class MeowManager {
                     shiftMeow(tile);
                     for (int j = 0; j < meowList.size(); j++){
                         meowList.get(meowList.size() - 1).setTileHold(i);
-                        if(!tile.isPlanted()){
-                            tile.setPlanted(true);
+                        if(!tile.isPlaced()){
+                            tile.setPlaced(true);
                         }
                     }
                     isMeowed = true;
@@ -274,13 +274,13 @@ public class MeowManager {
                     playing.getBarManager().setMeowLocked(false);
                 }
             } else if(selected && playing.getBarManager().getIsMeowInCD()[playing.getBarManager().getMeowPickedID().get(playing.getBarManager().getMeowPickedID().size()-1)]) {
-                Audio.meowNotAvailable();
+                //Audio.meowNotAvailable();
             }
         } else {
             for (int i = 0; i < playing.getTileManager().getTiles().length; i++){
                 Rectangle r = playing.getTileManager().getTiles()[i].getBound();
                 if(r.contains(x,y)){
-                    Audio.meowNotAvailable();
+//Audio.meowNotAvailable();
                 }
             }
         }
