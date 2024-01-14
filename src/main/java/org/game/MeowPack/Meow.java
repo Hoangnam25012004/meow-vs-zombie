@@ -82,11 +82,13 @@ public class Meow implements Shooter
 
     public void updateFrameCountAttack(){
         frameCDAttack++;
-        if(frameCDAttack%4 == 0){
-            frameCountAttack++;
-            if (frameCountAttack == frameCountAttackLimit) {
-                frameCountAttack = 0;
-            }
+        if (frameCDAttack == 20 && frameCountAttack !=2) {
+            frameCDAttack = 0;
+            frameCountAttack++ ;
+        }
+        else if (frameCDAttack == 20 && frameCountAttack ==2){
+            frameCountAttack = 0;
+            frameCDAttack = 0;
         }
     }
 

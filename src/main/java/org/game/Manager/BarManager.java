@@ -109,27 +109,28 @@ public class BarManager {
         }
     }
 
-    public void fish(){
+
+    public void bucket(){
         playing.getMeowManager().setIDhold(0);
         meowPickedID.add(0);
         playing.getMeowManager().setFishCostHold(50);
     }
-    public void peaShooter(){
+    public void Meow(){
         playing.getMeowManager().setIDhold(1);
         meowPickedID.add(1);
         playing.getMeowManager().setFishCostHold(100);
     }
-    public void wall_nut(){
+    public void StinkyPate(){
         playing.getMeowManager().setIDhold(2);
         meowPickedID.add(2);
         playing.getMeowManager().setFishCostHold(50);
     }
-    public void shadowPea(){
+    public void IceMeow(){
         playing.getMeowManager().setIDhold(3);
         meowPickedID.add(3);
         playing.getMeowManager().setFishCostHold(175);
     }
-    public void cherryBomb(){
+    public void PateBomb(){
         playing.getMeowManager().setIDhold(4);
         meowPickedID.add(4);
         playing.getMeowManager().setFishCostHold(150);
@@ -154,6 +155,78 @@ public class BarManager {
         isMeowInCD[2] = true;
         isMeowInCD[3] = true;
         isMeowInCD[4] = true;
+    }
+    public void resetCD(int index){
+        if(playing.isStartWaveForCD()) {
+            switch (index){
+                case 0:
+                    meowCD[index] = 240;
+                    break;
+                case 1:
+                    meowCD[index] = 240;
+                    break;
+                case 2:
+                    meowCD[index] = 600;
+                    break;
+                case 3:
+                    meowCD[index] = 240;
+                    break;
+                case 4:
+                    meowCD[index] = 900;
+                    break;
+            }
+        }
+    }
+    public void CDCount(int index){
+        if(isMeowInCD[index]){
+            meowCD[index]--;
+            if(meowCD[index] <= 0){
+                resetCD(index);
+                isMeowInCD[index] = false;
+            }
+        }
+    }
+    public void update(){
+        for(int i = 0; i<meowPickedID.size();i++){
+            switch (meowPickedID.get(i)){
+                case 0:
+                    if(!isCDReducing[0]){
+                        CDCount(0);
+                        isCDReducing[0] = true;
+                    }
+                    break;
+                case 1:
+                    if(!isCDReducing[1]){
+                        CDCount(1);
+                        isCDReducing[1] = true;
+                    }
+                    break;
+                case 2:
+                    if(!isCDReducing[2]){
+                        CDCount(2);
+                        isCDReducing[2] = true;
+                    }
+                    break;
+                case 3:
+                    if(!isCDReducing[3]){
+                        CDCount(3);
+                        isCDReducing[3] = true;
+                    }
+                    break;
+                case 4:
+                    if(!isCDReducing[4]){
+                        CDCount(4);
+                        isCDReducing[4] = true;
+                    }
+                    break;
+            }
+        }
+        isCDReducing[0] = false;
+        isCDReducing[1] = false;
+        isCDReducing[2] = false;
+        isCDReducing[3] = false;
+        isCDReducing[4] = false;
+        //meowEnoughFish();
     }
 
     public void initmeowInCD(){

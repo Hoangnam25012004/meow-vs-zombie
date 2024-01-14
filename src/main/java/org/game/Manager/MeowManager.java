@@ -268,6 +268,19 @@ public class MeowManager {
                 for (int i = 0; i < playing.getTileManager().getTiles().length; i++){
                     meowOnTile(playing.getTileManager().getTiles()[i],x,y,i);
                 }
+                if(playing.isStartWaveForCD()){
+                    selected = false;
+                    playing.getBarManager().setMeowLocked(false);
+                }
+            } else if(selected && playing.getBarManager().getIsMeowInCD()[playing.getBarManager().getMeowPickedID().get(playing.getBarManager().getMeowPickedID().size()-1)]) {
+                //Audio.meowNotAvailable();
+            }
+        } else {
+            for (int i = 0; i < playing.getTileManager().getTiles().length; i++){
+                Rectangle r = playing.getTileManager().getTiles()[i].getBound();
+                if(r.contains(x,y)){
+                    //Audio.plantNotAvailable();
+                }
             }
         }
     }
