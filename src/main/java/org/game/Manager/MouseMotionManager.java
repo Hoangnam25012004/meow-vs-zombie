@@ -34,7 +34,7 @@ public class MouseMotionManager {
             isControlledByMouse = true;
         }
     }
-    public void mouseTrackPlantBar(int x, int y){
+    public void mouseTrackMeowBar(int x, int y){
         for(int i = 0;i<playing.getBarManager().getPickMeow().length;i++){
             Rectangle r = playing.getBarManager().getPickMeow()[i].getBounds();
             if(r.contains(x,y)){
