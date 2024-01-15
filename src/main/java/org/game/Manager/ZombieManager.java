@@ -1,10 +1,12 @@
 package org.game.Manager;
 
+import org.game.MeowPack.Meow;
 import org.game.MeowPack.Shooter;
 import org.game.Zombie.Zombie;
 import org.game.bullet.Bullet;
 import org.game.Scenes.Playing;
 import org.game.Component.Tile;
+import org.game.Audio.*;
 
 
 import javax.imageio.ImageIO;
@@ -12,6 +14,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Random;
 
@@ -38,6 +41,8 @@ public class ZombieManager {
     public BufferedImage[] HelmetZombieEat = new BufferedImage[2];
     private static ZombieManager instance = null;
     private static int realTimeCounter = 0;
+    private static boolean isReset = false;
+    private int counter = 0;
 
 
     private ZombieManager(Playing playing) {
@@ -71,16 +76,17 @@ public class ZombieManager {
     }
 
 
-//----------------------------------------------------------------------------
-// spawn random type of zombies
-// 0. Normal zombie 1. Zombie with cat ear 2. Zombie wearing helmet
-
-
 //------------------------------------------------------------------------------
 // spawn random zombies in random row order
 
     public int getTotalZom(){
         return totalZom;
+    }
+    public static void isResetTime(){
+        if(isReset){
+            realTimeCounter = 0;
+            isReset = false;
+        }
     }
     public void spawnRandomZombiesIn5RandomRows(int totalRows,int numberZom) {
         Random random = new Random();
@@ -139,30 +145,8 @@ public class ZombieManager {
 
 
 // -------------------------------------------------------------------------------
-// check collision and hit box
-
-    public boolean isColliding(Bullet bullet, Zombie zombie) {
-        Rectangle bulletRectangle = bulletManager.getBoundary(bullet);
-        Rectangle zombieRectangle = zombie.getBound();
-
-        return bulletRectangle.intersects(zombieRectangle);
-    }
 
 
-    public void checkBulletCollisions() {
-        ArrayList<Bullet> bullets = bulletManager.bulletList;
-        ArrayList<Zombie> zombies = zombieList;
-
-        for (Bullet bullet : bullets) {
-            for (Zombie zombie : zombies) {
-                if (isColliding(bullet, zombie)) {
-                    takeDamage(bullet.getDame());
-                    bullets.remove(bullet);
-                    break;
-                }
-            }
-        }
-    }
     public boolean allZombieDead() {
         for (Zombie z : zombieList) {
             if (z.isAlived()) {
@@ -226,6 +210,43 @@ public class ZombieManager {
             z.updateFrameCountEat();
         }
         z.move();
+    }
+    public void ZombieCollideMeow(){
+        synchronized (zombieList){
+            Iterator<Zombie> iterator = zombieList.iterator();
+            while (iterator.hasNext()){
+                Zombie zombie = iterator.next();
+                Rectangle r = new Rectangle();
+                r.setBounds((int) zombie.X(),(int) zombie.Y(),zombie.getWidth(),zombie.getHeight());
+                synchronized (playing.getMeowManager().getMeowList()){
+                    Iterator<Meow> iterator1 = playing.getMeowManager().getMeowList().iterator();
+                    while (iterator1.hasNext()){
+                        Meow meow = iterator1.next();
+                        if(meow.isAlive()){
+                            if(r.contains(meow.getX()+meow.getWidth()-zombie.getWidth()+30,meow.getY()) && zombie.isAlived()){
+                                zombie.setCollided(true);
+                                zombie.updateFrameCountEat();
+                                if(realTimeCounter >= 30){
+                                    Audio.zombieEat();
+                                    zombie.attackMeow(meow);
+                                    isReset = true;
+                                    meow.removeMeow(meow,iterator1,playing.getTileManager(),playing.getMeowManager());
+                                    zombie.defeatMeow(meow);
+                                }
+                                for(Zombie zombie1:zombieList){
+                                    Rectangle rZombie = new Rectangle((int)zombie1.X()-50,(int)zombie1.Y(),zombie1.getWidth()+100,zombie1.getHeight());
+                                    if(r.intersects(rZombie)){
+                                        zombie1.defeatMeow(meow);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            isResetTime();
+            counter++;
+        }
     }
     public static void frameCount(){
         if(realTimeCounter<30){

@@ -46,11 +46,7 @@ public abstract class BulletLogic {
             while ((iterator.hasNext())){
                 Zombie zombie = iterator.next();
                 Rectangle r = new Rectangle();
-                if(zombie.getType() == 0 || zombie.getType() == 1){
-                    r.setBounds((int)zombie.getBound().getX()+25,(int)zombie.getBound().getY(),(int)zombie.getBound().getWidth(),(int)zombie.getBound().getHeight());
-                } else {
-                    r.setBounds((int) zombie.X(),(int) zombie.Y(),zombie.getWidth(),zombie.getHeight());
-                }
+                r.setBounds((int) zombie.X(),(int) zombie.Y(),zombie.getWidth(),zombie.getHeight());
                 synchronized (bulletList){
                     Iterator<Bullet> iterator2 = bulletList.iterator();
                     while (iterator2.hasNext()){

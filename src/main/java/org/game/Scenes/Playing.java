@@ -120,6 +120,7 @@ public class Playing implements SceneMethods {
         meowManager.update();
         barManager.update();
         zombieManager.updates();
+        zombieManager.ZombieCollideMeow();
         waveManager.updates();
         bulletManager.bulletCollideZombie(this);
         bulletManager.update(this);

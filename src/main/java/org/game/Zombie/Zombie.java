@@ -146,10 +146,10 @@ public class Zombie {
     public void updateFrameCountEat(){
         if(isCollided){
             frameCDEat++;
-            if (frameCDEat >20 && frameCountEat != 2){
+            if (frameCDEat >20 && frameCountEat != 1){
                 frameCountEat++;
                 frameCDEat =0 ;
-            } else if (frameCDEat >20 && frameCountEat ==2){
+            } else if (frameCDEat >20 && frameCountEat ==1){
                 frameCountEat =0;
                 frameCDEat = 0;
             }
@@ -163,21 +163,6 @@ public class Zombie {
         return frameCountMove;
     }
 
-    public void setFrameCountMove(int frameCountMove) {
-        this.frameCountMove = frameCountMove;
-    }
-
-
-    public void setFrameCDMove(int frameCDMove) {
-        this.frameCDMove = frameCDMove;
-    }
-
-    //    public void bite(FakePlant fakePlant) {
-//
-//    }
-    public void hurt() {
-
-    }
     public void attackMeow(Meow meow){
         meow.setHealthPoint(meow.getHealthPoint() - dmg);
     }

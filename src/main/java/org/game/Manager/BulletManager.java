@@ -46,10 +46,6 @@ public class BulletManager extends BulletLogic {
 
 
     //___________________________________________________________________________
-    public Rectangle getBoundary (Bullet bullet) {
-        return new Rectangle((int) bullet.getX(), bullet.getY(), 20, 20);
-
-}
 
 
  /*   public void bullet_update(Zombie zombie) {
