@@ -133,7 +133,7 @@ public class World extends JPanel implements Runnable {
         img.add(t.getImage(getClass().getResource("/Scene/menu.png")));
         img.add(t.getImage(getClass().getResource("/Scene/background_2.jpg")));
         img.add(t.getImage(getClass().getResource("/Scene/lose.png")));
-        img.add(t.getImage(getClass().getResource("/Scene/pause.png")));
+        img.add(t.getImage(getClass().getResource("/Scene/game paused2.png")));
         img.add(t.getImage(getClass().getResource("/Scene/win.png")));
     }
 

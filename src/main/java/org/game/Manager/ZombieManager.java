@@ -117,6 +117,15 @@ public class ZombieManager {
             }
         }
     }
+    public void createSingleZombie(){
+        if (totalZom >= 0) {
+            Random random = new Random();
+            int Zomtype = random.nextInt(3);
+            int row = random.nextInt(5)+1;
+            zombieList.add(new Zombie((double) 1070 + random.nextInt(100), (double) 86 * row - 27, Zomtype));
+            totalZom -= 1;
+        }
+    }
 
     private boolean contains(int[] array, int value) {
         for (int element : array) {
@@ -245,21 +254,21 @@ public class ZombieManager {
                     if (z.isAlived()) {
                         if(z.getType() == 0){
                             if(!z.isCollided()){
-                                g.drawImage(normalZombieMove[z.getFrameCountMove()],(int) z.X(), (int) z.Y(), z.getWidth()+30, z.getHeight()+25, null);
+                                g.drawImage(normalZombieMove[z.getFrameCountMove()],(int) z.X(), (int) z.Y(), z.getWidth(), z.getHeight(), null);
                             } else {
-                                g.drawImage(normalZombieEat[z.getFrameCountEat()],(int) z.X(), (int) z.Y()+8, z.getWidth()+18, z.getHeight(), null);
+                                g.drawImage(normalZombieEat[z.getFrameCountEat()],(int) z.X(), (int) z.Y()+8, z.getWidth(), z.getHeight(), null);
                             }
                         } else if (z.getType() == 1) {
                             if(!z.isCollided()){
-                                g.drawImage(CatEarZombieMove[z.getFrameCountMove()],(int) z.X(), (int) z.Y(), z.getWidth()+30, z.getHeight()+25, null);
+                                g.drawImage(CatEarZombieMove[z.getFrameCountMove()],(int) z.X(), (int) z.Y(), z.getWidth(), z.getHeight(), null);
                             } else {
-                                g.drawImage(CatEarZombieEat[z.getFrameCountEat()],(int) z.X(), (int) z.Y()+8, z.getWidth()+18, z.getHeight(), null);
+                                g.drawImage(CatEarZombieEat[z.getFrameCountEat()],(int) z.X(), (int) z.Y()+8, z.getWidth(), z.getHeight(), null);
                             }
                         } else if(z.getType() == 2){
                             if(!z.isCollided()){
-                                g.drawImage(HelmetZombieMove[z.getFrameCountMove()],(int) z.X(), (int) z.Y(), z.getWidth()+30, z.getHeight()+25, null);
+                                g.drawImage(HelmetZombieMove[z.getFrameCountMove()],(int) z.X(), (int) z.Y(), z.getWidth(), z.getHeight(), null);
                             } else {
-                                g.drawImage(HelmetZombieEat[z.getFrameCountEat()],(int) z.X(), (int) z.Y()+8, z.getWidth()+18, z.getHeight(), null);
+                                g.drawImage(HelmetZombieEat[z.getFrameCountEat()],(int) z.X(), (int) z.Y()+8, z.getWidth(), z.getHeight(), null);
                             }
                         }
                     }

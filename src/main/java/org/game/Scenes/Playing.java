@@ -144,8 +144,14 @@ public class Playing implements SceneMethods {
         return false;
     }
     private void spawnZombie() {
-
-        zombieManager.spawnRandomZombiesIn5RandomRows(5, 3);
+        if (counter == 100000){
+            zombieManager.spawnRandomZombiesIn5RandomRows(5,3);
+            System.out.println("tôi ");
+        }
+        else if (counter >= 900){
+        zombieManager.createSingleZombie();
+        counter=601;
+        }
     }
     public void setupZombie(){
         if(zombieManager.iszReachedEnd()) {
@@ -154,7 +160,7 @@ public class Playing implements SceneMethods {
             Audio.stopRoof();
             Audio.stopReadySetPlant();*/
         }
-        if(getNotifManager().getWaveCDTime().isEndCDWave()) {
+        if(getNotifManager().getWaveCDTime().isEndCDWave()) { // change wave
             System.out.println("startGame");
             startGame();
         }
@@ -220,21 +226,19 @@ public class Playing implements SceneMethods {
     }
     public void changeScene(int x, int y){
         if (buttonManager.getbSetting().getBounds().contains(x, y)) {
-           /* Audio.setting();
+           Audio.setting();
             Audio.stopRoof();
             Audio.stopReadySetPlant();
-            setGameScenes(SETTING); */
+            setGameScenes(SETTING);
         }
     }
     public void zombieAppear(){
        if (counter >= 600) {
-            System.out.println("click on start button");
             if (!startWave && zombieManager.allZombieDead()) {
                 startGame();
                 startWave = true;
                 callHorde = false;
                 startWaveForCD = true;
-                System.out.println("click on start");
                 waveManager.readyNewWave();
                 notifManager.reset();
             }
