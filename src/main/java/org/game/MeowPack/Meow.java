@@ -24,6 +24,7 @@ public class Meow implements Shooting
 
     private int frameCountIdleLimit = 1;
     private int frameCountIdle = 0;
+    private int frameCountStinkyPate=0;
     private int frameCountAttack = 0;
     private int frameCountFish = 0;
     private int frameCountFishLimit = 600;
@@ -46,6 +47,7 @@ public class Meow implements Shooting
     public int getFrameCountAttack() {
         return frameCountAttack;
     }
+    public int getFrameCountStinkyPate() {return  frameCountStinkyPate;}
     public void setFrameCountAttack(int frameCountAttack) {
         this.frameCountAttack = frameCountAttack;
     }
@@ -85,6 +87,23 @@ public class Meow implements Shooting
         else if (frameCDAttack == 20 && frameCountAttack ==2){
             frameCountAttack = 0;
             frameCDAttack = 0;
+        }
+    }
+
+    public void updateFrameCountStinkyPate(Meow meow){
+        if(meow.getID() == 2) {
+            if (meow.getHealthPoint() <= 1000) {
+                frameCountStinkyPate = 0;
+            }
+            if (meow.getHealthPoint() <= 750) {
+                frameCountStinkyPate = 1;
+            }
+            if (meow.getHealthPoint() <= 500) {
+                frameCountStinkyPate = 2;
+            }
+            if (meow.getHealthPoint() <= 250) {
+                frameCountStinkyPate = 3;
+            }
         }
     }
 

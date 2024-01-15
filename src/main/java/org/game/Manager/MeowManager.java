@@ -176,7 +176,7 @@ public class MeowManager {
                         g.drawImage(meow_attack[m.getFrameCountAttack()], m.getX(), m.getY()+7, m.getWidth()-3, m.getHeight()-7, null);
                     }
                 } else if (m.getID() == 2){
-                    g.drawImage(stinkyPate[m.getFrameCountIdle()], m.getX()+13, m.getY()+30, m.getWidth()-30, m.getHeight()-30, null);
+                    g.drawImage(stinkyPate[m.getFrameCountStinkyPate()], m.getX()+13, m.getY()+30, m.getWidth()-30, m.getHeight()-30, null);
                 } else if (m.getID() == 3){
                     if(!m.isDangered()){
                         g.drawImage(iceMeow_Idle[m.getFrameCountIdle()], m.getX()-10, m.getY()-18, m.getWidth()+15, m.getHeight()+17, null);
@@ -198,6 +198,9 @@ public class MeowManager {
             if(meow.isAlive() || waitingTime<240){
                 if(meow.getID() == 1 || meow.getID() == 3){
                     meow.updateFrameCountAttack();
+                }
+                if ( meow.getID() == 2){
+                    meow.updateFrameCountStinkyPate(meow);
                 }
             }
         }
@@ -319,7 +322,7 @@ public class MeowManager {
             Iterator<Zombie> iterator = playing.getZombieManager().getZombies().iterator();
             while (iterator.hasNext()){
                 Zombie zombie = iterator.next();
-                if(r.contains(zombie.X()+50,zombie.Y()+70) && zombie.isAlived()){
+                if( (r.contains(zombie.X(),zombie.Y()) || (r.getX() + r.getWidth()*3/2) >= zombie.X() ) && zombie.isAlived()  ){
                     if(i>=0 && i<9){
                         for(int j = 0;j < 9;j++){
                             setMeowDangered(playing.getTileManager().getTiles()[j]);

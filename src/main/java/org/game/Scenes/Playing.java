@@ -57,6 +57,7 @@ public class Playing implements SceneMethods {
     public void mouseClicked(int x, int y) {
         changeScene(x,y);
         chooseMeow(x,y);
+        fishManager.clickFish(x,y);
 
     }
 
@@ -119,6 +120,7 @@ public class Playing implements SceneMethods {
        // zombieManager.update();
         meowManager.update();
         barManager.update();
+        fishManager.update(this);
         zombieManager.updates();
         zombieManager.ZombieCollideMeow();
         waveManager.updates();
@@ -259,11 +261,10 @@ public class Playing implements SceneMethods {
         barManager.draw(g);
         mouseMotionManager.drawMeowSelectedByMouse(g);
         tileManager.draw(g);
-        notifManager.drawNotif(g);
         meowManager.draw(g);
         zombieManager.render(g);
         fishManager.drawFish(g);
-      //  notifManager.drawNotif(g);
+        notifManager.drawNotif(g);
         bulletManager.drawBullet(g);
         buttonManager.drawImg(g);
 

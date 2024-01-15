@@ -86,21 +86,7 @@ public class FishManager {
         }
     }
 
-//    public void fishCollectedByKeyBoard(){
-//        if(!playing.getMouseMotionManager().isControlledByMouse()){
-//            Iterator<Fish> iterator = listOfFish.iterator();
-//            while (iterator.hasNext()){
-//                Fish fish = iterator.next();
-//                Rectangle rFish = new Rectangle((int)fish.getBounds().getX()+15,(int)fish.getBounds().getY()+30,(int)fish.getBounds().getWidth()-30,(int)fish.getBounds().getHeight()-30);
-//                if(playing.getTileManager().getTiles()[playing.getKeyBoardManager().getTileSelectedByKeyBoard()].getBound().intersects(rFish)){
-//                    if(!fish.isCollected() && fish.isThere()){
-////                        Audio.sunCollected();
-//                        collectFish(fish);
-//                    }
-//                }
-//            }
-//        }
-//    }
+
     public void removeFish(){
         Rectangle holder = new Rectangle(355,-70,90,90);
         Iterator<Fish> iterator = listOfFish.iterator();
@@ -159,26 +145,26 @@ public class FishManager {
         }
     }
 
-//    public void update(Playing playing){
-//        if(playing.isStartWaveForCD()){
-//            frameCount();
-//            if(realTimeCounter == randomTimeFishDrop){
-//                fishCreation();
-//                realTimeCounter = 0;
-//                randomTimeFishDrop = random.nextInt(300)+900;
-//            }
-////            fishCollectedByKeyBoard();
-//            Iterator<Fish> iterator= listOfFish.iterator();
-//            while (iterator.hasNext()){
-//                Fish fish = iterator.next();
-//                if(fish.isThere()){
-//                    fish.move();
-//                    fish.moveToStorage();
-//                }
-//            }
-//        } else {
-//            collectAllFish();
-//        }
-//        removeFish();
-//    }
+    public void update(Playing playing){
+        if(playing.isStartWaveForCD()){
+            frameCount();
+            if(realTimeCounter == randomTimeFishDrop){
+                fishCreation();
+                realTimeCounter = 0;
+                randomTimeFishDrop = random.nextInt(300)+900;
+            }
+
+            Iterator<Fish> iterator= listOfFish.iterator();
+            while (iterator.hasNext()){
+                Fish fish = iterator.next();
+                if(fish.isThere()){
+                    fish.move();
+                    fish.moveToStorage();
+                }
+            }
+        } else {
+            collectAllFish();
+        }
+        removeFish();
+    }
 }

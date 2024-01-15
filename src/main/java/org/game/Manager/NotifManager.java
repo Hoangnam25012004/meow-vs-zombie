@@ -53,31 +53,27 @@ public class NotifManager {
                 countWave(g);
                 if (!clearStageTime.isExecuted()) {
                     playing.setStartWaveForCD(false);
-                    stageClear(g); //stage clear notif
+                    stageClear(g);
                 }
             }
         }
-        stageCurrent(g); //wave current notif
+        stageCurrent(g);
     }
 
     public void countWave(Graphics g) {
-//        g.setColor(Color.BLUE);
-//        g.fillRect(77,580,167,35);
-        g.drawImage(noticeImg, 77, 580, 190, 35, null);
+        g.drawImage(noticeImg, 700, 20, 190, 35, null);
         Font font = new Font("Arial", Font.BOLD, 22);
         g.setFont(font);
         g.setColor(Color.WHITE);
         int time = playing.getWaveManager().getCoolDownWave() - waveCDTime.getCurrentSec();
-        g.drawString("Count down: " + time, 90, 604);
+        g.drawString("Count down: " + time, 100, 20);
     }
     public void stageClear(Graphics g) {
-        g.drawImage(notifs[0].getImage(), 1024 / 2 - 200, 625 / 2 - 200, 400, 400, null);
+        g.drawImage(notifs[0].getImage(), 1076 / 2 - 200, 576 / 2 - 200, 400, 400, null);
     }
 
     public void stageCurrent(Graphics g) {
-//        g.setColor(Color.BLUE);
-//        g.fillRect(873,580,120,35);
-        g.drawImage(noticeImg, 873, 580, 120, 35, null);
+        g.drawImage(noticeImg, 700, 40, 120, 35, null);
         Font font = new Font("Arial", Font.BOLD, 22);
         g.setFont(font);
         g.setColor(Color.WHITE);
@@ -87,7 +83,7 @@ public class NotifManager {
         if (currentWave < 10 && currentWave > 0) {
             currWave += currentWave;
         }
-        g.drawString("Wave " + currWave, 897, 604);
+        g.drawString("Wave " + currWave, 700, 40);
     }
 
     public void reset() {
