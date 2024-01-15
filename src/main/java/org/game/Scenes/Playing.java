@@ -27,6 +27,7 @@ public class Playing implements SceneMethods {
     private World w;
     private boolean startWave = false, callHorde = false, zombieApproaching = false;
     private boolean startWaveForCD = false;
+    private int counter = 0;
     public Playing(World w) {
         this.w = w;
         initManagers();
@@ -119,6 +120,7 @@ public class Playing implements SceneMethods {
         barManager.update();
         zombieManager.updates();
         waveManager.updates();
+        zombieAppear();
     }
     public void setStartWaveForCD(boolean startWaveForCD) {
         this.startWaveForCD = startWaveForCD;
@@ -142,9 +144,8 @@ public class Playing implements SceneMethods {
         return false;
     }
     private void spawnZombie() {
-        if (zombieManager.getTotalZom() >0 ) {
-            zombieManager.spawnRandomZombiesIn5RandomRows(5, 3);
-        }
+
+        zombieManager.spawnRandomZombiesIn5RandomRows(5, 3);
     }
     public void setupZombie(){
         if(zombieManager.iszReachedEnd()) {
@@ -223,7 +224,10 @@ public class Playing implements SceneMethods {
             Audio.stopRoof();
             Audio.stopReadySetPlant();
             setGameScenes(SETTING); */
-        } else if (buttonManager.getbStart().getBounds().contains(x, y)) {
+        }
+    }
+    public void zombieAppear(){
+       if (counter >= 600) {
             System.out.println("click on start button");
             if (!startWave && zombieManager.allZombieDead()) {
                 startGame();
@@ -235,6 +239,8 @@ public class Playing implements SceneMethods {
                 notifManager.reset();
             }
         }
+        counter ++;
+
     }
     @Override
     public void render(Graphics g, Image img) {

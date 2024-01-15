@@ -18,15 +18,15 @@ public class ButtonManager {
     }
 
     private void initButtons() {
-        bStart = new MyButtons("Start", 10, 200, 140, 45);
-        bSetting = new MyButtons("Setting", 17, 10, 125, 40);
+        //bStart = new MyButtons("Start", 650, 20, 140, 45);
+        bSetting = new MyButtons("Setting", 950, 20, 100, 30);
     }
 
     public void importImg(){
         buttonOfPlaying = new Image[2];
         try {
-            buttonOfPlaying[0] = t.getImage(getClass().getResource("/Scene/PLAY.png"));
-            buttonOfPlaying[1] = t.getImage(getClass().getResource("/Scene/EXIT.png"));
+            //buttonOfPlaying[0] = t.getImage(getClass().getResource("/Scene/PLAY.png"));
+            buttonOfPlaying[1] = t.getImage(getClass().getResource("/Scene/pause.png"));
         }catch (Exception e){
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error - importImage()");
@@ -34,17 +34,10 @@ public class ButtonManager {
     }
 
     public void drawImg(Graphics g){
-        g.drawImage(buttonOfPlaying[0], 10,200,140,45, null);
-        g.drawImage(buttonOfPlaying[1], 17,10,125,40, null);
+        //g.drawImage(buttonOfPlaying[0], 650,20,140,45, null);
+        g.drawImage(buttonOfPlaying[1], 950,20,100,30, null);
     }
 
-    public void drawButtons(Graphics g) {
-        bStart.draw(g);
-        bSetting.draw(g);
-        if(!playing.isStartWave()) {
-            bStart.draw(g);
-        }
-    }
 
     public MyButtons getbStart() {
         return bStart;

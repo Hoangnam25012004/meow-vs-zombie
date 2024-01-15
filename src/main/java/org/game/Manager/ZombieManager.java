@@ -18,7 +18,7 @@ import java.util.Random;
 public class ZombieManager {
 
     protected int HP;
-    private int totalZom = 20;
+    private int totalZom = 7;
     private static boolean zReachedEnd = false;
     private Playing playing;
     private Zombie zombie;
@@ -99,10 +99,11 @@ public class ZombieManager {
         synchronized (zombieList) {
             for (int row : randomRows) {
                 int numZombies = random.nextInt(numberZom); // Randomly spawn 1-2 zombies
+                totalZom -= numZombies;
+                if (totalZom <0 || totalZom < numZombies){
+                    break;}
                 for (int i = 0; i < numZombies; i++) {
                     int zombieType = random.nextInt(3);
-                    System.out.println(zombieType);
-                    System.out.println("ROW"+row);
                     switch (zombieType) {
                         case 0:
                             zombieList.add(new Zombie((double)1070 + random.nextInt(100), (double) 86 * row - 27, 0)); // normal 102 is the starting y
@@ -111,11 +112,6 @@ public class ZombieManager {
                         case 2:
                             zombieList.add(new Zombie((double) 1070 + random.nextInt(100), (double) 86 * row - 27, 2)); // helmet
                     }
-                    System.out.println("row"+row);
-                    for (Zombie z : zombieList){
-                        System.out.println("TYPE: "+ z.getType());
-                    }
-                    totalZom -= numZombies;
 
                 }
             }
