@@ -1,6 +1,6 @@
 package org.game.bullet;
 
-public interface Shooter {
+public interface Shooting {
     int getX();
     int getY();
     int getWidth();

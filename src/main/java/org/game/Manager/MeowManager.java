@@ -393,14 +393,12 @@ public class MeowManager {
             if(meow.isAlive()){
                 if(meow.isDangered()){
                     if(meow.getID() == 1){
-                        if(meow.getFrameCountAttack() == 31){
-//                            playing.getProjectileOfPlant().projectileCreated((Shooter) plant);
-                            meow.setFrameCountAttack(meow.getFrameCountAttack()+1);
+                        if(meow.getFrameCountAttack() == 2 && meow.getFrameCDAttack() == 19){
+                            playing.getBulletManager().bulletCreated(meow);
                         }
-                    } else if(meow.getID() == 3){
-                        if(meow.getFrameCountAttack() == 8){
-//                            playing.getProjectileOfPlant().projectileCreated((Shooter) plant);
-                            meow.setFrameCountAttack(meow.getFrameCountAttack()+1);
+                    } else if(meow.getID() == 3 && meow.getFrameCDAttack() == 19 ){
+                        if(meow.getFrameCountAttack() == 2){
+                            playing.getBulletManager().bulletCreated(meow);
                         }
                     }
                 }

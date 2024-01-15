@@ -1,10 +1,10 @@
 package org.game.bullet;
 import java.awt.*;
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Bullet {
-    private final int dame = 0;
     private double x;
     private int y;
     private final int Dame ;
@@ -51,6 +51,7 @@ public class Bullet {
     public boolean getisFrozen() {
        return isFrozen;
     }
+
 
 
     public void move () {
