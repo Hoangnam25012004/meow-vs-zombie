@@ -51,7 +51,7 @@ public class Shark {
 
     public void move() {
         if (x<1070){
-            x += 1;
+            x += 4;
         }
     }
 

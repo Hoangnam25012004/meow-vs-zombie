@@ -53,6 +53,7 @@ public class ZombieManager {
         getNormalZombie();
         getHelmetZombie();
         getCatEarZombie();
+        setCountShark();
     }
     public static ZombieManager createZombieManager(Playing playing) {
         if(instance == null) {
@@ -74,6 +75,12 @@ public class ZombieManager {
 
         if (HP <= 0) {
             // Death(); // Call a method to handle zombie death, remove zombies
+        }
+    }
+
+    private void setCountShark(){
+        for (int i : countShark){
+            i = 0;
         }
     }
 
@@ -129,7 +136,7 @@ public class ZombieManager {
         if (totalZom >= 0) {
             Random random = new Random();
             int Zomtype = random.nextInt(3);
-            int row = random.nextInt(5)+1;
+            int row = 1;
             zombieList.add(new Zombie((double) 1070 + random.nextInt(100), (double) 86 * row - 27, Zomtype));
             totalZom -= 1;
         }
@@ -260,45 +267,48 @@ public class ZombieManager {
         for (Zombie z : zombieList) {
             if (z.isAlived()) {
                 // Cập nhật tọa độ di chuyển cho zombie còn sống
-                if (z.X() <= 100) {
+                if (z.X() < 100) {
                     z.dead();
                     zReachedEnd = true;
-                } else if (z.X()> 100 && z.X() <=150){
-
-                    if (z.Y()>=104 && z.Y()<189){
+                } else if (z.X()> 100 && z.X() <150){
+                    if (z.Y()>50 && z.Y()<189){
+                        System.out.println(z.Y());
                         if (countShark[0] <1){
+                            System.out.println("Ddang bij do " +countShark[0]);
                             playing.getSharkManager().appear(1);
+                            System.out.println("Ddang bij do");
                             countShark[0] = 10;
                         }
                         else {move(z);}
                     }
-                    if (z.Y()>=188 && z.Y()< 274){
+                    if (z.Y()>188 && z.Y()< 274){
                         if (countShark[1] <1){
                             playing.getSharkManager().appear(2);
                             countShark[1] = 10;
                         }
                         else {move(z);}
                     }
-                    if (z.Y()>=274 && z.Y()< 360){
+                    if (z.Y()>274 && z.Y()< 360){
                         if (countShark[2] <1){
                             playing.getSharkManager().appear(3);
                             countShark[2] = 10;
                         }
                         else {move(z);}
                     }
-                    if (z.Y()>=360 && z.Y()< 446){
+                    if (z.Y()>360 && z.Y()< 446){
                         if (countShark[3] <1){
                             playing.getSharkManager().appear(4);
                             countShark[3] = 10;
                         }
                         else {move(z);}
                     }
-                    if (z.Y()>=446 && z.Y()<=532){
+                    if (z.Y()>446 && z.Y()<532){
                         if (countShark[4] <1){
                             playing.getSharkManager().appear(5);
                             countShark[4] = 10;
                         }else {move(z);}
                     }
+
                 }
                 else {
                     move(z);

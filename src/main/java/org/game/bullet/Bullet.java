@@ -55,7 +55,7 @@ public class Bullet {
 
 
     public void move () {
-        if (this.x<1024) {
+        if (this.x<1070) {
             this.x += 8;
         }
     }

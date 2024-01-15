@@ -202,6 +202,9 @@ public class MeowManager {
                 if ( meow.getID() == 2){
                     meow.updateFrameCountStinkyPate(meow);
                 }
+                if (meow.getID() == 4){
+                    meow.updateFrameCountIdle();
+                }
             }
         }
         waitingTime++;
@@ -439,7 +442,7 @@ public class MeowManager {
             Meow meow = iterator.next();
             if(meow.isAlive()){
                 if(meow.getID() == 4){
-                    if(meow.getFrameCountIdle() == 29){
+                    if(meow.getFrameCountIdle() == 3){
                         meow.setHealthPoint(0);
                         pateExplode(meow.getX(),meow.getY());
                         meow.removeMeow(meow,iterator,playing.getTileManager(),this);
@@ -454,7 +457,7 @@ public class MeowManager {
 
     public void drawExplosion(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
-        Image Explosion = t.getImage(getClass().getResource("/Event/Powie.png"));
+        Image Explosion = t.getImage(getClass().getResource("/PateBomb/pateBomb-3.png"));
         explosionTime++;
         if(explosionTime<60 && isExploded){
             g2d.drawImage(Explosion,(int)explosionX,(int)explosionY,(int)explosionWidth,(int)explosionHeight,null);

@@ -39,8 +39,8 @@ public class SharkManager {
         }
     }
     public void appear(int row){
-
-        sharkRow.add( new Shark(90, 102+(row-1)*86 + 86/2, 80,80));
+        System.out.println(row);
+        sharkRow.add( new Shark(90, 86 * row - 27, 80,80));
     }
 
     public void getImg(){
@@ -88,7 +88,7 @@ public class SharkManager {
             Iterator<Shark> iterator = sharkRow.iterator();
             while ((iterator.hasNext())) {
                 Shark shark = iterator.next();
-                shark.move();
+                move(shark);
                 if (shark.getX() >= 1070) {
                     iterator.remove();
                 }

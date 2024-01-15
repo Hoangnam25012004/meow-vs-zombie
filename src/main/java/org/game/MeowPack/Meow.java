@@ -21,8 +21,7 @@ public class Meow implements Shooting
     private int price;
     private boolean alive = false;
     private boolean isAbleToFreeze = false;
-
-    private int frameCountIdleLimit = 1;
+    private int frameCountBombIdleLimit = 4;
     private int frameCountIdle = 0;
     private int frameCountStinkyPate=0;
     private int frameCountAttack = 0;
@@ -106,6 +105,18 @@ public class Meow implements Shooting
             }
         }
     }
+
+    public void updateFrameCountIdle(){
+        frameCDIdle++;
+        if(frameCDIdle%20 == 0){
+            frameCountIdle++;
+            if(frameCountIdle == frameCountBombIdleLimit){
+                frameCountIdle = 0;
+            }
+        }
+    }
+
+
 
     public boolean isDangered() {
         return isDangered;
