@@ -173,11 +173,11 @@ public class Zombie {
     }
 
     public int getWidth() {
-        return width;
+        return width+5;
     }
 
     public int getHeight() {
-        return height;
+        return height+8;
     }
 
     public boolean isWalking() {
