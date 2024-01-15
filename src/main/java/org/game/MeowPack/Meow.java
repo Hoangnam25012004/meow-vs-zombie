@@ -3,17 +3,14 @@ package org.game.MeowPack;
 import org.game.Component.Tile;
 import org.game.Hitbox.Rect;
 import org.game.Manager.*;
-import org.game.bullet.Shooter;
+import org.game.bullet.Shooting;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.Iterator;
-import java.util.Objects;
 import java.util.Random;
 
-public class Meow implements Shooter
+public class Meow implements Shooting
 {
     private int meowId;
     // 1 - ShooterMeow, 2 - SnowMeow, 3 - FishBucket, 4 - BombPate, 5 - StinkyPate
@@ -26,7 +23,6 @@ public class Meow implements Shooter
     private boolean isAbleToFreeze = false;
 
     private int frameCountIdleLimit = 1;
-    private int frameCountAttackLimit;
     private int frameCountIdle = 0;
     private int frameCountAttack = 0;
     private int frameCountFish = 0;
@@ -41,8 +37,8 @@ public class Meow implements Shooter
     public int getATK() {
         return meowATK;
     }
-    public int getFrameCountAttackLimit() {
-        return frameCountAttackLimit;
+    public int getFrameCDAttack(){
+        return frameCDAttack;
     }
     public int getFrameCountIdle() {
         return frameCountIdle;
@@ -130,9 +126,6 @@ public class Meow implements Shooter
         this.healthPoint = healthPoint;
     }
 
-    public int getPrice() {
-        return price;
-    }
 
     private int tileHold;
     private int x, y;

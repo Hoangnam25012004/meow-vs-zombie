@@ -101,6 +101,7 @@ public class Playing implements SceneMethods {
         return this.zombieManager;
     }
     public WaveManager getWaveManager(){  return this.waveManager;}
+    public BulletManager getBulletManager(){return  this.bulletManager;}
     public boolean isStartWaveForCD() {
         return startWaveForCD;
     }
@@ -120,6 +121,8 @@ public class Playing implements SceneMethods {
         barManager.update();
         zombieManager.updates();
         waveManager.updates();
+        bulletManager.bulletCollideZombie(this);
+        bulletManager.update(this);
         zombieAppear();
     }
     public void setStartWaveForCD(boolean startWaveForCD) {
@@ -260,8 +263,9 @@ public class Playing implements SceneMethods {
         zombieManager.render(g);
         fishManager.drawFish(g);
       //  notifManager.drawNotif(g);
-        bulletManager.drawProjectile(g);
+        bulletManager.drawBullet(g);
         buttonManager.drawImg(g);
+
     }
 }
 

@@ -2,6 +2,7 @@ package org.game.Manager;
 import org.game.Zombie.Zombie;
 import org.game.bullet.Bullet;
 import org.game.bullet.BulletLogic;
+import org.game.bullet.Shooting;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -15,7 +16,7 @@ public class BulletManager extends BulletLogic {
     private Image[] bulletImage = new Image[2];
     private int originalX;
     private int originalY;
-    public BufferedImage bullet_1, bullet_2;
+    private Toolkit t = Toolkit.getDefaultToolkit();
     public ArrayList<Bullet> bulletList = new ArrayList<>();
     Zombie zombie;
 
@@ -25,22 +26,19 @@ public class BulletManager extends BulletLogic {
     //
 
     @Override
-    public void drawProjectile(Graphics g) {
+    public void drawBullet(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
-        try {
-            bulletImage[0] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bullet/wool.png")));
-            bulletImage[1] = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/Bullet/Icewool.png")));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        synchronized (getBullet()){
-            Iterator<Bullet> iterator = getBullet().iterator();
-            while ((iterator.hasNext())) {
-                Bullet bullet = iterator.next();
-                if(!bullet.getisFrozen()){
-                    g2d.drawImage(bulletImage[0],(int) bullet.getX(),bullet.getY(),30,30,null);
-                } else if(bullet.getisFrozen()){
-                    g2d.drawImage(bulletImage[1],(int) bullet.getX(),bullet.getY()-10,70,30,null);
+        bulletImage[0] = t.getImage(getClass().getResource("/Bullet/wool.png"));
+        bulletImage[1] = t.getImage(getClass().getResource("/Bullet/Icewool.png"));
+        synchronized (getBulletList()){
+            for (int i = 0; i < getBulletList().size(); i++) {
+                if (getBulletList().get(i) != null) {
+                    Bullet bullet = getBulletList().get(i);
+                    if (bullet.getisFrozen() == false) {
+                        g2d.drawImage(bulletImage[0], (int) bullet.getX(), bullet.getY(), 30, 30, null);
+                    } else if (bullet.getisFrozen() == true) {
+                        g2d.drawImage(bulletImage[1], (int) bullet.getX(), bullet.getY() - 10, 30, 30, null);
+                    }
                 }
             }
         }
@@ -48,8 +46,6 @@ public class BulletManager extends BulletLogic {
 
 
     //___________________________________________________________________________
-    private void move(double speed) {
-    }
     public Rectangle getBoundary (Bullet bullet) {
         return new Rectangle((int) bullet.getX(), bullet.getY(), 20, 20);
 
@@ -73,12 +69,15 @@ public class BulletManager extends BulletLogic {
 
 
     //___________________________________________________________________________
-    public void addBullet(int x, int y) {
-        bulletList.add(new Bullet(x, y, 30));
-        System.out.println(bulletList);
-    }
-    public void slow(){
-
+    @Override
+    public void bulletCreated(Shooting shooting) {
+        synchronized (getBulletList()){
+            if(shooting.getID() == 1){
+                getBulletList().add(new Bullet(shooting.getX()+shooting.getWidth(),shooting.getY()+8,shooting.getATK(),false));
+            } else if(shooting.getID() == 3){
+                getBulletList().add(new Bullet(shooting.getX()+shooting.getWidth(),shooting.getY()+8,shooting.getATK(),true));
+            }
+        }
     }
 }
 
