@@ -117,6 +117,15 @@ public class ZombieManager {
             }
         }
     }
+    public void createSingleZombie(){
+        if (totalZom >= 0) {
+            Random random = new Random();
+            int Zomtype = random.nextInt(3);
+            int row = random.nextInt(5)+1;
+            zombieList.add(new Zombie((double) 1070 + random.nextInt(100), (double) 86 * row - 27, Zomtype));
+            totalZom -= 1;
+        }
+    }
 
     private boolean contains(int[] array, int value) {
         for (int element : array) {

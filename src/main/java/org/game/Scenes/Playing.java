@@ -144,8 +144,14 @@ public class Playing implements SceneMethods {
         return false;
     }
     private void spawnZombie() {
-
-        zombieManager.spawnRandomZombiesIn5RandomRows(5, 3);
+        if (counter == 100000){
+            zombieManager.spawnRandomZombiesIn5RandomRows(5,3);
+            System.out.println("tôi ");
+        }
+        else if (counter >= 900){
+        zombieManager.createSingleZombie();
+        counter=601;
+        }
     }
     public void setupZombie(){
         if(zombieManager.iszReachedEnd()) {
@@ -154,7 +160,7 @@ public class Playing implements SceneMethods {
             Audio.stopRoof();
             Audio.stopReadySetPlant();*/
         }
-        if(getNotifManager().getWaveCDTime().isEndCDWave()) {
+        if(getNotifManager().getWaveCDTime().isEndCDWave()) { // change wave
             System.out.println("startGame");
             startGame();
         }

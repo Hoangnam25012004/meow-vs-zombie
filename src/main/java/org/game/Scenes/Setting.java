@@ -10,7 +10,7 @@ import static org.game.Scenes.GameScenes.*;
 
 public class Setting implements SceneMethods{
     private World w;
-    private MyButtons bMenu, bQuit, bPlaying;
+    private MyButtons bMenu, bRestart, bPlaying;
     private Image[] buttonOfSetting;
     private Toolkit t = Toolkit.getDefaultToolkit();
 
@@ -19,17 +19,17 @@ public class Setting implements SceneMethods{
     }
 
     public void initButtons(){
-        bMenu = new MyButtons("Main menu", 277, 390,133,44);
-        bQuit = new MyButtons("Quit", 453, 390, 126, 44);
-        bPlaying = new MyButtons("Play", 620, 390, 126, 44);
+        bMenu = new MyButtons("Main menu", 293, 360,126,44);
+        bRestart = new MyButtons("Restart", 460, 360, 126, 44);
+        bPlaying = new MyButtons("Play", 627, 360, 126, 44);
     }
 
     private void importImg(){
         buttonOfSetting = new Image[3];
         try {
-            buttonOfSetting[0] = t.getImage(getClass().getResource("/scene/EXIT TO MAP.png"));
-            buttonOfSetting[1] = t.getImage(getClass().getResource("/scene/EXIT.png"));
-            buttonOfSetting[2] = t.getImage(getClass().getResource("/scene/RESUME.png"));
+            buttonOfSetting[0] = t.getImage(getClass().getResource("/Scene/exitpause copy.png"));
+            buttonOfSetting[1] = t.getImage(getClass().getResource("/Scene/Restart paused ư.png"));
+            buttonOfSetting[2] = t.getImage(getClass().getResource("/Scene/resume paused2.png"));
         }catch (Exception e){
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error - importImage()");
@@ -37,15 +37,15 @@ public class Setting implements SceneMethods{
     }
 
     public void drawImg(Graphics g){
-        g.drawImage(buttonOfSetting[0], 277, 390,133,44, null);
-        g.drawImage(buttonOfSetting[1], 453, 390, 126, 44, null);
-        g.drawImage(buttonOfSetting[2], 620, 390, 126, 44, null);
+        g.drawImage(buttonOfSetting[0], 305, 360,126,44, null);
+        g.drawImage(buttonOfSetting[1], 472, 360, 126, 44, null);
+        g.drawImage(buttonOfSetting[2], 639, 360, 126, 44, null);
     }
 
 
     @Override
     public void render(Graphics g, Image img) {
-        g.drawImage(img, 0,0, w.getWidth(), w.getHeight(),null);
+        g.drawImage(img, 223,162, 624, 252,null);
         initButtons();
         importImg();
         drawImg(g);
@@ -58,13 +58,9 @@ public class Setting implements SceneMethods{
             Audio.menu();
             Audio.stopSetting();
             setGameScenes(MENU);
-        } else if (bQuit.getBounds().contains(x, y)){
+        } else if (bRestart.getBounds().contains(x, y)){
             System.exit(0);
-            setGameScenes(LOSE);
-/*            Audio.stopRoof();
-            Audio.lose();
-            Audio.stopSetting();
-            setGameScenes(LOSE);*/
+         //   setGameScenes(LOSE);reset
         } else if (bPlaying.getBounds().contains(x, y)){
             Audio.stopSetting();
             Audio.roofStage();
