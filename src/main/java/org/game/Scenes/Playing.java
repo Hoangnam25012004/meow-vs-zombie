@@ -1,5 +1,6 @@
 package org.game.Scenes;
 
+import org.game.Fish.Shark;
 import org.game.Manager.*;
 import org.game.bullet.Bullet;
 import org.game.Component.MyButtons;
@@ -21,6 +22,7 @@ public class Playing implements SceneMethods {
     private TileManager tileManager;
     private ZombieManager zombieManager;
     private BarManager barManager;
+    private SharkManager sharkManager;
     //private NotifManager notifManager;
     private KeyBoardManager keyBoardManager;
     private Toolkit t = Toolkit.getDefaultToolkit();
@@ -44,6 +46,7 @@ public class Playing implements SceneMethods {
         meowManager = MeowManager.createMeowManager(this);
         fishManager = FishManager.createFishManager(this);
         bulletManager = new BulletManager();
+        sharkManager = new SharkManager(this);
     }
 
     public void mouseMove(int x, int y){
@@ -98,6 +101,10 @@ public class Playing implements SceneMethods {
         return this.fishManager;
     }
 
+    public SharkManager getSharkManager() {
+        return sharkManager;
+    }
+
     public ZombieManager getZombieManager() {
         return this.zombieManager;
     }
@@ -117,12 +124,13 @@ public class Playing implements SceneMethods {
 
     public void updates() {
         setupZombie();
-       // zombieManager.update();
         meowManager.update();
         barManager.update();
         fishManager.update(this);
         zombieManager.updates();
+        sharkManager.update(this);
         zombieManager.ZombieCollideMeow();
+        sharkManager.SharkCollideZombie(this);
         waveManager.updates();
         bulletManager.bulletCollideZombie(this);
         bulletManager.update(this);
@@ -152,7 +160,6 @@ public class Playing implements SceneMethods {
     private void spawnZombie() {
         if (counter == 100000){
             zombieManager.spawnRandomZombiesIn5RandomRows(5,3);
-            System.out.println("tôi ");
         }
         else if (counter >= 900){
         zombieManager.createSingleZombie();
@@ -267,6 +274,8 @@ public class Playing implements SceneMethods {
         notifManager.drawNotif(g);
         bulletManager.drawBullet(g);
         buttonManager.drawImg(g);
+        sharkManager.draw(g);
+
 
     }
 }
