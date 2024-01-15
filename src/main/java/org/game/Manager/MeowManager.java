@@ -419,7 +419,8 @@ public class MeowManager {
     private boolean isExploded = false;
     private int explosionTime = 0;
     public void pateExplode(int x, int y){
-        Rectangle explodeRange = new Rectangle(x-120,y-130,300,330);
+        System.out.println("Mjaamk [ate");
+        Rectangle explodeRange = new Rectangle(x-120,y-130,300,300);
         explosionX = explodeRange.getX();
         explosionY = explodeRange.getY();
         explosionWidth = explodeRange.getWidth();
@@ -428,7 +429,7 @@ public class MeowManager {
             Iterator<Zombie> iterator = playing.getZombieManager().getZombies().iterator();
             while (iterator.hasNext()){
                 Zombie zombie = iterator.next();
-                if(explodeRange.contains(zombie.getBound().getX(),zombie.getBound().getY()+70)){
+                if(explodeRange.contains(zombie.X(),zombie.Y())){
                     zombie.dead();
                 }
             }
