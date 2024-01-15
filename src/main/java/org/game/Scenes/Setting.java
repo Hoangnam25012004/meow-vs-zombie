@@ -1,9 +1,12 @@
 package org.game.Scenes;
 
-import org.game.Manager.World;
-import org.game.Component.MyButtons;
+import org.game.Audio.*;
+import org.game.Component.*;
+import org.game.Manager.*;
+
+import javax.swing.*;
 import java.awt.*;
-import java.util.Set;
+import static org.game.Scenes.GameScenes.*;
 
 public class Setting implements SceneMethods{
     private World w;
@@ -20,26 +23,63 @@ public class Setting implements SceneMethods{
         bQuit = new MyButtons("Quit", 453, 390, 126, 44);
         bPlaying = new MyButtons("Play", 620, 390, 126, 44);
     }
+
+    private void importImg(){
+        buttonOfSetting = new Image[3];
+        try {
+            buttonOfSetting[0] = t.getImage(getClass().getResource("/scene/EXIT TO MAP.png"));
+            buttonOfSetting[1] = t.getImage(getClass().getResource("/scene/EXIT.png"));
+            buttonOfSetting[2] = t.getImage(getClass().getResource("/scene/RESUME.png"));
+        }catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error - importImage()");
+        }
+    }
+
+    public void drawImg(Graphics g){
+        g.drawImage(buttonOfSetting[0], 277, 390,133,44, null);
+        g.drawImage(buttonOfSetting[1], 453, 390, 126, 44, null);
+        g.drawImage(buttonOfSetting[2], 620, 390, 126, 44, null);
+    }
+
+
     @Override
     public void render(Graphics g, Image img) {
-
+        g.drawImage(img, 0,0, w.getWidth(), w.getHeight(),null);
+        initButtons();
+        importImg();
+        drawImg(g);
     }
 
     @Override
     public void mouseClicked(int x, int y) {
-
+        if (bMenu.getBounds().contains(x, y)){
+            Audio.stopRoof();
+            Audio.menu();
+            Audio.stopSetting();
+            setGameScenes(MENU);
+        } else if (bQuit.getBounds().contains(x, y)){
+            System.exit(0);
+            setGameScenes(LOSE);
+/*            Audio.stopRoof();
+            Audio.lose();
+            Audio.stopSetting();
+            setGameScenes(LOSE);*/
+        } else if (bPlaying.getBounds().contains(x, y)){
+            Audio.stopSetting();
+            Audio.roofStage();
+            setGameScenes(PLAYING);
+        }
     }
 
     @Override
     public void mousePressed(int x, int y) {
-
     }
 
     @Override
     public void mouseReleased(int x, int y) {
-
     }
 
-    public void updates() {
+    public void updates(){
     }
 }

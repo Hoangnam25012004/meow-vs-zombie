@@ -220,21 +220,19 @@ public class Playing implements SceneMethods {
     }
     public void changeScene(int x, int y){
         if (buttonManager.getbSetting().getBounds().contains(x, y)) {
-           /* Audio.setting();
+           Audio.setting();
             Audio.stopRoof();
             Audio.stopReadySetPlant();
-            setGameScenes(SETTING); */
+            setGameScenes(SETTING);
         }
     }
     public void zombieAppear(){
        if (counter >= 600) {
-            System.out.println("click on start button");
             if (!startWave && zombieManager.allZombieDead()) {
                 startGame();
                 startWave = true;
                 callHorde = false;
                 startWaveForCD = true;
-                System.out.println("click on start");
                 waveManager.readyNewWave();
                 notifManager.reset();
             }
