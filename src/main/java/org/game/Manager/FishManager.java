@@ -62,6 +62,9 @@ public class FishManager {
     public int getFishHold() {
         return fishHold;
     }
+    public void setFishHold(int fish){
+        this.fishHold = fish;
+    }
     public void fishConsumed(int fishConsumed){
         fishHold -= fishConsumed;
     }

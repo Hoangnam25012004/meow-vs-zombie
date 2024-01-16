@@ -39,7 +39,6 @@ public class SharkManager {
         }
     }
     public void appear(int row){
-        System.out.println(row);
         sharkRow.add( new Shark(90, 86 * row - 27, 80,80));
     }
 
@@ -81,6 +80,9 @@ public class SharkManager {
     public void move(Shark s) {
         updateSharkCount();
         s.move();
+    }
+    public ArrayList<Shark> getSharkList(){
+        return sharkRow;
     }
     public void update(Playing playing) {
         frameCount();

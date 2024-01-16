@@ -28,7 +28,7 @@ public class MeowManager {
     private boolean selected = true;
     private boolean isMeowed = false;
     private boolean isForbidden = false;
-    private boolean isDog = false;
+    private boolean isBagged = false;
     private int IDhold;
     private int fishCostHold;
     private static MeowManager instance;
@@ -368,8 +368,8 @@ public class MeowManager {
         }
         return start;
     }
-    public void setIsDog(boolean isDog){
-        this.isDog = isDog;
+    public void setBagged(boolean isbag){
+        this.isBagged = isbag;
     }
 
     public void calmMeow(){
@@ -473,4 +473,29 @@ public class MeowManager {
         drawExplosion(g);
     }
 
+    public boolean getisBagged() {
+        return isBagged;
+    }
+
+    public void removeMeowByBag(int x, int y){
+        for(int i = 0;i < playing.getTileManager().getTiles().length;i++){
+            if(isBagged){
+                if(playing.getTileManager().getTiles()[playing.getMouseMotionManager().getTileSelectedByMouse()].getBound().contains(x,y)){
+                    Iterator<Meow> iterator = meowList.iterator();
+                    while (iterator.hasNext()){
+                        Meow meow = iterator.next();
+                        if(meow.isAlive()){
+                            Rectangle meowRec = new Rectangle(meow.getX(),meow.getY(),meow.getWidth(),meow.getHeight());
+                            if(playing.getTileManager().getTiles()[playing.getMouseMotionManager().getTileSelectedByMouse()].isOccupied() && playing.getTileManager().getTiles()[playing.getMouseMotionManager().getTileSelectedByMouse()].getBound().contains(meow.getX(),meow.getY())){
+                                playing.getTileManager().getTiles()[playing.getMouseMotionManager().getTileSelectedByMouse()].setOccupied(false);
+                                playing.getTileManager().getTiles()[playing.getMouseMotionManager().getTileSelectedByMouse()].setPlaced(false);
+                                meow.setAlive(false);
+                                isBagged = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

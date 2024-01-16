@@ -51,6 +51,10 @@ public class WaveManager {
         }
     }
 
+    public void setEndWaves(boolean endWaves){
+        this.endWaves = endWaves;
+    }
+
     public boolean isTimeForNewZombie() {
         return zomSpawnTime.isTime();
     }

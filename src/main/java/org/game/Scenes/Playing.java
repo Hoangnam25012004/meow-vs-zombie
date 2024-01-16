@@ -72,7 +72,7 @@ public class Playing implements SceneMethods {
     @Override
     public void mouseReleased(int x, int y) {
         meowManager.mouse(x, y);
-       // meowManager.removeMeowByBag(x,y);
+        meowManager.removeMeowByBag(x,y);
 
 
     }
@@ -146,7 +146,7 @@ public class Playing implements SceneMethods {
         meowManager.setSelected(false);
         meowManager.setForbidden(false);
         System.out.println("click on start");
-        //waveManager.readyNewWave();
+        waveManager.readyNewWave();
         notifManager.reset();
     }
     private boolean isTimeForNewZombie() {
@@ -184,9 +184,10 @@ public class Playing implements SceneMethods {
             if (waveManager.hordeDead() && callHorde == true) {
                 startWave = false;
             }
-            if (zombieManager.allZombieDead() && !callHorde) {
-                zombieManager.getZombies().clear();
-                if (waveManager.isEndWaves()) {
+            if (zombieManager.getTotalZom() <= 0 && zombieManager.allZombieDead()) {
+                System.out.println("You wins");
+                setGameScenes(WIN);
+                /*if (waveManager.isEndWaves()) {
                     setGameScenes(WIN);
                     Audio.stopRoof();
                     Audio.stopReadySetPlant();
@@ -195,7 +196,7 @@ public class Playing implements SceneMethods {
                     waveManager.createHorde();
                     callHorde = true;
                     zombieApproaching = true;
-                }
+                }*/
 //                notifManager.setNotif(new PlayingNotif(0));
             }
         }
@@ -225,9 +226,9 @@ public class Playing implements SceneMethods {
                     } else if (b2.getText().contains("Pate Bomb")) {
                         meowManager.setForbidden(false);
                         barManager.PateBomb();
-                    } else if(b2.getText().contains("Shovel")){
+                    } else if(b2.getText().contains("Bag")){
                         meowManager.setSelected(false);
-                       // meowManager.setBagged(true);
+                        meowManager.setBagged(true);
                     }
                 }
                 barManager.setMeowLocked(true);
@@ -249,11 +250,6 @@ public class Playing implements SceneMethods {
        if (counter >= 600) {
             if (!startWave && zombieManager.allZombieDead()) {
                 startGame();
-                startWave = true;
-                callHorde = false;
-                startWaveForCD = true;
-                waveManager.readyNewWave();
-                notifManager.reset();
             }
         }
         counter ++;
@@ -268,6 +264,7 @@ public class Playing implements SceneMethods {
         barManager.draw(g);
         mouseMotionManager.drawMeowSelectedByMouse(g);
         tileManager.draw(g);
+        tileManager.drawBagSprite(g);
         meowManager.draw(g);
         zombieManager.render(g);
         fishManager.drawFish(g);

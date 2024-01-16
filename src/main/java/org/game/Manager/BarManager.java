@@ -54,24 +54,24 @@ public class BarManager {
     }
 
     private void initButtons() {
-        pickMeow = new MyButtons[5];
+        pickMeow = new MyButtons[6];
         pickMeow[0] = new MyButtons("Bucket", 95, 12, 100, 74);
         pickMeow[1] = new MyButtons("Meow", 195, 12, 100, 74);
         pickMeow[2] = new MyButtons("Stinky Pate", 295, 12, 100, 74);
         pickMeow[3] = new MyButtons("IceCat", 395, 12, 100, 74);
         pickMeow[4] = new MyButtons("Pate Bomb", 495, 12, 100, 74);
-        //pickPlant[5] = new MyButtons("Shovel",940,20,80,70);
+        pickMeow[5] = new MyButtons("Bag",595,12,100,74);
     }
 
     private void importImg(){
-        pick_meowBar = new Image[5];
+        pick_meowBar = new Image[6];
         try {
             pick_meowBar[0] = t.getImage(getClass().getResource("/meowBar/Bucket.png"));
             pick_meowBar[1] = t.getImage(getClass().getResource("/meowBar/Meow.png"));
             pick_meowBar[2] = t.getImage(getClass().getResource("/meowBar/Tray.png"));
             pick_meowBar[3] = t.getImage(getClass().getResource("/meowBar/Icecat.png"));
             pick_meowBar[4] = t.getImage(getClass().getResource("/meowBar/pateBomb.png"));
-            //pick_plantBar[5] = t.getImage(getClass().getResource("/shovel/shovel.png"));
+            pick_meowBar[5] = t.getImage(getClass().getResource("/Bag/Bag.png"));
             pickedMeow = t.getImage(getClass().getResource("/meowBar/plantSelected.png"));
             meowBar = t.getImage(getClass().getResource("/meowBar/MeowBar.png"));
         }catch (Exception e){

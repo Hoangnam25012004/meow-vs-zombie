@@ -19,8 +19,8 @@ public class TileManager {
     private Playing playing;
     private Image[] meowLightBlur = new Image[5];
     private Image[] meowHardBlur = new Image[5];
-   // private Image dogSprite = t.getImage(getClass().getResource("/shovel/shovel-sprite.png"));
     private Toolkit t = Toolkit.getDefaultToolkit();
+    private Image bagSprite = t.getImage(getClass().getResource("/Bag/Bag.png"));
     private Tile[] tilesOfLake = new Tile[5];
     public int wTileOfLake = 125;
     public int hTileOfLake = 70;
@@ -81,20 +81,14 @@ public class TileManager {
         meowHardBlur[3] = t.getImage(getClass().getResource("/BlurMeow/HardBlur/Icecat 1.png"));
         meowHardBlur[4] = t.getImage(getClass().getResource("/BlurMeow/HardBlur/food 1.png"));
     }
+    public void drawBagSprite(Graphics g){
+        Graphics2D g2d = (Graphics2D) g;
+            if(playing.getMeowManager().getisBagged()){
+                Rectangle r = new Rectangle((int)tiles[playing.getMouseMotionManager().getTileSelectedByMouse()].getBound().getX(),(int)tiles[playing.getMouseMotionManager().getTileSelectedByMouse()].getBound().getY(),tiles[playing.getMouseMotionManager().getTileSelectedByMouse()].getwTile(),tiles[playing.getMouseMotionManager().getTileSelectedByMouse()].gethTile());
+                g2d.drawImage(bagSprite,(int)r.getX()-10,(int)r.getY()-5,(int)r.getWidth()+20,(int)r.getHeight()+20,null);
+            }
 
- /*   public void drawTiles(Graphics g, LakeManager lakeManager) {
-        int curX = 200;
-        int curY = 171;
-
-        for (Tile t: tilesOfLake) {
-            Rectangle r = new Rectangle((int)t.getBound().getX(),(int)t.getBound().getY(), t.getWTileOfHouseOwner(), t.getHTileOfHouseOwner());
-
-            g.setColor(Color.pink);
-            g.fillRect(r.x, r.y, r.width, r.height);
-
-            curY += t.getHTileOfHouseOwner() + 10;
-        }
-    }*/
+    }
     public void drawTiles(Graphics g){
         int col = 0;
         int row =0;

@@ -12,6 +12,7 @@ public class Setting implements SceneMethods{
     private World w;
     private MyButtons bMenu, bRestart, bPlaying;
     private Image[] buttonOfSetting;
+    private boolean isReset = false;
     private Toolkit t = Toolkit.getDefaultToolkit();
 
     public Setting(World w){
@@ -43,6 +44,7 @@ public class Setting implements SceneMethods{
     }
 
 
+
     @Override
     public void render(Graphics g, Image img) {
         g.drawImage(img, 223,162, 624, 252,null);
@@ -59,8 +61,7 @@ public class Setting implements SceneMethods{
             Audio.stopSetting();
             setGameScenes(MENU);
         } else if (bRestart.getBounds().contains(x, y)){
-            System.exit(0);
-         //   setGameScenes(LOSE);reset
+
         } else if (bPlaying.getBounds().contains(x, y)){
             Audio.stopSetting();
             Audio.roofStage();

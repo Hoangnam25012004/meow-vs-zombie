@@ -136,7 +136,7 @@ public class ZombieManager {
         if (totalZom >= 0) {
             Random random = new Random();
             int Zomtype = random.nextInt(3);
-            int row = 1;
+            int row = random.nextInt(5)+1;
             zombieList.add(new Zombie((double) 1070 + random.nextInt(100), (double) 86 * row - 27, Zomtype));
             totalZom -= 1;
         }
@@ -274,9 +274,7 @@ public class ZombieManager {
                     if (z.Y()>50 && z.Y()<189){
                         System.out.println(z.Y());
                         if (countShark[0] <1){
-                            System.out.println("Ddang bij do " +countShark[0]);
                             playing.getSharkManager().appear(1);
-                            System.out.println("Ddang bij do");
                             countShark[0] = 10;
                         }
                         else {move(z);}

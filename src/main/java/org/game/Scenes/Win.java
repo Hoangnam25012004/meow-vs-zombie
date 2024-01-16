@@ -14,6 +14,7 @@ public class Win implements SceneMethods{
     private World w;
     private MyButtons bMenu;
     private Image[] buttonOfWin;
+    private Image BlackBackground;
     private Toolkit t = Toolkit.getDefaultToolkit();
 
     public Win(World w){
@@ -27,7 +28,8 @@ public class Win implements SceneMethods{
     private void importImg(){
         buttonOfWin = new Image[1];
         try {
-            buttonOfWin[0] = t.getImage(getClass().getResource("/Scene/win.png"));
+            buttonOfWin[0] = t.getImage(getClass().getResource("/Scene/EXIT.png"));
+            BlackBackground = t.getImage(getClass().getResource("/Scene/Black.png.png"));
         }catch (Exception e){
             e.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error - importImage()");
@@ -37,10 +39,12 @@ public class Win implements SceneMethods{
 
     @Override
     public void render(Graphics g, Image img) {
-        g.drawImage(img, 0, 0 , w.getWidth(), w.getHeight(), null);
         initButtons();
-        g.drawImage(buttonOfWin[0], 475,347,120,42, null);
         importImg();
+        g.drawImage(BlackBackground, 0,0 , w.getScreenWidth() , w.getScreenHeight(),null);
+        g.drawImage(img,140,208, 790, 160, null);
+
+        g.drawImage(buttonOfWin[0], 475,347,120,42, null);
     }
 
     @Override
