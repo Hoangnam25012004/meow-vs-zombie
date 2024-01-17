@@ -29,7 +29,7 @@ public class Setting implements SceneMethods{
         buttonOfSetting = new Image[3];
         try {
             buttonOfSetting[0] = t.getImage(getClass().getResource("/Scene/exitpause copy.png"));
-            buttonOfSetting[1] = t.getImage(getClass().getResource("/Scene/Restart paused ư.png"));
+            //
             buttonOfSetting[2] = t.getImage(getClass().getResource("/Scene/resume paused2.png"));
         }catch (Exception e){
             e.printStackTrace();
@@ -39,7 +39,7 @@ public class Setting implements SceneMethods{
 
     public void drawImg(Graphics g){
         g.drawImage(buttonOfSetting[0], 305, 360,126,44, null);
-        g.drawImage(buttonOfSetting[1], 472, 360, 126, 44, null);
+        //g.drawImage(buttonOfSetting[1], 472, 360, 126, 44, null);
         g.drawImage(buttonOfSetting[2], 639, 360, 126, 44, null);
     }
 
