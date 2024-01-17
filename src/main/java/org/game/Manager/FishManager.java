@@ -16,7 +16,6 @@ public class FishManager {
     private Toolkit t = Toolkit.getDefaultToolkit();
     private Image fishImage = t.getImage(getClass().getResource("/Fish/fish.png"));;
     private List<Fish> listOfFish = new ArrayList<>();
-//    private Playing playing;
     private int realTimeCounter = 0;
     private int fishHold = 1500;
     private Random random = new Random();
@@ -54,7 +53,7 @@ public class FishManager {
         int randx = random.nextInt(fakeSize);
         listOfFish.get(randx).setX(meow.getX());
         listOfFish.get(randx).setY(meow.getY()-30);
-        listOfFish.get(randx).setBound(new Rectangle(meow.getX(),meow.getY()-30,70,70));
+        listOfFish.get(randx).setBound(new Rectangle(meow.getX(),meow.getY(),70,70));
         listOfFish.get(randx).setBoundaryDrop(meow.getY()+30);
         listOfFish.get(randx).setThere(true);
         fakeSize--;
@@ -83,7 +82,6 @@ public class FishManager {
             Fish fish = iterator.next();
             Rectangle rFish = fish.getBounds();
             if(rFish.contains(x,y) && !fish.isFishCLicked() && fish.isThere()){
-//                Audio.sunCollected();
                 collectFish(fish);
             }
         }
@@ -102,8 +100,6 @@ public class FishManager {
         }
     }
     public void drawFishHolder(Graphics g){
-//        Rectangle holder = new Rectangle(355,-70,90,90);
-//        g.drawRect((int)holder.getX(),(int)holder.getY(),(int)holder.getWidth(),(int)holder.getWidth());
         Graphics2D g2n = (Graphics2D) g;
         g2n.setFont(new Font("Arial",Font.BOLD,16));
         g2n.setColor(Color.BLACK);
@@ -129,9 +125,6 @@ public class FishManager {
             Fish fish = iterator.next();
             if(fish.isThere()){
                 g2d.drawImage(fishImage,(int)fish.getX(),(int)fish.getY(),fish.getWidth(),fish.getHeight(),null);
-//                        g.setColor(Color.RED);
-//                        g.drawRect((int)sun.getBounds().getX()+15,(int)sun.getBounds().getY()+30,(int)sun.getBounds().getWidth()-30,(int)sun.getBounds().getHeight()-30);
-//                    g.drawRect((int)sun.getX(),(int)sun.getY(),sun.getWidth(),sun.getHeight());
             }
         }
     }

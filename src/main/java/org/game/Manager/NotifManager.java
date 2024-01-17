@@ -28,6 +28,7 @@ public class NotifManager {
         return instance;
     }
 
+
     public void setUpNotif() {
         notifs[0] = new PlayingNotif(0, 4);
         clearStageTime = new timeStage(this.notifs[0].timeNotif(), 1);
@@ -43,7 +44,7 @@ public class NotifManager {
     //draw
     public void drawNotif(Graphics g) {
         if (!playing.isStartWave()) {
-            if (!playing.getWaveManager().isThereMoreZombieInWave() && playing.getZombieManager().allZombieDead() && playing.isZombieApproaching()) {
+            if (playing.getZombieManager().allZombieDead() && playing.getZombieManager().getTotalZom() == 0) {
                 refresh();
                 if(waveCDTime.isTime()) {
                     waveCDTime.setEndCDWave(true);
@@ -56,6 +57,7 @@ public class NotifManager {
                     stageClear(g);
                 }
             }
+
         }
         stageCurrent(g);
     }
@@ -66,7 +68,7 @@ public class NotifManager {
         g.setFont(font);
         g.setColor(Color.WHITE);
         int time = playing.getWaveManager().getCoolDownWave() - waveCDTime.getCurrentSec();
-        g.drawString("Count down: " + time, 100, 20);
+        g.drawString("Count down: " + time, 700, 20);
     }
     public void stageClear(Graphics g) {
         g.drawImage(notifs[0].getImage(), 1076 / 2 - 200, 576 / 2 - 200, 400, 400, null);

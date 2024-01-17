@@ -39,7 +39,7 @@ public class SharkManager {
         }
     }
     public void appear(int row){
-        sharkRow.add( new Shark(90, 86 * row - 27, 80,80));
+        sharkRow.add( new Shark(90, 86 * row, 80,80));
     }
 
     public void getImg(){
@@ -59,14 +59,14 @@ public class SharkManager {
                     Iterator<Shark> iterator2 = sharkRow.iterator();
                     while (iterator2.hasNext()){
                         Shark shark = iterator2.next();
-                        sharkDealDamage(30,r,shark,zombie);
+                        sharkDealDamage(0,r,shark,zombie);
                     }
                 }
             }
         }
     }
     public void sharkDealDamage(int distance,Rectangle r, Shark shark, Zombie zombie){
-        if(r.contains(shark.getX()+distance,shark.getY()) && zombie.isAlived()){
+        if(r.contains(shark.getX()+distance,shark.getY()+80/2) && zombie.isAlived()){
             Audio.splat();
             zombie.setHp(zombie.getHp()-shark.getDame());
             if(zombie.getHp() <= 0){

@@ -5,6 +5,7 @@ import org.game.Manager.*;
 import org.game.bullet.Bullet;
 import org.game.Component.MyButtons;
 import org.game.Audio.*;
+import org.game.Timer.*;
 
 import static org.game.Scenes.GameScenes.*;
 import java.awt.*;
@@ -23,8 +24,6 @@ public class Playing implements SceneMethods {
     private ZombieManager zombieManager;
     private BarManager barManager;
     private SharkManager sharkManager;
-    //private NotifManager notifManager;
-    private KeyBoardManager keyBoardManager;
     private Toolkit t = Toolkit.getDefaultToolkit();
     private World w;
     private boolean startWave = false, callHorde = false, zombieApproaching = false;
@@ -84,9 +83,6 @@ public class Playing implements SceneMethods {
     public BarManager getBarManager() {
         return barManager;
     }
-    public KeyBoardManager getKeyBoardManager(){
-        return keyBoardManager;
-    }
     public MouseMotionManager getMouseMotionManager() {
         return mouseMotionManager;
     }
@@ -145,7 +141,7 @@ public class Playing implements SceneMethods {
         startWaveForCD = true;
         meowManager.setSelected(false);
         meowManager.setForbidden(false);
-        System.out.println("click on start");
+        System.out.println("start");
         waveManager.readyNewWave();
         notifManager.reset();
     }
@@ -158,7 +154,7 @@ public class Playing implements SceneMethods {
         return false;
     }
     private void spawnZombie() {
-        if (counter == 100000){
+        if (counter >= 800 && zombieManager.getTotalZom() == 10){
             zombieManager.spawnRandomZombiesIn5RandomRows(5,3);
         }
         else if (counter >= 900){

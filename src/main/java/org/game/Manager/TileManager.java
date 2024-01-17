@@ -20,7 +20,7 @@ public class TileManager {
     private Image[] meowLightBlur = new Image[5];
     private Image[] meowHardBlur = new Image[5];
     private Toolkit t = Toolkit.getDefaultToolkit();
-    private Image bagSprite = t.getImage(getClass().getResource("/Bag/Bag.png"));
+    private Image bagSprite = t.getImage(getClass().getResource("/Bag/backpack.png"));
     private Tile[] tilesOfLake = new Tile[5];
     public int wTileOfLake = 125;
     public int hTileOfLake = 70;

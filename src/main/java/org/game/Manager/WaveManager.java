@@ -77,20 +77,11 @@ public class WaveManager {
             hordeActive = false;
         }
     }
-    public boolean isEndWaves() {
-        return endWaves;
-    }
 
     public boolean hordeDead() {
         return !hordeActive;
     }
 
-    public void createHorde() {
-        //ini hordeNum = 20
-        hordeActive = true;
-       // playing.getZombieManager().createHorde(hordeNum);
-        hordeNum += 15;
-    }
     public int getCurWave() {
 
 //        System.out.println("curWave " + curWave);

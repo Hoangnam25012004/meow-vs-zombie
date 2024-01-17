@@ -22,11 +22,10 @@ import java.util.Random;
 public class ZombieManager {
 
     protected int HP;
-    private int totalZom = 7;
+    private int totalZom = 20;
     private static boolean zReachedEnd = false;
     private int[] countShark = new int[5];
     private Playing playing;
-    private Zombie zombie;
 
     private ArrayList<Zombie> zombieList;
 
@@ -271,36 +270,35 @@ public class ZombieManager {
                     z.dead();
                     zReachedEnd = true;
                 } else if (z.X()> 100 && z.X() <150){
-                    if (z.Y()>50 && z.Y()<189){
-                        System.out.println(z.Y());
+                    if ((z.Y() + z.getHeight()/2)>102 && (z.Y() + z.getHeight()/2)<188){
                         if (countShark[0] <1){
                             playing.getSharkManager().appear(1);
                             countShark[0] = 10;
                         }
                         else {move(z);}
                     }
-                    if (z.Y()>188 && z.Y()< 274){
+                    if ((z.Y() + z.getHeight()/2)>188 && (z.Y() + z.getHeight()/2)< 274){
                         if (countShark[1] <1){
                             playing.getSharkManager().appear(2);
                             countShark[1] = 10;
                         }
                         else {move(z);}
                     }
-                    if (z.Y()>274 && z.Y()< 360){
+                    if ((z.Y() + z.getHeight()/2)>274 && (z.Y() + z.getHeight()/2)< 360){
                         if (countShark[2] <1){
                             playing.getSharkManager().appear(3);
                             countShark[2] = 10;
                         }
                         else {move(z);}
                     }
-                    if (z.Y()>360 && z.Y()< 446){
+                    if ((z.Y() + z.getHeight()/2)>360 && (z.Y() + z.getHeight()/2)< 446){
                         if (countShark[3] <1){
                             playing.getSharkManager().appear(4);
                             countShark[3] = 10;
                         }
                         else {move(z);}
                     }
-                    if (z.Y()>446 && z.Y()<532){
+                    if ((z.Y() + z.getHeight()/2)>446 && (z.Y() + z.getHeight()/2)<532){
                         if (countShark[4] <1){
                             playing.getSharkManager().appear(5);
                             countShark[4] = 10;

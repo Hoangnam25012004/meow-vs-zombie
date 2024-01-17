@@ -5,7 +5,6 @@ import java.util.concurrent.TimeUnit;
 
 public class PlayingNotif implements NotifPattern {
     private Image image;
-    private Image[] CDSkull = new Image[259];
     private int time;
     private Toolkit t = Toolkit.getDefaultToolkit();
     private int type;
