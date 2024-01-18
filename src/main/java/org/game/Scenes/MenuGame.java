@@ -17,8 +17,8 @@ public class MenuGame implements SceneMethods{
     }
 
     public void initButtons() {
-        bPlaying = new MyButtons("Play", 437, 350,150,60);
-        bQuit = new MyButtons("Quit", 442, 440, 140, 55);
+        bPlaying = new MyButtons("Play", 850, 400,130,45);
+        bQuit = new MyButtons("Quit", 850, 470, 130, 45);
         bWin = new MyButtons("Win", 0, 0, 140, 55);
     }
 
@@ -34,8 +34,8 @@ public class MenuGame implements SceneMethods{
     }
 
     public void drawImg(Graphics g){
-        g.drawImage(buttonOfMenu[0], 437, 350, 150, 60, null);
-        g.drawImage(buttonOfMenu[1], 442, 440, 140, 55, null);
+        g.drawImage(buttonOfMenu[0], 850, 400, 130, 45, null);
+        g.drawImage(buttonOfMenu[1], 850, 470, 130, 45, null);
     }
 
 

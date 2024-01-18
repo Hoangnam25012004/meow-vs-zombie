@@ -54,24 +54,24 @@ public class BarManager {
     }
 
     private void initButtons() {
-        pickMeow = new MyButtons[5];
-        pickMeow[0] = new MyButtons("Bucket", 458, 20, 80, 70);
-        pickMeow[1] = new MyButtons("Meow", 553, 20, 80, 70);
-        pickMeow[2] = new MyButtons("Stinky Pate", 648, 20, 80, 70);
-        pickMeow[3] = new MyButtons("Ice Meow", 743, 20, 80, 70);
-        pickMeow[4] = new MyButtons("Pate Bomb", 838, 20, 80, 70);
-        //pickPlant[5] = new MyButtons("Shovel",940,20,80,70);
+        pickMeow = new MyButtons[6];
+        pickMeow[0] = new MyButtons("Bucket", 95, 12, 100, 74);
+        pickMeow[1] = new MyButtons("Meow", 195, 12, 100, 74);
+        pickMeow[2] = new MyButtons("Stinky Pate", 295, 12, 100, 74);
+        pickMeow[3] = new MyButtons("IceCat", 395, 12, 100, 74);
+        pickMeow[4] = new MyButtons("Pate Bomb", 495, 12, 100, 74);
+        pickMeow[5] = new MyButtons("Bag",595,12,100,74);
     }
 
     private void importImg(){
-        pick_meowBar = new Image[5];
+        pick_meowBar = new Image[6];
         try {
             pick_meowBar[0] = t.getImage(getClass().getResource("/meowBar/Bucket.png"));
             pick_meowBar[1] = t.getImage(getClass().getResource("/meowBar/Meow.png"));
             pick_meowBar[2] = t.getImage(getClass().getResource("/meowBar/Tray.png"));
             pick_meowBar[3] = t.getImage(getClass().getResource("/meowBar/Icecat.png"));
             pick_meowBar[4] = t.getImage(getClass().getResource("/meowBar/pateBomb.png"));
-            //pick_plantBar[5] = t.getImage(getClass().getResource("/shovel/shovel.png"));
+            pick_meowBar[5] = t.getImage(getClass().getResource("/Bag/Bag.png"));
             pickedMeow = t.getImage(getClass().getResource("/meowBar/plantSelected.png"));
             meowBar = t.getImage(getClass().getResource("/meowBar/MeowBar.png"));
         }catch (Exception e){
@@ -96,10 +96,6 @@ public class BarManager {
     }
 
     public void drawMeowbar(Graphics g){
-    /*    g.setColor(Color.black);
-        g.drawRect(365, 10,575,90);
-        g.setColor(Color.pink);
-        g.fillRect(365, 10, 575, 90); */
         g.drawImage(meowBar, 0, 0, 612, 108, null);
         Graphics2D g2d = (Graphics2D) g;
         int distance = 0;
@@ -109,27 +105,29 @@ public class BarManager {
         }
     }
 
-    public void fish(){
+
+    public void bucket(){
         playing.getMeowManager().setIDhold(0);
         meowPickedID.add(0);
         playing.getMeowManager().setFishCostHold(50);
     }
-    public void peaShooter(){
+    public void Meow(){
         playing.getMeowManager().setIDhold(1);
         meowPickedID.add(1);
         playing.getMeowManager().setFishCostHold(100);
     }
-    public void wall_nut(){
+    public void StinkyPate(){
         playing.getMeowManager().setIDhold(2);
         meowPickedID.add(2);
         playing.getMeowManager().setFishCostHold(50);
     }
-    public void shadowPea(){
+    public void IceMeow(){
         playing.getMeowManager().setIDhold(3);
+
         meowPickedID.add(3);
         playing.getMeowManager().setFishCostHold(175);
     }
-    public void cherryBomb(){
+    public void PateBomb(){
         playing.getMeowManager().setIDhold(4);
         meowPickedID.add(4);
         playing.getMeowManager().setFishCostHold(150);
@@ -154,6 +152,78 @@ public class BarManager {
         isMeowInCD[2] = true;
         isMeowInCD[3] = true;
         isMeowInCD[4] = true;
+    }
+    public void resetCD(int index){
+        if(playing.isStartWaveForCD()) {
+            switch (index){
+                case 0:
+                    meowCD[index] = 240;
+                    break;
+                case 1:
+                    meowCD[index] = 240;
+                    break;
+                case 2:
+                    meowCD[index] = 600;
+                    break;
+                case 3:
+                    meowCD[index] = 240;
+                    break;
+                case 4:
+                    meowCD[index] = 900;
+                    break;
+            }
+        }
+    }
+    public void CDCount(int index){
+        if(isMeowInCD[index]){
+            meowCD[index]--;
+            if(meowCD[index] <= 0){
+                resetCD(index);
+                isMeowInCD[index] = false;
+            }
+        }
+    }
+    public void update(){
+        for(int i = 0; i<meowPickedID.size();i++){
+            switch (meowPickedID.get(i)){
+                case 0:
+                    if(!isCDReducing[0]){
+                        CDCount(0);
+                        isCDReducing[0] = true;
+                    }
+                    break;
+                case 1:
+                    if(!isCDReducing[1]){
+                        CDCount(1);
+                        isCDReducing[1] = true;
+                    }
+                    break;
+                case 2:
+                    if(!isCDReducing[2]){
+                        CDCount(2);
+                        isCDReducing[2] = true;
+                    }
+                    break;
+                case 3:
+                    if(!isCDReducing[3]){
+                        CDCount(3);
+                        isCDReducing[3] = true;
+                    }
+                    break;
+                case 4:
+                    if(!isCDReducing[4]){
+                        CDCount(4);
+                        isCDReducing[4] = true;
+                    }
+                    break;
+            }
+        }
+        isCDReducing[0] = false;
+        isCDReducing[1] = false;
+        isCDReducing[2] = false;
+        isCDReducing[3] = false;
+        isCDReducing[4] = false;
+        //meowEnoughFish();
     }
 
     public void initmeowInCD(){
@@ -184,6 +254,27 @@ public class BarManager {
         }
     }
 
+    public void drawMeowNotEnoughFish(Graphics g){
+        int x = 95;
+        int y =12;
+
+        if(playing.getFishManager().getFishHold() < 50){
+            g.drawImage(meowInCD[0],x,y, 100, 74, null);
+            g.drawImage(meowInCD[1],x+100,y, 100, 74, null);
+            g.drawImage(meowInCD[2],x+200,y, 100, 74, null);
+            g.drawImage(meowInCD[3],x+300,y, 100, 74, null);
+            g.drawImage(meowInCD[4],x+400,y, 100, 74, null);
+        } else if(playing.getFishManager().getFishHold() < 100){
+            g.drawImage(meowInCD[1],x+100,y, 100, 74, null);
+            g.drawImage(meowInCD[3],x+300,y, 100, 74, null);
+            g.drawImage(meowInCD[4],x+400,y, 100, 74, null);
+        } else if(playing.getFishManager().getFishHold() < 150){
+            g.drawImage(meowInCD[3],x+300,y, 100, 74, null);
+            g.drawImage(meowInCD[4],x+400,y, 100, 74, null);
+        } else if(playing.getFishManager().getFishHold() < 175){
+            g.drawImage(meowInCD[3],x+300,y, 100, 74, null);
+        }
+    }
 
     public MyButtons[] getPickMeow(){
         return pickMeow;
@@ -192,5 +283,6 @@ public class BarManager {
     public void draw(Graphics g){
         drawMeowbar(g);
         drawMeowInCD(g);
+        drawMeowNotEnoughFish(g);
     }
 }

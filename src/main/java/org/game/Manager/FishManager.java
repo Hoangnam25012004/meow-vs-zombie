@@ -16,7 +16,6 @@ public class FishManager {
     private Toolkit t = Toolkit.getDefaultToolkit();
     private Image fishImage = t.getImage(getClass().getResource("/Fish/fish.png"));;
     private List<Fish> listOfFish = new ArrayList<>();
-//    private Playing playing;
     private int realTimeCounter = 0;
     private int fishHold = 1500;
     private Random random = new Random();
@@ -54,13 +53,16 @@ public class FishManager {
         int randx = random.nextInt(fakeSize);
         listOfFish.get(randx).setX(meow.getX());
         listOfFish.get(randx).setY(meow.getY()-30);
-        listOfFish.get(randx).setBound(new Rectangle(meow.getX(),meow.getY()-30,70,70));
+        listOfFish.get(randx).setBound(new Rectangle(meow.getX(),meow.getY(),70,70));
         listOfFish.get(randx).setBoundaryDrop(meow.getY()+30);
         listOfFish.get(randx).setThere(true);
         fakeSize--;
     }
     public int getFishHold() {
         return fishHold;
+    }
+    public void setFishHold(int fish){
+        this.fishHold = fish;
     }
     public void fishConsumed(int fishConsumed){
         fishHold -= fishConsumed;
@@ -80,27 +82,12 @@ public class FishManager {
             Fish fish = iterator.next();
             Rectangle rFish = fish.getBounds();
             if(rFish.contains(x,y) && !fish.isFishCLicked() && fish.isThere()){
-//                Audio.sunCollected();
                 collectFish(fish);
             }
         }
     }
 
-//    public void fishCollectedByKeyBoard(){
-//        if(!playing.getMouseMotionManager().isControlledByMouse()){
-//            Iterator<Fish> iterator = listOfFish.iterator();
-//            while (iterator.hasNext()){
-//                Fish fish = iterator.next();
-//                Rectangle rFish = new Rectangle((int)fish.getBounds().getX()+15,(int)fish.getBounds().getY()+30,(int)fish.getBounds().getWidth()-30,(int)fish.getBounds().getHeight()-30);
-//                if(playing.getTileManager().getTiles()[playing.getKeyBoardManager().getTileSelectedByKeyBoard()].getBound().intersects(rFish)){
-//                    if(!fish.isCollected() && fish.isThere()){
-////                        Audio.sunCollected();
-//                        collectFish(fish);
-//                    }
-//                }
-//            }
-//        }
-//    }
+
     public void removeFish(){
         Rectangle holder = new Rectangle(355,-70,90,90);
         Iterator<Fish> iterator = listOfFish.iterator();
@@ -113,22 +100,21 @@ public class FishManager {
         }
     }
     public void drawFishHolder(Graphics g){
-//        Rectangle holder = new Rectangle(355,-70,90,90);
-//        g.drawRect((int)holder.getX(),(int)holder.getY(),(int)holder.getWidth(),(int)holder.getWidth());
         Graphics2D g2n = (Graphics2D) g;
         g2n.setFont(new Font("Arial",Font.BOLD,16));
         g2n.setColor(Color.BLACK);
-        g2n.drawString(String.format("%d",fishHold),getAlignment(),95);
+        g2n.drawString(String.format("%d",fishHold),getAlignment(),85);
     }
     public int getAlignment(){
+        int x=43;
         if(fishHold == 0){
-            return 405;
+            return x;
         } else if(fishHold < 100){
-            return 400;
+            return x-5;
         } else if(fishHold < 1000){
-            return 395;
+            return x-10;
         } else {
-            return 390;
+            return x-15;
         }
     }
     public void drawFish(Graphics g){
@@ -139,9 +125,6 @@ public class FishManager {
             Fish fish = iterator.next();
             if(fish.isThere()){
                 g2d.drawImage(fishImage,(int)fish.getX(),(int)fish.getY(),fish.getWidth(),fish.getHeight(),null);
-//                        g.setColor(Color.RED);
-//                        g.drawRect((int)sun.getBounds().getX()+15,(int)sun.getBounds().getY()+30,(int)sun.getBounds().getWidth()-30,(int)sun.getBounds().getHeight()-30);
-//                    g.drawRect((int)sun.getX(),(int)sun.getY(),sun.getWidth(),sun.getHeight());
             }
         }
     }
@@ -158,26 +141,26 @@ public class FishManager {
         }
     }
 
-//    public void update(Playing playing){
-//        if(playing.isStartWaveForCD()){
-//            frameCount();
-//            if(realTimeCounter == randomTimeFishDrop){
-//                fishCreation();
-//                realTimeCounter = 0;
-//                randomTimeFishDrop = random.nextInt(300)+900;
-//            }
-////            fishCollectedByKeyBoard();
-//            Iterator<Fish> iterator= listOfFish.iterator();
-//            while (iterator.hasNext()){
-//                Fish fish = iterator.next();
-//                if(fish.isThere()){
-//                    fish.move();
-//                    fish.moveToStorage();
-//                }
-//            }
-//        } else {
-//            collectAllFish();
-//        }
-//        removeFish();
-//    }
+    public void update(Playing playing){
+        if(playing.isStartWaveForCD()){
+            frameCount();
+            if(realTimeCounter == randomTimeFishDrop){
+                fishCreation();
+                realTimeCounter = 0;
+                randomTimeFishDrop = random.nextInt(300)+900;
+            }
+
+            Iterator<Fish> iterator= listOfFish.iterator();
+            while (iterator.hasNext()){
+                Fish fish = iterator.next();
+                if(fish.isThere()){
+                    fish.move();
+                    fish.moveToStorage();
+                }
+            }
+        } else {
+            collectAllFish();
+        }
+        removeFish();
+    }
 }

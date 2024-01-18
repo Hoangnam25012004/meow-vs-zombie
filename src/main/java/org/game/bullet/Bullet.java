@@ -1,10 +1,10 @@
 package org.game.bullet;
 import java.awt.*;
-
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Bullet {
-    private final int dame = 0;
     private double x;
     private int y;
     private final int Dame ;
@@ -53,8 +53,9 @@ public class Bullet {
     }
 
 
+
     public void move () {
-        if (this.x<1024) {
+        if (this.x<1070) {
             this.x += 8;
         }
     }

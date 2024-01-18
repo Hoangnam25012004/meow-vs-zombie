@@ -34,7 +34,7 @@ public class MouseMotionManager {
             isControlledByMouse = true;
         }
     }
-    public void mouseTrackPlantBar(int x, int y){
+    public void mouseTrackMeowBar(int x, int y){
         for(int i = 0;i<playing.getBarManager().getPickMeow().length;i++){
             Rectangle r = playing.getBarManager().getPickMeow()[i].getBounds();
             if(r.contains(x,y)){
@@ -42,7 +42,7 @@ public class MouseMotionManager {
                     playing.getTileManager().setInTile(false);
                     playing.getMeowManager().setSelected(false);
                     playing.getBarManager().setMeowLocked(false);
-                    playing.getMeowManager().setIsDog(false);
+                    playing.getMeowManager().setBagged(false);
                 }
                 meowPickedByMouse = i;
                 //playing.getKeyBoardManager().setPlantPickedByKeyBoard(meowPickedByMouse);

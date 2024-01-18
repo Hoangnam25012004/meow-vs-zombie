@@ -1,5 +1,6 @@
 package org.game.Manager;
 
+import org.game.Audio.Audio;
 import org.game.MeowPack.*;
 import org.game.Component.Tile;
 import org.game.Scenes.Playing;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Random;
 
 public class MeowManager {
-    private final Image[] fish = new Image[1];
+    private final Image[] bucket = new Image[1];
     private final Image[] meow_idle = new Image[1];
     private final Image[] meow_attack = new Image[3];
     private final Image[] stinkyPate = new Image[4];
@@ -27,7 +28,7 @@ public class MeowManager {
     private boolean selected = true;
     private boolean isMeowed = false;
     private boolean isForbidden = false;
-    private boolean isDog = false;
+    private boolean isBagged = false;
     private int IDhold;
     private int fishCostHold;
     private static MeowManager instance;
@@ -48,7 +49,7 @@ public class MeowManager {
         this.playing = playing;
         importPateBomb();
         importMeow();
-        importFish();
+        importBucket();
         importStinkyPate();
         importIceMeow();
         meowForbiddenFromStart();
@@ -117,9 +118,9 @@ public class MeowManager {
         return selected;
     }
 
-    public void importFish(){
-        for(int i = 0;i<fish.length;i++){
-            fish[i] = t.getImage(getClass().getResource("/Fish/fish.png"));
+    public void importBucket(){
+        for(int i = 0;i<bucket.length;i++){
+            bucket[i] = t.getImage(getClass().getResource("/meowRes/bucket.png"));
         }
     }
 
@@ -167,23 +168,23 @@ public class MeowManager {
             Meow m = iterator.next();
             if(m.isAlive() || waitingTime<240){
                 if (m.getID() == 0){
-                    g.drawImage(fish[m.getFrameCountIdle()], m.getX(), m.getY(), m.getWidth(), m.getHeight(), null);
+                    g.drawImage(bucket[m.getFrameCountIdle()], m.getX()+12, m.getY()+15, m.getWidth()-25, m.getHeight()-15, null);
                 } else if (m.getID() == 1){
                     if(!m.isDangered()){
-                        g.drawImage(meow_idle[m.getFrameCountIdle()], m.getX(), m.getY(), m.getWidth(), m.getHeight(), null);
+                        g.drawImage(meow_idle[m.getFrameCountIdle()], m.getX(), m.getY()+7, m.getWidth()-3, m.getHeight()-7, null);
                     } else {
-                        g.drawImage(meow_attack[m.getFrameCountAttack()], m.getX(), m.getY(), m.getWidth(), m.getHeight(), null);
+                        g.drawImage(meow_attack[m.getFrameCountAttack()], m.getX(), m.getY()+7, m.getWidth()-3, m.getHeight()-7, null);
                     }
                 } else if (m.getID() == 2){
-                    g.drawImage(stinkyPate[m.getFrameCountIdle()], m.getX(), m.getY(), m.getWidth(), m.getHeight(), null);
+                    g.drawImage(stinkyPate[m.getFrameCountStinkyPate()], m.getX()+13, m.getY()+30, m.getWidth()-30, m.getHeight()-30, null);
                 } else if (m.getID() == 3){
                     if(!m.isDangered()){
-                        g.drawImage(iceMeow_Idle[m.getFrameCountIdle()], m.getX()-10, m.getY()-30, m.getWidth()+30, m.getHeight()+30, null);
+                        g.drawImage(iceMeow_Idle[m.getFrameCountIdle()], m.getX()-10, m.getY()-18, m.getWidth()+15, m.getHeight()+17, null);
                     } else {
-                        g.drawImage(iceMeow_Attack[m.getFrameCountAttack()], m.getX()-10, m.getY()-30, m.getWidth()+30, m.getHeight()+30, null);
+                        g.drawImage(iceMeow_Attack[m.getFrameCountAttack()], m.getX()-10, m.getY()-18, m.getWidth()+15, m.getHeight()+17, null);
                     }
                 } else if (m.getID() == 4){
-                    g.drawImage(pateBomb[m.getFrameCountIdle()],m.getX(), m.getY(), m.getWidth(), m.getHeight(), null);
+                    g.drawImage(pateBomb[m.getFrameCountIdle()],m.getX(), m.getY()-40, m.getWidth()+5, m.getHeight()+40, null);
                 }
                 drawMeowAttackTest(g,m);
             }
@@ -197,6 +198,12 @@ public class MeowManager {
             if(meow.isAlive() || waitingTime<240){
                 if(meow.getID() == 1 || meow.getID() == 3){
                     meow.updateFrameCountAttack();
+                }
+                if ( meow.getID() == 2){
+                    meow.updateFrameCountStinkyPate(meow);
+                }
+                if (meow.getID() == 4){
+                    meow.updateFrameCountIdle();
                 }
             }
         }
@@ -251,8 +258,8 @@ public class MeowManager {
                     shiftMeow(tile);
                     for (int j = 0; j < meowList.size(); j++){
                         meowList.get(meowList.size() - 1).setTileHold(i);
-                        if(!tile.isPlanted()){
-                            tile.setPlanted(true);
+                        if(!tile.isPlaced()){
+                            tile.setPlaced(true);
                         }
                     }
                     isMeowed = true;
@@ -267,6 +274,19 @@ public class MeowManager {
             if(selected && !playing.getBarManager().getIsMeowInCD()[playing.getBarManager().getMeowPickedID().get(playing.getBarManager().getMeowPickedID().size()-1)]){
                 for (int i = 0; i < playing.getTileManager().getTiles().length; i++){
                     meowOnTile(playing.getTileManager().getTiles()[i],x,y,i);
+                }
+                if(playing.isStartWaveForCD()){
+                    selected = false;
+                    playing.getBarManager().setMeowLocked(false);
+                }
+            } else if(selected && playing.getBarManager().getIsMeowInCD()[playing.getBarManager().getMeowPickedID().get(playing.getBarManager().getMeowPickedID().size()-1)]) {
+                //Audio.meowNotAvailable();
+            }
+        } else {
+            for (int i = 0; i < playing.getTileManager().getTiles().length; i++){
+                Rectangle r = playing.getTileManager().getTiles()[i].getBound();
+                if(r.contains(x,y)){
+//Audio.meowNotAvailable();
                 }
             }
         }
@@ -305,7 +325,7 @@ public class MeowManager {
             Iterator<Zombie> iterator = playing.getZombieManager().getZombies().iterator();
             while (iterator.hasNext()){
                 Zombie zombie = iterator.next();
-                if(r.contains(zombie.X()+50,zombie.Y()+70) && zombie.isAlived()){
+                if( (r.contains(zombie.X(),zombie.Y()) || (r.getX() + r.getWidth()*3/2) >= zombie.X() ) && zombie.isAlived()  ){
                     if(i>=0 && i<9){
                         for(int j = 0;j < 9;j++){
                             setMeowDangered(playing.getTileManager().getTiles()[j]);
@@ -348,8 +368,8 @@ public class MeowManager {
         }
         return start;
     }
-    public void setIsDog(boolean isDog){
-        this.isDog = isDog;
+    public void setBagged(boolean isbag){
+        this.isBagged = isbag;
     }
 
     public void calmMeow(){
@@ -379,14 +399,12 @@ public class MeowManager {
             if(meow.isAlive()){
                 if(meow.isDangered()){
                     if(meow.getID() == 1){
-                        if(meow.getFrameCountAttack() == 31){
-//                            playing.getProjectileOfPlant().projectileCreated((Shooter) plant);
-                            meow.setFrameCountAttack(meow.getFrameCountAttack()+1);
+                        if(meow.getFrameCountAttack() == 2 && meow.getFrameCDAttack() == 19){
+                            playing.getBulletManager().bulletCreated(meow);
                         }
-                    } else if(meow.getID() == 3){
-                        if(meow.getFrameCountAttack() == 8){
-//                            playing.getProjectileOfPlant().projectileCreated((Shooter) plant);
-                            meow.setFrameCountAttack(meow.getFrameCountAttack()+1);
+                    } else if(meow.getID() == 3 && meow.getFrameCDAttack() == 19 ){
+                        if(meow.getFrameCountAttack() == 2){
+                            playing.getBulletManager().bulletCreated(meow);
                         }
                     }
                 }
@@ -401,7 +419,8 @@ public class MeowManager {
     private boolean isExploded = false;
     private int explosionTime = 0;
     public void pateExplode(int x, int y){
-        Rectangle explodeRange = new Rectangle(x-120,y-130,300,330);
+        System.out.println("Mjaamk [ate");
+        Rectangle explodeRange = new Rectangle(x-120,y-130,300,300);
         explosionX = explodeRange.getX();
         explosionY = explodeRange.getY();
         explosionWidth = explodeRange.getWidth();
@@ -410,7 +429,7 @@ public class MeowManager {
             Iterator<Zombie> iterator = playing.getZombieManager().getZombies().iterator();
             while (iterator.hasNext()){
                 Zombie zombie = iterator.next();
-                if(explodeRange.contains(zombie.getBound().getX(),zombie.getBound().getY()+70)){
+                if(explodeRange.contains(zombie.X(),zombie.Y())){
                     zombie.dead();
                 }
             }
@@ -424,7 +443,7 @@ public class MeowManager {
             Meow meow = iterator.next();
             if(meow.isAlive()){
                 if(meow.getID() == 4){
-                    if(meow.getFrameCountIdle() == 29){
+                    if(meow.getFrameCountIdle() == 3){
                         meow.setHealthPoint(0);
                         pateExplode(meow.getX(),meow.getY());
                         meow.removeMeow(meow,iterator,playing.getTileManager(),this);
@@ -439,7 +458,7 @@ public class MeowManager {
 
     public void drawExplosion(Graphics g){
         Graphics2D g2d = (Graphics2D) g;
-        Image Explosion = t.getImage(getClass().getResource("/Event/Powie.png"));
+        Image Explosion = t.getImage(getClass().getResource("/PateBomb/pateBomb-3.png"));
         explosionTime++;
         if(explosionTime<60 && isExploded){
             g2d.drawImage(Explosion,(int)explosionX,(int)explosionY,(int)explosionWidth,(int)explosionHeight,null);
@@ -454,4 +473,29 @@ public class MeowManager {
         drawExplosion(g);
     }
 
+    public boolean getisBagged() {
+        return isBagged;
+    }
+
+    public void removeMeowByBag(int x, int y){
+        for(int i = 0;i < playing.getTileManager().getTiles().length;i++){
+            if(isBagged){
+                if(playing.getTileManager().getTiles()[playing.getMouseMotionManager().getTileSelectedByMouse()].getBound().contains(x,y)){
+                    Iterator<Meow> iterator = meowList.iterator();
+                    while (iterator.hasNext()){
+                        Meow meow = iterator.next();
+                        if(meow.isAlive()){
+                            Rectangle meowRec = new Rectangle(meow.getX(),meow.getY(),meow.getWidth(),meow.getHeight());
+                            if(playing.getTileManager().getTiles()[playing.getMouseMotionManager().getTileSelectedByMouse()].isOccupied() && playing.getTileManager().getTiles()[playing.getMouseMotionManager().getTileSelectedByMouse()].getBound().contains(meow.getX(),meow.getY())){
+                                playing.getTileManager().getTiles()[playing.getMouseMotionManager().getTileSelectedByMouse()].setOccupied(false);
+                                playing.getTileManager().getTiles()[playing.getMouseMotionManager().getTileSelectedByMouse()].setPlaced(false);
+                                meow.setAlive(false);
+                                isBagged = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

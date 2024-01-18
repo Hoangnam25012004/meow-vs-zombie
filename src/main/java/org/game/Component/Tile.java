@@ -15,15 +15,15 @@ public class Tile {
     private int curX, curY;
     private int wTileOfHouseOwner = 160, hTileOfHouseOwner = 90;
 
-    public boolean isPlanted() {
-        return isPlanted;
+    public boolean isPlaced() {
+        return isPlaced;
     }
 
-    public void setPlanted(boolean planted) {
-        isPlanted = planted;
+    public void setPlaced(boolean placed) {
+        isPlaced = placed;
     }
 
-    private boolean isPlanted = false;
+    private boolean isPlaced = false;
     public int getwTile() {
         return wTile;
     }
