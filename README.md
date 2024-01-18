@@ -14,7 +14,7 @@ Course: OBJECT - ORIENTED PROGRAMMING
   </a>
 
 <h3 align="center">OOP MEOW vs ZOMBIES PROJECT</h3>
-<h4 align="center">Team Name: Team: 27 OOP</h4>
+<h4 align="center">Team: 27 OOP</h4>
 
   <p align="center">
     A Java game created with JavaFX for OOP course in International University - VNUHCM!
@@ -59,7 +59,7 @@ Course: OBJECT - ORIENTED PROGRAMMING
 </div>
 
 <div style="text-align:justify">
-This is our game project in our Object-Oriented Programming course in semester 1 (2023 - 2024). Plants vs Zombies is an individual game that does not require players have excellent skills or advanced technology. It's a straightforward game that may be enjoyed by people of all ages. As a result of all of these factors, we developed a program that is user-friendly and assists users in having the greatest possible experiences. So, what are we waiting for? Let the story begin!
+This is our game project in our Object-Oriented Programming course in semester 1 (2023 - 2024). Meows vs Zombies is an individual game that does not require players have excellent skills or advanced technology. It's a straightforward game that may be enjoyed by people of all ages. As a result of all of these factors, we developed a program that is user-friendly and assists users in having the greatest possible experiences. So, what are we waiting for? Let the story begin!
 </div>
 
 ### Team Members :couplekiss_man_man:
@@ -145,14 +145,14 @@ Players must prevent enemy zombies from crossing their front lawn and entering t
 ###  Game description
     Character:
 - Meow: Meows possess unique abilities and characteristics to protect the garden against zombies. They are strategically placed on the game's grid-like lawn to counter different types of zombies.
-- Zombies: Zombies are the primary adversaries in the game, with the objective of invading the garden and devouring plants. Understanding the different zombie types and their behaviors is crucial for developing effective defense strategies.
+- Zombies: Zombies are the primary adversaries in the game, with the objective of invading the garden and attacking meow. Understanding the different zombie types and their behaviors is crucial for developing effective defense strategies.
 - Shark : A powerful creature that live under the lake and help the meows defeat zombies. It will attack one time each row, and only attack when zombie reach the shark range.
 
 <div align="center">
 </div>
 
     Items:
-- Fish: Fish acts as a crucial resource that players must manage effectively to collect and sustain their plants. It is used to purchase and deploy cats in the garden.
+- Fish: Fish acts as a crucial resource that players must manage effectively to collect and sustain their cats. It is used to purchase and deploy cats in the garden.
 - Bullet: Such as peas, are used by meow to damage and eliminate zombies. Meow fire bullet to fend off the zombie threat.
 
 <div align="center">
@@ -176,9 +176,9 @@ Players must prevent enemy zombies from crossing their front lawn and entering t
                     Playing Meow vs. Zombies with a mouse is straightforward. 
                     Here's a general overview of how to control the game using a mouse:
 - Menu Navigation: Use the mouse cursor to select options in the game's menus.
-- Meow Selection: Click on plant icons to select and pick up a desired meow.
+- Meow Selection: Click on meow icons to select and pick up a desired meow.
 - Meow Placement: Move the cursor to the desired location on the grid and left-click to place the selected meow.
-- Fish Collection: Move the cursor over falling sunlight to collect it as in-game currency for purchasing and placing plants.
+- Fish Collection: Move the cursor over falling sunlight to collect it as in-game currency for purchasing and placing meows.
 
 <div align="center">
 </div>
