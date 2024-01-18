@@ -183,17 +183,6 @@ public class Playing implements SceneMethods {
             if (zombieManager.getTotalZom() <= 0 && zombieManager.allZombieDead()) {
                 System.out.println("You wins");
                 setGameScenes(WIN);
-                /*if (waveManager.isEndWaves()) {
-                    setGameScenes(WIN);
-                    Audio.stopRoof();
-                    Audio.stopReadySetPlant();
-                    Audio.win();
-                } else {
-                    waveManager.createHorde();
-                    callHorde = true;
-                    zombieApproaching = true;
-                }*/
-//                notifManager.setNotif(new PlayingNotif(0));
             }
         }
     }
@@ -202,7 +191,6 @@ public class Playing implements SceneMethods {
         for (MyButtons b2 : barManager.getPickMeow()) {
             if (b2.getBounds().contains(x, y)) {
                 System.out.println("You choose " + b2.getText());
-                //Audio.tapPlantBar();
                 meowManager.setSelected(true);
                 if(!barManager.isMeowLocked()){
                     if (b2.getText().contains("Bucket")) {
@@ -254,9 +242,6 @@ public class Playing implements SceneMethods {
     @Override
     public void render(Graphics g, Image img) {
         g.drawImage(img, 0, 0, w.getWidth(), w.getHeight(), null);
-//        buttonManager.drawButtons(g);
-//        tileManager.drawTiles(g, meowManager);
-//        tileManager.drawTiles(g, houseOwnerManager);
         barManager.draw(g);
         mouseMotionManager.drawMeowSelectedByMouse(g);
         tileManager.draw(g);

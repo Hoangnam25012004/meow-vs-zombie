@@ -14,11 +14,7 @@ import java.util.List;
 import java.util.Objects;
 public class BulletManager extends BulletLogic {
     private Image[] bulletImage = new Image[2];
-    private int originalX;
-    private int originalY;
     private Toolkit t = Toolkit.getDefaultToolkit();
-    public ArrayList<Bullet> bulletList = new ArrayList<>();
-    Zombie zombie;
 
 
 
@@ -43,26 +39,6 @@ public class BulletManager extends BulletLogic {
             }
         }
     }
-
-
-    //___________________________________________________________________________
-
-
- /*   public void bullet_update(Zombie zombie) {
-        move(4);
-        if (super.x >= graphical.getScreenWidth()) {
-            super.x = originalX;
-            super.y = originalY;
-        }
-        if (super.x < (zombie.getX() + graphical.getZomWidth()) & super.x > (zombie.getX() - graphical.getZomWidth())) {
-            super.x = originalX;
-            super.y = originalY;
-        }
-
-    }
-
-  */
-
 
     //___________________________________________________________________________
     @Override

@@ -13,7 +13,6 @@ public abstract class BulletLogic {
 
     private List<Bullet> bulletList = new ArrayList<>();
     private static int realTimeCounter = 0;
-    private static boolean isReset = false;
 
     public List<Bullet> getBulletList() {
         return bulletList;
